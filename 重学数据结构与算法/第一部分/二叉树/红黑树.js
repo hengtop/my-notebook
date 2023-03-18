@@ -1,5 +1,4 @@
 import { BinarySearchTree, Node } from "./二叉搜索树.js";
-import printTree from "./printTree.js";
 
 class RBNode extends Node {
   constructor(element, parent) {
@@ -154,18 +153,16 @@ class RBTree extends BinarySearchTree {
     }
     node.parent = parent;
   }
-
-  toString() {
-    printTree(this.root);
-  }
 }
 
 const rbt = new RBTree();
 
 const arr = [7, 4, 2, 1, 3, 5, 9, 8, 11, 10];
-const arr3 = [55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50];
+const arr3 = [
+  155, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0,
+];
 const arr2 = [85, 19, 69, 3, 7, 99, 95];
-arr.forEach((item) => {
+arr3.forEach((item) => {
   rbt.add(item);
 });
 

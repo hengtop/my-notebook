@@ -1,4 +1,4 @@
-const { BinarySearchTree, Node } = require("./二叉搜索树");
+import { BinarySearchTree, Node } from "./二叉搜索树.js";
 
 class AVLNode extends Node {
   // 创建出来的节点高度最小是1

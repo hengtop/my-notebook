@@ -1,5 +1,5 @@
-//const { printBinaryTree } = require("./printTree");
-//const { printTree2 } = require("./printTree2");
+import printTree2 from "./printTree2.js";
+import printTree from "./printTree.js";
 
 class Node {
   constructor(element, parent, left = null, right = null) {
@@ -256,7 +256,8 @@ class BinarySearchTree {
       }
     }
   }
-  toString() {
+  // console打印器 不支持多层级的
+  toStringOld() {
     function NLR(biTree, index) {
       if (biTree == null) return;
       treeArray[index] = biTree.element;
@@ -266,6 +267,9 @@ class BinarySearchTree {
     let treeArray = [];
     NLR(this.root, 0);
     printTree2(treeArray);
+  }
+  toString() {
+    printTree(this.root);
   }
   //打印树的高度
   height() {

@@ -62,7 +62,7 @@ function getText(textMatrix) {
   return str;
 }
 
-function printTree(treeArray) {
+function printTree2(treeArray) {
   console.log(getText(creatTextMatrix(treeArray)));
 }
-module.exports = { printTree };
+export default printTree2;
