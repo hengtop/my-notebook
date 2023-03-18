@@ -1,0 +1,14 @@
+{
+  "name": "19gulp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "gulp serveTask",
+    "build": "gulp buildTask"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const CreateDiv = (function() {
+      let instance = null;
+      const CreateDiv = function(html) {
+        if(instance) {
+          return instance
+        }
+        this.html = html;
+        this.init();
+        return instance = this;
+      }
+      CreateDiv.prototype.init = function() {
+        console.log("初始化")
+      }
+      return CreateDiv;
+    })()
+
+    const p1 = new CreateDiv('zhangsan');
+    const p2 = new CreateDiv('lisi');
+    console.log(p2);
+   console.log(p1 === p2);
+  </script>
+</body>
+</html>

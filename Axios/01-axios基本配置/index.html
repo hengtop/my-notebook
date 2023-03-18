@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="page-header">基本使用</h2>
+    <button class="btn">get</button>
+    <button class="btn">post</button>
+    <button class="btn">put</button>
+    <button class="btn">delete</button>
+  </div>
+  <script>
+    const btns = document.querySelectorAll('.btn');
+    //get请求获取
+    btns[0].onclick = function() {
+      axios({
+        method: 'GET',
+        url: 'http://localhost:3000/posts/2',
+
+      }).then((res) => {
+        console.log(res);
+      });
+    }
+    //添加
+    btns[1].onclick = function(e) {
+      axios({
+        method: 'POST',
+        url: 'http://localhost:3000/posts',
+        //设置请求体
+        data: {
+          title: '伪物语',
+          author: 'zhangsan'
+        }
+      }).then((res) => {
+        console.log(res);
+      })
+    }
+    //修改
+    btns[2].onclick = function(e) {
+      axios({
+        method: 'PUT',
+        url: 'http://localhost:3000/posts/3',
+        //设置请求体
+        data: {
+          title: '花物语',
+          author: 'snsansansan'
+        }
+      }).then((res) => {
+        console.log(res);
+      })
+    }
+    //删除
+    btns[3].onclick = function(e) {
+      axios({
+        method: 'DELETE',
+        url: 'http://localhost:3000/posts/4',
+        //设置请求体
+        data: {
+          title: '伪物语',
+          author: 'zhangsan'
+        }
+      }).then((res) => {
+        console.log(res);
+      })
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+{
+  "list": [
+    {
+      "id": 161,
+      "userId": 16,
+      "content": "777",
+      "articleId": 6,
+      "commentId": null,
+      "replyUserId": null,
+      "rootCommentId": null,
+      "userInfo": {
+        "id": 16,
+        "name": "altria",
+        "email": "515452760@qq.com",
+        "birthday": "1999-11-19",
+        "realname": "阿尔托莉雅",
+        "cellphone": "13018534211",
+        "avatar_url": "https://zhanghengtuchaung.oss-cn-chengdu.aliyuncs.com/c1066da2-641a-40fc-a34f-d7818ecd565d"
+      },
+      "createAt": "2023-02-22T04:33:57.000Z",
+      "updateAt": "2023-02-22T04:33:57.000Z",
+      "replies": {
+        "list1": [
+          {
+            "id": 162,
+            "content": "666",
+            "createAt": "2023-02-22 12:35:08.000000",
+            "updateAt": "2023-02-22 12:35:08.000000",
+            "userInfo": {
+              "id": 16,
+              "name": "altria",
+              "email": "515452760@qq.com",
+              "birthday": "1999-11-19",
+              "realname": "阿尔托莉雅",
+              "cellphone": "13018534211",
+              "avatar_url": "https://zhanghengtuchaung.oss-cn-chengdu.aliyuncs.com/c1066da2-641a-40fc-a34f-d7818ecd565d"
+            },
+            "articleId": 6,
+            "commentId": 161,
+            "replyInfo": null,
+            "replyUserInfo": null,
+            "rootCommentId": 161
+          }
+        ]
+      }
+    }
+  ]
+}

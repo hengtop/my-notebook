@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <!--如果你调用的方法不需要参数可以把括号省略，但是如果你的方法需要传参数，则要带上括号-->
+    <button @click="btn01">1</button>
+    <button @click="btn01()">1</button>
+    <!--当方法定义了一个参数，加括号和不加的区别，如果不带浏览器就会默认把生成的event事件对象作为参数传入到方法里-->
+    <button @click="btn02(123)">2</button>
+    <button @click="btn02">2</button>
+    <!--如果在方法调用时我们需要event，又需要其他的参数-->
+    <!--如果要手动获取浏览器的event对象，可这样写：$event-->
+    <button @click="btn03(123,$event)">3</button>
+    <button @click="btn03">3</button>
+   
+  </div>
+  <script>
+  const app = new Vue({
+  el: '#app',
+  data: { 
+    message: 'helloWorld！'
+    },
+    methods: {
+      btn01(){
+        console.log("btn01");
+      },
+      btn02(abc){
+        console.log("......",abc);
+      },
+      btn03(abc,aca){
+        console.log(".....",abc,aca);
+      }
+            
+    },
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="test"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <!-- 一、jsx的写法  -->
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    //1.创建虚拟dom
+    const VDOM = <h1 id="title"><span>hello,react</span></h1>
+    //2.虚拟dom渲染到页面
+    ReactDOM.render(VDOM,document.getElementById('test'));
+  </script>
+  <!-- 二、js的写法 -->
+  <!-- <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    //1.创建虚拟dom
+    const VDOM = React.createElement('h1', {id: 'title'}, 'hello,react');
+    //2.虚拟dom渲染到页面
+    ReactDOM.render(VDOM,document.getElementById('test'));
+  </script> -->
+  <!-- 当然可以看出来用js来写虚拟dom，当遇到嵌套的标签就会一直嵌套的写，所以用jsx方便些  ,其实js的写法就是jsx经过babel编译出来的结构写法 -->
+</body>
+</html>

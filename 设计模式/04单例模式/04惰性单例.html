@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .login{
+      width: 100px;
+      height: 100px;
+      background-color: #bfa;
+      text-align: center;
+      line-height: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <button id="div">登录</button>
+  <script>
+     
+    const getSingle = function(fn) {
+      let ret = null;
+      return function() {
+        return ret || (ret = fn.apply(this, arguments));
+      }
+    }
+    const createLoginLayer = function() {
+      const div = document.createElement('div');
+      div.innerHTML = "登录"
+      div.className = "login"
+      div.style.display = "none";
+      document.body.appendChild(div);
+      return div;
+    }
+    const createIframeLayer = function() {
+      const iframe = document.createElement('iframe');
+      document.body.appendChild(iframe);
+      return iframe;
+    }
+
+    const createSingleLoginLayer = getSingle(createLoginLayer);
+    const createSingleIframeLayer = getSingle(createIframeLayer);
+
+    const d = document.getElementById('div');
+    d.addEventListener('click', () => {
+      /* const loginLayer = createSingleLoginLayer();
+      loginLayer.style.display = "block"; */
+      const iframeLayer = createSingleIframeLayer();
+      iframeLayer.src = "https://topzhang.cn";
+
+    })
+  </script>
+</body>
+</html>

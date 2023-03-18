@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    class Live extends React.Component {
+      //react在不同的周期会执行不同的函数
+      state = {
+        opacity:1
+      }
+      death = () => {
+        //清除定时器
+        clearInterval(this.timer);
+        //卸载组件
+        ReactDOM.unmountComponentAtNode(document.getElementById('test'));
+      }
+      //只调用一次，组件挂在页面之后调用
+      componentDidMount() {
+        this.timer = setInterval(() => {
+          let {opacity} = this.state;
+          opacity -= 0.1;
+          if(opacity <= 0) {
+            opacity = 1;
+          }
+          this.setState({opacity})
+        }, 200);
+      }
+      //组件将要被卸载了
+      componentWillUnmount() {
+        clearInterval(this.timer);//清除定时器
+      }
+      render() {//render只要改状态就要调用一次render，所以这触发了递归,初始化和更新状态时调用render，或者更新调用
+        /* setInterval(() => {
+          let {opacity} = this.state;
+          opacity -= 0.1;
+          if(opacity <= 0) {
+            opacity = 1;
+          }
+          this.setState({opacity})
+        }, 200); */
+        return (
+          <div>
+            <h2 style={{opacity: this.state.opacity}}>React学不会咋办啊啊啊</h2>
+            <button onClick={this.death}>不活了</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Live />, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

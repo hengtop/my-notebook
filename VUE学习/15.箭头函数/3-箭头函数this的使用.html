@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  let name='ddasddaddawda';
+//箭头函数this是上层作用域里的this
+    const obj={
+      name:'zhangheng',
+      aaa(){
+        console.log(this.name);
+
+        setTimeout(() => {
+         console.log(this.name); 
+        },100);
+        
+        setTimeout(function(){
+         console.log(this.name);
+        },100);
+
+        
+      }
+    }
+    obj.aaa();
+  </script>
+</body>
+</html>

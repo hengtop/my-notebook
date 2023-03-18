@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          .red{
+              color: red;
+              border-bottom:1px red solid;
+              transition: all 1s;
+          }
+    </style>
+</head>
+<body>
+     <div id="app">
+         <ul>
+             <!--实现点击对应的li就赋予它样式-->
+             <li @click="btnClick(index)" :class="getClass(index)" v-for="item,index in movies">{{index}}-{{item}}</li> 
+         </ul>
+         
+     </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app=new Vue({
+            el:'#app',
+            data:{
+                message:'age',
+                movies:['saber','archer','lancer','man','guf'],
+                nowIndex:-1
+                
+            },
+            methods: {
+                btnClick:function(index){
+                     this.nowIndex=index;
+                },
+                getClass(index){
+                    return {red:this.nowIndex==index};
+                }
+                
+            },
+        });
+        //app.movies.push("666");
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <h2 v-if="isShow">
+       <div>132</div>
+       <div>132</div>
+       <div>132</div>
+       <div>132</div>
+       {{message}}
+    </h2>
+    
+    <h2 v-else>v-if为false时就展示我</h2>
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！',
+      isShow:true
+    }
+  });
+  </script>
+</body>
+</html>

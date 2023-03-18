@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * slice（）
+			 *   可用来从数组中截取指定元素，该方法不会改变原数组，而是把截取到得数组元素封装到一个新数组返回
+			 *  参数：
+			 *    第一个截取开始位置的索引，包括开始索引
+			 * 
+			 *    第二个截取结束位置的索引，不包括结束索引（第二个索引可以不写，表示从开始索引到最后都输出）
+			 * 索引还可传递负值，如果传递一个负值，则从后往前计算，-1表示倒数第一个，-2表示倒数第二个
+			 */
+			
+			var arr=["孙悟空","猪八戒","唐僧","沙和尚"];
+			//var result=arr.slice(1,3);
+			//console.log(result);  
+			/*
+			 * splice()
+			 * 可用于删除数组中的指定元素
+			 * 该函数会影响到原数组，会将删除的元素作为返回值
+			 *参数：
+			 * 第一个参数表示开始位置的索引
+			 * 第二个表示删除的数量
+			 * 第三个及以后
+			 *    可以传递一些新的元素，这些元素将自动插入到删除元素索引前边 
+			 */
+			  var result=arr.splice(1,0,"牛魔王","红孩儿"); 
+			  console.log(result);
+			  console.log(arr);
+			  
+			  //练习，数组去重
+			 var arr=[1,2,3,2,2,1,3,4,4,2,5,4,5,8,78,56,4];
+			  for(var i=0;i<arr.length;i++)
+			   {
+			   	for (var j=i+1;j<arr.length;)
+			   	 //判断是否相等
+			   	 {
+			   	 	if(arr[i]==arr[j])
+			   	 	 arr.splice(j,1);
+			   	 	else
+			   	 	 j++; 
+			   	 
+			   	 }
+			   	 
+			   }
+			  console.log(arr);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

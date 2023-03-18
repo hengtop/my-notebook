@@ -1,0 +1,33 @@
+<template>
+    <div class="navbr-container">
+    </div>
+</template>
+
+<script>
+  export default {
+    name: 'navBr',
+    components: {},
+    mixins: [],
+    props: {
+    },
+    data: function () {
+      return {}
+    },
+    computed: {},
+    watch: {},
+    created() {
+
+    },
+    mounted() {
+
+    },
+    methods: {}
+  }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+    .navbr-container{
+
+    }
+</style>

@@ -1,0 +1,216 @@
+//设置变量
+@total-width:750;
+//@center-width:693/40rem;
+
+//设置根元素
+html,body{
+    //设置rem的比值 
+    font-size: 100vw/@total-width*40;
+    width: 100%;
+    height: 100%;
+    
+}
+
+//设置外部容器
+.nav-wrapper{
+    //设置宽高
+    width:100%;
+    height:100%;
+    //设置背景图片
+    background-image: url(../img/BG_Register.png);
+    //铺满
+    background-size:100% 100%;
+     
+    //设置内部容器
+    .wrapper{
+        //设置整体宽度
+        width: 345.9*2/40rem;
+        //居中
+        margin: 0 auto;
+        //开启bfc，防止子元素设置的外边距传递给父元素导致整体布局的错位
+        overflow: hidden;
+        
+        //设置标题图标容器
+        .title{
+            //设置外边距定位
+            margin-top: 71*2/40rem;
+            margin-left: 48/40rem;
+            
+            //设置图片样式
+            img{
+                //设置宽高
+                width: 141.2*2/40rem;
+                height: 64/40rem;
+                //设置下外边距
+                margin-bottom: 22/40rem;
+            }
+             
+            //logo下的文字
+            .text{
+                //字体族
+                font-family: NotoSansCJKsc-Regular;
+                //字体大小
+                font-size: 24/40rem;
+                //字体颜色
+                color: #FFFFFF;
+                //字体的位置，靠左
+                text-align: left;
+            }
+        }
+    }
+    
+}
+
+
+
+//设置表单
+.denglu{
+    //设置宽度
+    width: 312*2/40rem;
+    height: 108*2/40rem;
+    //居中
+    margin: 0 auto;
+    //设置圆角
+    border-radius: 10/40rem;
+    //开启相对定位。为绝对定位服务
+    position: relative;
+    //设置上外边距
+    margin-top: 186/40rem;
+    //设置光标颜色
+    caret-color:#0D98FA;
+
+    .reset{
+        //去除默认样式
+        outline: none;
+        border: none;
+        width: 0;
+        height: 0;
+        padding: 0;
+        //开启绝对定位
+        position: absolute;
+        //设置定位偏移量
+        right: 85/40rem;
+        top: 44/40rem;
+        
+        //设置图片大小
+        img{
+            width: 28/40rem;
+        }
+    }
+
+
+    //下面的样式写的有点重复，你以后你有更简便的的写法的
+    .phone-num{
+        //设置盒子的计算方式
+        box-sizing: border-box;
+        //去除默认样式
+        border: none;
+        outline: none;
+        padding: 0;
+        //设置宽度高度
+        width: 100%;
+        height: 108/40rem;
+        //设置圆角，两个方向的
+        border-top-left-radius: 10/40rem;
+        border-top-right-radius: 10/40rem;
+        //设置内边距，就是将光标向右移动
+        padding-left:48/40rem;
+    }
+
+    .yanzhengma{
+        //同上
+        box-sizing: border-box;
+        border: none;
+        outline: none;
+        padding: 0;
+        width: 100%;
+        height: 107/40rem;
+        border-bottom-right-radius: 10/40rem;
+        border-bottom-left-radius: 10/40rem;
+        //设置上边框
+        border-top: 2/40rem solid rgba(0, 0, 0, 0.06);
+        padding-left:48/40rem;
+
+    }
+
+    //设置获取验证码的按钮
+    .getCode{
+        outline: none;
+        border: none;
+        height: 0;
+        padding: 0;
+        //开启绝对定位
+        position: absolute;
+        top: 71*2/40rem;
+        right: 40/40rem;
+        font-family: NotoSansCJKsc-Regular;
+        font-size: 28/40rem;
+        color: #0D98FA;
+        text-align: right;
+    }
+
+}
+
+//设置登录按钮
+.zhuce-wrapper{
+    //设置容器宽高并居中
+    width: 560/40rem;
+    height: 72/40rem;
+    margin: 0 auto;
+    //设置上外边距
+    margin-top: 145/40rem;
+.zhuce{
+    
+    //设置宽高为父元素的100%
+    width: 100%;
+    height: 100%;
+    //去除默认样式
+    border: none;
+    outline: none;
+    //设置背景图片，因为这个背景图片的颜色是有层次的我就扣了高度为1px的背景在向y轴方向平铺就有了这样的背景了
+    background-image:url(../img/空山科技-登录-05-电话注册登录-输入验证码.png);
+    //设置背景图片尺寸
+    background-size: 100% 2/40rem;
+    background-repeat: repeat-y;
+    //圆角设置
+    border-radius: 132/40rem;
+    
+
+    .zhuce-text{
+        //字体样式的设置，都是常用的，不说了
+        font-family: NotoSansCJKsc-Regular;
+        font-size: 16px;
+        color: #FFFFFF;
+        //增加或减少字符间的空白(字符间距)
+        letter-spacing: 0.36px;
+        text-align: center;
+    }
+     
+
+    //一个简陋的单击效果
+    .zhuce-text:active{
+        color: #0D98FA;
+    }
+    
+    
+}
+
+}
+
+//设置最底层的文字
+.other{
+    //字体居中
+    text-align: center;
+    //设置上外边距
+    margin-top: 60/40rem;
+    //文字样式
+    a{
+        //去除超链接默认的下划线
+        text-decoration: none;
+        //字体样式设置
+        font-family: NotoSansCJKsc-Regular;
+        font-size: 32/40rem;
+        color: #FFFFFF;
+        
+    }
+}

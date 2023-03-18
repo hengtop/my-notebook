@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <cpn2></cpn2>
+    <cpn1></cpn1>
+  </div>
+  <script>
+//1.创建第一个组件构造器（子组件）
+const cpnC1 = Vue.extend({
+  template:`
+       <div>
+         <h2>我是内容1</h2>
+         <p>我是段落1<p>
+       </div>
+  `
+});
+//2.创建第二个组件构造器（父组件）
+const cpnC2 = Vue.extend({
+template:`
+     <div>
+       <h2>我是内容2</h2>
+       <p>我是段落2<p>
+       <cpn1></cpn1>
+     </div>
+`,
+//在这里可以进行组件一的注册，然后我们就可以在上边定义模板的时候使用组件一了
+components:{
+  cpn1:cpnC1
+}
+});
+
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！'
+    },
+    //进行组件二的局部注册(注意：这里如果没有对cpn1进行局部注册是不能在这个vue实例里面用的，还是只能在组件二里面使用)
+    components:{
+      cpn2:cpnC2,
+      cpn1:cpnC1
+    }
+  });
+  </script>
+</body>
+</html>

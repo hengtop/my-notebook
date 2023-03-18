@@ -1,0 +1,127 @@
+html,
+body {
+  font-size: 5.33333333vw;
+  width: 100%;
+  height: 100%;
+}
+.nav-wrapper {
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/BG_Register.png);
+  background-size: 100% 100%;
+}
+.nav-wrapper .wrapper {
+  width: 17.295rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.nav-wrapper .wrapper .title {
+  margin-top: 3.55rem;
+  margin-left: 1.2rem;
+}
+.nav-wrapper .wrapper .title img {
+  width: 7.06rem;
+  height: 1.6rem;
+  margin-bottom: 0.55rem;
+}
+.nav-wrapper .wrapper .title .text {
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.6rem;
+  color: #FFFFFF;
+  text-align: left;
+}
+.denglu {
+  width: 15.6rem;
+  height: 5.4rem;
+  margin: 0 auto;
+  border-radius: 0.25rem;
+  position: relative;
+  margin-top: 4.65rem;
+  caret-color: #0D98FA;
+}
+.denglu .reset {
+  outline: none;
+  border: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  position: absolute;
+  right: 2.125rem;
+  top: 1.1rem;
+}
+.denglu .reset img {
+  width: 0.7rem;
+}
+.denglu .phone-num {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  height: 2.7rem;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  padding-left: 1.2rem;
+}
+.denglu .yanzhengma {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  height: 2.675rem;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-top: 0.05rem solid rgba(0, 0, 0, 0.06);
+  padding-left: 1.2rem;
+}
+.denglu .getCode {
+  outline: none;
+  border: none;
+  height: 0;
+  padding: 0;
+  position: absolute;
+  top: 3.55rem;
+  right: 1rem;
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.7rem;
+  color: #0D98FA;
+  text-align: right;
+}
+.zhuce-wrapper {
+  width: 14rem;
+  height: 1.8rem;
+  margin: 0 auto;
+  margin-top: 3.625rem;
+}
+.zhuce-wrapper .zhuce {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-image: url(../img/空山科技-登录-05-电话注册登录-输入验证码.png);
+  background-size: 100% 0.05rem;
+  background-repeat: repeat-y;
+  border-radius: 3.3rem;
+}
+.zhuce-wrapper .zhuce .zhuce-text {
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: 0.36px;
+  text-align: center;
+}
+.zhuce-wrapper .zhuce .zhuce-text:active {
+  color: #0D98FA;
+}
+.other {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.other a {
+  text-decoration: none;
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.8rem;
+  color: #FFFFFF;
+}
+/*# sourceMappingURL=./index.css.map */

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let fn = (a,b) => {
+      console.log(a+b);
+    }
+    fn(1,2);
+    //1.箭头函数中的this的指向是静态的，始终指向声明函数所在的作用域的this
+    function getname(){
+      console.log(this.name);
+    }
+    let getname2 = () => {
+      let name = "箭头函数中"
+      console.log(this.name);
+    }
+    window.name = "window中的name";
+    const school = {
+      name:'对象中name',
+    }
+    //直接调用
+    getname();
+    getname2();
+    //call方法调用
+    getname.call(school);
+    getname2.call(school);//这里依然不能改变this的指向，所以其this是静态的
+    
+    //2.不能作为构造函数实例化对象
+    /* let Person = (name,age) => {
+      this.name = name;
+      this.age = age;
+    }
+    let me = new Person('xiaohu',20);
+    console.log(me); */
+
+    //3.不能使用arguments 变量
+    /* let fn1 = () => {
+      console.log(arguments);
+    }
+    fn1(1,2,3); */
+
+    //
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <span v-if="isUser">
+      <label for="username">用户账号</label><!--点击用户帐号，焦点光标就显示在对应id的输入框中-->
+      <input type="text" id="username" placeholder="用户账号" key="username">
+    </span>
+    <!--这里的问题就是如果我们在输入框中输入了内容，再去切换，输入框中的内容不会改变，这就是vue内部某些元素的一个复用问题
+        可以给标签加上一个key属性，如果其他标签的key属性值与其一样则就不进行复用，如果存在与其key属性值相同的还是会考虑复用
+    -->
+    <span v-else>
+      <label for="email">用户邮箱</label>
+      <input type="text" id="email" placeholder="用户邮箱" key="email">
+    </span>
+    <button @click="isUser=!isUser">切换登陆方式</button>
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！',
+      isUser:true
+    }
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/reset.min.css">
+  <link rel="stylesheet" href="./css/robot.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="robot">
+    <div class="wrapper">
+      <div class="title-img">
+        <h2 class="title-text">Ⅱ型机器人实时数据</h2>
+        <img src="./img/robot-line.png" alt="">
+      </div>
+
+      <div class="main-wrapper">
+        <div class="left-list">
+          <div :class="{_0:index==0,_1:index==1,_2:index==2,_3:index==3,_4:index==4,_5:index==5}" class="static-item"
+            v-for="(item,index) in staticList">
+            <div class="static-name">{{item.name}}</div>
+            <span class="btn" @click="btn(index)">
+              <img v-show="!imgBtn[index].cut" src="./img/imgFAST/1.png" class="onclickBtn"
+                style="width: 26px;height: 25px;">
+              <img v-show="imgBtn[index].cut" src="./img/imgFAST/2.png" class="onclickBtn">
+            </span>
+            <div class="static-img-data">
+              <img :src="item.icon" alt="">
+              <span>{{item.data}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-position">
+          <div class="nav-bar">
+            <div class="nav-bar-item" @click="isActive(index)" :class=isStyle(index) v-for="(item,index) in navItem"
+              :key="index">{{item}}</div>
+          </div>
+        </div>
+
+        <div class="mid-map">
+          <div id="box1" v-show="nowIndex == 0">
+            <div class="box2">
+              <div class="box3">Ⅱ</div>
+            </div>
+          </div>
+          <img class="she" v-show="nowIndex == 1" src="./img/icon/bg2.png" alt="">
+          <img class="bg" v-show="nowIndex == 0" src="./img/icon/bgcImage.png" alt="">
+          <canvas v-show="nowIndex == 2" id="myChart" class="chart" width="300" height="100"></canvas>
+        </div>
+
+        <div class="right-list">
+          <div class="postion-control">
+            <span class="control-item">机器人</span>
+            <div class="postion-control-box">
+              <div class="top" @click="top" @mousedown="down(0)" @mouseup="up(0)">
+                <embed v-show="!clickImg[0].cut" src="./img/imgFAST/robotBtn/onclick-top.svg" alt=""></embed>
+                <embed src="./img/imgFAST/robotBtn/top.svg" alt=""></embed>
+              </div>
+              <div class="jiantou-rl">
+                <div class="left" @click="left" @mousedown="down(1)" @mouseup="up(1)">
+                  <embed v-show="!clickImg[1].cut" src="./img/imgFAST/supplyImg/onclick-left.svg" type="">
+                  <embed src="./img/imgFAST/robotBtn/left.svg" alt=""></embed>
+                </div>
+                <div class="right" @click="right" @mousedown="down(2)" @mouseup="up(2)">
+                  <embed v-show="!clickImg[2].cut" src="./img/imgFAST/supplyImg/onclick-right.svg" type="">
+                  <embed src="./img/imgFAST/robotBtn/right.svg" alt=""></embed>
+                </div>
+              </div>
+              <div class="bottom" @click="bottom" @mousedown="down(3)" @mouseup="up(3)">
+                <embed v-show="!clickImg[3].cut" src="./img/imgFAST/supplyImg/onclick-bottom.svg" type="">
+                <embed src="./img/imgFAST/robotBtn/bottom.svg" alt=""></embed>
+              </div>
+
+            </div>
+            <div class="test-distance ">
+              <span class="num-top">5M</span>
+              <span class="num-left">6M</span>
+              <span class="num-right">7M</span>
+              <span class="num-bottom">8M</span>
+              <img src="./img/imgFAST/testScope.png" alt="">
+            </div>
+          </div>
+          <div class="she-control">
+            <span class="control-item">摄像头</span>
+            <div class="postion-control-box">
+              <div class="top" @click="top" @mousedown="_down(0)" @mouseup="_up(0)">
+                <embed v-show="!clickImg_1[0].cut" src="./img/imgFAST/robotBtn/onclick-top.svg" alt=""></embed>
+                <embed src="./img/imgFAST/robotBtn/top.svg" alt=""></embed>
+              </div>
+              <div class="jiantou-rl">
+                <div class="left" @click="left" @mousedown="_down(1)" @mouseup="_up(1)">
+                  <embed v-show="!clickImg_1[1].cut" src="./img/imgFAST/supplyImg/onclick-left.svg" alt=""></embed>
+                  <embed src="./img/imgFAST/robotBtn/left.svg" alt=""></embed>
+                </div>
+                <div class="right" @click="right" @mousedown="_down(2)" @mouseup="_up(2)">
+                  <embed v-show="!clickImg_1[2].cut" src="./img/imgFAST/supplyImg/onclick-right.svg" alt=""></embed>
+                  <embed src="./img/imgFAST/robotBtn/right.svg" alt=""></embed>
+                </div>
+              </div>
+              <div class="bottom" @click="bottom" @mousedown="_down(3)" @mouseup="_up(3)">
+                <embed v-show="!clickImg_1[3].cut" src="./img/imgFAST/supplyImg/onclick-bottom.svg" alt=""></embed>
+                <embed src="./img/imgFAST/robotBtn/bottom.svg" alt=""></embed>
+              </div>
+              <div class="control-add-sup">
+                <div class="focus">
+                  <div class="add" @click="add"></div>
+                  <div class="sup" @click="sup"></div>
+                  <embed src="./img/imgFAST/focus.svg" type=""></embed>
+                </div>
+                <div class="LR">
+                  <div class="_add" @click="_add"></div>
+                  <div class="_sup" @click="_sup"></div>
+                  <embed src="./img/imgFAST/LR.svg" type=""></embed>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="footer-list">
+        <div class="footer-font">监控视频</div>
+        <img class="she-bg" src="./img/imgFAST/supplyImg/jiankongvideo.png" alt="">
+
+        <div class="left-icon">
+          <img src="./img/robot-monitor.png" alt="">
+        </div>
+        <div class="video-box">
+          <div class="video">
+            <img src="./img/icon/bg2.png" alt="">
+            <div class="font-postion">前视图</div>
+          </div>
+          <div class="video">
+            <img src="./img/icon/bg2.png" alt="">
+            <div class="font-postion">后视图</div>
+          </div>
+          <div class="video">
+            <img src="./img/icon/bg2.png" alt="">
+            <div class="font-postion">前视图</div>
+          </div>
+          <div class="video">
+            <img src="./img/icon/bg2.png" alt="">
+            <div class="font-postion">前视图</div>
+          </div>
+          <div class="video">
+            <img src="./img/icon/bg2.png" alt="">
+            <div class="font-postion">前视图</div>
+          </div>
+        </div>
+        <div class="right-icon">
+          <img src="./img/robot-monitor.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./js/main.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+</body>
+
+</html>

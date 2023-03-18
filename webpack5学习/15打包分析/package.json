@@ -1,0 +1,20 @@
+{
+  "name": "02webpackconfig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./config/webpack.common --env production",
+    "serve": "webpack serve --config ./config/webpack.common --env development",
+    "type-check": "tsc --noEmit",
+    "stats":"webpack --config ./config/webpack.common --env production --profile --json=stats.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4"
+  }
+}

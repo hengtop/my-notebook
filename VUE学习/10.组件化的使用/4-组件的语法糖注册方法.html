@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <cpn></cpn>
+    <cpn2></cpn2>
+  </div>
+  <script>
+
+
+ //之前我们是这样来创建组件的
+ //1.撞见一个组件构造器   
+/* const cpnC=Vue.extend({
+  template:`
+     <div>
+       <h2>我是哈哈</h2>
+       <p>我是内容</p>
+     </div>
+  `
+}); */
+//2.全局注册组件
+/* Vue.component('cpn',cpnC); */
+
+//语法糖，可以直接将extend中的内容拿过来
+Vue.component('cpn',{
+  template:`
+     <div>
+       <h2>我是哈哈ha</h2>
+       <p>我是内容</p>
+     </div>
+  `
+});
+
+
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！'
+    },
+    //局部注册组件语法糖
+    components:{
+          'cpn2':{
+            template:`
+             <div>
+              <h2>我是哈哈ha</h2>
+              <p>我是内容hhhh</p>
+             </div>
+             `
+           }
+          }
+    
+  });
+  </script>
+</body>
+</html>

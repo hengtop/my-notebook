@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //声明一个set
+    let s = new Set();
+    let s2 = new Set([1,2,3,4,1,1]);//会自动去重
+    console.log(s2)
+    console.log(s2.size);//输出长度
+    //添加新的元素
+    s2.add('nmsl');//push
+    console.log(s2);
+    //删除
+    s2.delete('nmsl');
+    console.log(s2);
+    //检测
+    console.log(s2.has('nmsl'));
+    console.log(s2.has(1));
+    //清空
+    /* s2.clear();
+    console.log(s2); */
+    //遍历
+    for(let item of s2){
+      console.log(item)
+    }
+  </script>
+</body>
+</html>

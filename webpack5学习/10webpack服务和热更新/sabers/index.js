@@ -1,0 +1,1 @@
+console.log("sabers外部资源文件");

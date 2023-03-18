@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            background-color: yellow;
+            /*
+            
+                行内元素不支持设置宽高度
+                行内元素可以设置padding，但垂直方向的padding不会影响布局
+                行内元素可以设置border，垂直方向的border不会影响布局
+                行内元素可以设置margin，垂直方向的margin不会影响布局  
+            
+            
+            */
+            margin: 100px;
+            padding: 100px;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+        }
+        a{
+            /*
+               display用来设置元素的显示类型
+                   属性值：
+                       inline 将元素转换为行内元素
+                       block 将元素转换成块元素
+                       inline-block 将元素设置为行内块元素，即可设置宽高又不独占一行(例如：可以看作一个字)
+                       table 将元素设置为表格
+                       none 元素不在页面显示，且释放占据位置
+                visibility 用来设置元素的显示状态
+                  属性值：
+                       visible 默认值，元素在页面正常显示
+                       hidden 元素在页面中隐藏，但仍然占据位置       
+            
+            
+            
+            */
+            display: block;
+            width: 100px;
+            height: 100px;
+            background-color:#fda;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:;">1324564897</a>
+    <span class="box1"><div class="box2"></div></span>
+    
+</body>
+</html>

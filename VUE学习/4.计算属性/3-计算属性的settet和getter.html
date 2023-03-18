@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    
+    <div id="app">
+        <h2>{{fullName}}</h2>
+    </div>
+    <script>
+    const app = new Vue({
+    el: '#app',
+    data: { 
+       message: 'helloWorld！',
+       firstName:'zhang',
+       lastName:'heng'
+      },
+      computed: {
+        /* fullName:function(){
+            return this.firstName+" "+this.lastName;
+           } *///这个其实是简写方式,下面介绍完整的写法
+           fullName:{
+               //set方法就是监视fullName的值，当fullName发生改变时会自动回调set方法，当然你也可以在set方法里设置修改fullName的值
+               //可以给set方法设置一个参数来引入修改值，从而修改fullName
+               //一般set是不设置的所以就不写
+              set:function(newValue){
+                 //return '123';
+                 
+                 const names=newValue.split(' ');
+                 this.firstName=names[0];
+                 this.lastName=names[1];
+              },
+
+              //使用fullName这个属性本质上就是调用get这个方法，所以就可以使用上便的简写方式，而且也可以解释为啥fullName不用加（）
+              get:function(){
+                  //return 'abc';
+                  return this.firstName+" "+this.lastName;   
+              }
+           }
+      },
+    });
+        //这样就是调用set方法来修改并保存新值
+    //app.fullName='阿尔托莉雅 潘德拉贡';
+    </script>
+</body>
+</html>

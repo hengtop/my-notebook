@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    class Person extends React.Component {
+      /* 
+         React.createRef调用后可以返回一个容器，该容器可以存储被ref所标识的节点
+         注意该方法是"专人专用"的,只能存一个，多个ref的话就只能不同命名来创建多个容器      
+       */
+      myRef = React.createRef(); 
+      state = {
+        isHot:true
+      }
+
+      showInfo = () => {
+        console.log(this.myRef.current.value);
+      }
+      change = () => {
+        const {isHot} = this.state;
+        this.setState({
+          isHot:!isHot
+        }); 
+      }
+      saveInput = (c) => {
+        this.input1 = c;
+        console.log('@',c);
+      }
+      render() {
+        const {isHot} = this.state;
+        return (
+          <div>
+            <h1 onClick={this.change}>今天很{isHot ? '炎热' : '凉爽'}</h1>
+            <input ref={this.myRef} type="text" />
+            <button onClick={this.showInfo}>点击提示数据</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Person />, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

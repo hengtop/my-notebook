@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .foo {
+      width: 500px;
+      height: 500px;
+      display: grid;
+      background-color: aqua;
+      border: 1px solid red;
+      grid-template-columns: 100px 100px 100px;
+      grid-template-rows: 100px 100px 100px;
+      grid-template-areas: 'a a a'
+                     'b b b'
+                     'c c c';
+    grid-row-gap:10px;
+    grid-column-gap:10px;
+    /*   justify-items: stretch;
+      justify-content: center; */
+    grid-auto-rows: 50px;
+
+    }
+
+    .foo>div {
+      border: 1px solid red;
+      width: 50px;
+    }
+
+    .foo>div:nth-child(1) {
+      /* grid-column-start: 1;
+      grid-column-end: 4;
+      grid-row-start: 3;
+      grid-row-end: 4; */
+      grid-column-start: span 3;
+      grid-row-end: span 2;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="foo">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    
+  </div>
+</body>
+
+</html>

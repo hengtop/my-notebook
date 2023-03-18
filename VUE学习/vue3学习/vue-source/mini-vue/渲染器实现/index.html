@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{}
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="./render.js"></script>
+  <script src="./reactive.js"></script>
+  <script>
+    //通过渲染函数创建一个vnode
+    const vnode = h('div', { class: "saber" }, [
+      h('button', null, "+1"),
+      h('h2', null, "当前计数")
+    ]);
+    //通过mount函数将vnode挂载到节点上
+    mount(vnode, document.querySelector('#app'));
+
+    //创建一个新的vnode
+    const vnode1 = h('div', { class: "zhangsan", id: "why" }, [
+      h('button', null, "-1"),
+      h('h2', null, "你是谁"),
+      h('h1', null, "你是谁")
+
+    ]);
+
+    setTimeout(() => {
+      patch(vnode, vnode1)
+    }, 2000)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //声明一个对象
+    const banji = {
+      name: '一班',
+      stus: [
+        'saber',
+        'jojo',
+        'knight'
+      ],
+       stus1: [
+        'sabers',
+        'jojos',
+        'knights'
+      ],
+      //自定义添加迭代器接口属性
+      [Symbol.iterator]() {
+        let index = 0;//索引变量
+        return {
+          next: () => {
+            if (index < this.stus1.length) {
+              const result = {
+                value: this.stus1[index],
+                done: false,
+              }
+              index++;//下标自增
+              return result;//返回结果
+            }
+            else {
+              return {
+                value: undefined,
+                done: true,
+              }
+            }
+          }
+        }
+      }
+    }
+    //遍历这个对象，需求返回其中数组中的成员
+    for (let item of banji) {
+      console.log(item)//(在没有自定义迭代器时)会报错
+    }
+    let iterator = banji[Symbol.iterator]();
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>08_自定义Promise</title>
+</head>
+<script src=./lib/promise_class.js></script>
+<body>
+<!--<script>
+    const p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(1)
+            console.log('resolve改变状态之后') // 用来证明resolve(1)函数异步执行
+        })
+    });
+
+    p.then(value => {
+        console.log('value1', value)
+    }, reason => {
+        console.log('reason1', reason)
+    })
+    p.then(value => {
+        console.log('value2', value)
+    }, reason => {
+        console.log('reason2', reason)
+    })
+</script>-->
+<!--<script>
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            //resolve(1)
+            reject(2)
+        })
+    }).then(value => {
+        console.log('value1', value)
+    }, reason => {
+        console.log('reason1', reason)
+        //return 3
+        return new Promise((resolve, reject) => reject(5))
+    }).then(value => {
+        console.log('value2', value)
+    }, reason => {
+        console.log('reason2', reason)
+        throw 6
+    }).catch(e => {
+        console.log('reason3', e)
+        return new Promise((resolve, reject) => { // 中断promise链
+        })
+    }).then(value => {
+        console.log('value3', value)
+    }, reason => {
+        console.log('reason4', reason)
+    })
+</script>-->
+<script>
+const p2 = new Promise((resolve, reject) => {
+        resolve(Promise.reject(2))
+    })
+/*     const p3 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(5)
+      }, 200)
+    })
+    const p4 = Promise.resolve(6);
+    const p5 = Promise.resolve(7);
+    const p6 = Promise.resolve(8); */
+    const pall = Promise.all([p2]).then((res) => {
+      console.log('resolved', res);
+    },
+    reason => {
+      console.log('rejectd', reason)
+    }).catch((reason) => {
+      console.log(reason);
+    })
+
+</script>
+</body>
+
+</html>

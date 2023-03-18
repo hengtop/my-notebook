@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+
+    //1.创建类组件,必须要继承react内置的类
+   class MyComponent extends React.Component {
+     //构造器调用几次---1次
+     constructor(props) {
+       console.log('constructor');
+       super(props);
+       //初始化状态
+       this.state = {isHight:false}
+       //解决demo中this指向问题
+       this.demo = this.change.bind(this);
+     }
+     //render调用几次---1+n次，1是初始化那次，n是状态更新的次数
+     render() {//render是放在类的原型对象上，供实例使用
+              //render中的this指向---MyComponent的实例对象
+              console.log('render');
+       const {isHight} = this.state;
+       return <h2 onClick={this.demo}>你{isHight ? '身体一定很好' : '是个LSP'}</h2>
+     }
+     change() {//change调用几次---点几次调用几次
+       //注意demo作为onclick的回调，所以不是通过实例调用的，是直接调用
+       //类中的方法默认开启了严格模式，所以demo中的this就指向undefined了
+       //this.state.isHight = !this.state.isHight;
+       //state中的状态不可直接更改，要借助内置的一个api进行更改
+       console.log(this);
+       const {isHight} = this.state;
+       this.setState({//是一种合并方式的更新
+        isHight:!isHight
+       });
+     }
+   }
+    //2.渲染组件到界面
+    ReactDOM.render(<MyComponent/>,document.getElementById('test'));
+    /* function demo() {
+      console.log('点击了');
+    } */
+  </script>
+</body>
+
+</html>

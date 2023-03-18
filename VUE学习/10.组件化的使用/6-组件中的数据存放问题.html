@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <cpn></cpn>
+  </div>
+
+<!--1.第一种写法，可以将template中的内容写在这个标签中-->
+<!-- <script type="text/x-template" id="cpn">
+<div>
+  <h2>这个是分离出去的模板</h2>
+  <p>哈哈</p>
+</div>
+</script>
+ -->
+ <!--第二种写法，可将内容写在template标签中-->
+ <template id="cpn1">
+   <div>
+    <h2>{{message}}</h2>
+    <h2>{{title}}</h2>
+    <!--可以发现组件不能访问vue实例里的data数据，而可以在访问在注册时创建的data函数返回的数据，而且注意组件中的data必须是个函数-->
+    <h2>这个是分离出去的模板~~~~</h2>
+    <p>哈哈</p>
+   </div>
+ </template>
+
+  <script>
+//1.注册一个全局组件
+Vue.component('cpn',{
+   template:'#cpn1',
+   data(){
+     return {
+       title:'我是组件里面的data'
+     }
+   }
+});
+
+
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！'
+    }
+  });
+  </script>
+</body>
+</html>

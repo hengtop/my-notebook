@@ -1,0 +1,156 @@
+#robot {
+  width: 100%;
+  height: 100vh;
+  user-select: none;
+  background-image: url('../img/line/true.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* bfa外边框问题 */
+  overflow: hidden;
+
+  /* 头部 */
+  .header {
+    margin-top: 25px;
+    text-align: center;
+
+    .main-title-wrapper {
+      .title {
+        margin-bottom: -16px;
+      }
+
+      font-size: 34px;
+      color: #88ffff;
+
+      img {
+        width: 100%;
+        height: 62px;
+      }
+    }
+  }
+
+  /* 主要内容 */
+  .body-wrapper {
+    position: relative;
+    margin: 0px 30px;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* 左边 */
+    .right-wrapper {
+      box-sizing: border-box;
+      width: 420px;
+      height: 850px;
+      padding: 10px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: space-between;
+      background-image: url('../img/jiankongbg.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    /* 右边 */
+    .right-wrapper {
+      justify-content: center;
+
+      .right-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .video-wrapper {
+          position: relative;
+          width: 235px;
+          height: 135px;
+          background-color: #000;
+          .obscuration{
+            position: absolute;
+            width: 100%;
+            height:100%;
+            background-color: transparent;
+            z-index: 99;
+          }
+        }
+        .newList {
+          width: 260px;
+          height: 165px;
+        }
+
+        .video-title {
+          margin-left: 15px;
+          letter-spacing: 10px;
+          color: #fff;
+          font-size: 14px;
+          font-family: Microsoft YaHei;
+          font-weight: 400;
+          writing-mode: vertical-lr;
+          writing-mode: tb-lr;
+        }
+      }
+    }
+
+    /* 中间 */
+    .middle-wrapper {
+
+      .mid-map {
+        background-color: #0e366b;
+        width: 1350px;
+        height: 818px;
+        position: relative;
+        border: 1px solid #8be3fe;
+        border-radius: 8px;
+
+        .viewImg {
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          padding: 35px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .video-wrapper {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+#play1,
+#play2,
+#play3,
+#play4,
+#play5,
+#play6 {
+  width: 100%;
+  height: 100%;
+}
+
+#video-item-1,
+#video-item-2,
+#video-item-3,
+#video-item-4,
+#video-item-5,
+#video-item-6 {
+  width: 100%;
+  height: 100%;
+}
+
+.single-data {
+  padding: 0 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #01a6d2;
+  color: #fff;
+}
+

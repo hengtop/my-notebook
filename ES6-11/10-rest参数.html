@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //ES5获取函数实参的方式 arguments
+    function date(){
+      console.log(arguments);//是个伪数组，对象
+      console.log(arguments[0]);
+      console.log(arguments[1]);
+      console.log(arguments[2]);
+      console.log(arguments.length);
+    }
+    date('a',1,'b');
+
+    //rest 参数
+    function _date(...args){
+      console.log(args);//这里返回的就是数组了
+    }
+    _date('aaa','bbb','ccc');
+
+    //rest 参数必须要放到最后
+    function args(a,b,...args){
+      console.log(a,b,args);
+    }
+    args(1,2,3,4,5,6);
+  </script>
+</body>
+</html>

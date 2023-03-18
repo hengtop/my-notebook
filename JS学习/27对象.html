@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+				/*
+				 * 在js中表示一个 人的信息
+				 * （name gender age ）
+				 * name=孙悟空；
+				 * gender=男；
+				 * age=18
+				 * 如果使用基本的数据类型，我们所创建的变量都是独立的，不能成为一个整体
+				 * 
+				 * 对象属于一种复合的数据类型
+				 *   对象分类
+				 *      1.内建对象
+				 *        	由ES标准中定义的对象，在任何的ES中都可使用
+				 *          比如 Math String Boolean Number Function Object等等
+				 *      2.宿主对象
+				 *          由js的运行环境提供的对象，目前来讲主要指由浏览器提供的对象
+				 *          比如 DOM BOM
+				 *      3.自定义对象
+				 *          由开发人员自建的对象
+				 */
+				
+				//创建对象
+				/*
+				 * 使用new关键字来调用的函数，是构造函数constructor
+				 * 构造函数是专门用来创建对象的函数
+				 */
+				var obj =new Object();
+				//console.log(obj);
+				//向对象中添加属性
+				/*
+				 * 语法：
+				 *    对象.属性名=属性值;
+				 */
+				//向obj中添加一个name属性
+				obj.name="孙悟空";
+				obj.gender="男";
+				obj.age=18;
+				console.log(obj.age);
+				/*
+				 * 如果读取对象中没有的属性，不会报错而是会返回undefined
+				 * 
+				 * 修改属性值
+				 *    对象.属性名=新值；
+				 */
+				obj.name="yasuo";
+				console.log(obj.name);
+				/*
+				 * 删除对象属性
+				 *   语法：
+				 *     delete 对象.属性名;
+				 */
+				delete obj.name;
+				console.log(obj.name);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

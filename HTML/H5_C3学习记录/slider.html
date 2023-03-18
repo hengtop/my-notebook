@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .slider {
+      width: 265px;
+    }
+
+    .slider-content {
+      position: relative;
+      left: 0;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      position: absolute;
+      top: 22px;
+      left: 15px;
+      width: 218px;
+      border-radius: 10px;
+      background-color: transparent;
+      /*这个属性设置使填充进度条时的图形为圆角*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      position: relative;
+      z-index: 99;
+      box-shadow: 0 transparent;
+      -webkit-appearance: none;
+    }
+
+    input[type=range]:focus {
+      outline: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      position: relative;
+      z-index: 999999;
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      margin-top: -5px;
+      /*使滑块超出轨道部分的偏移量相等*/
+      background: #3C57BC;
+      border-radius: 50%;
+      /*外观设置为圆形*/
+      border: solid 7px #A4FFE0;
+
+    }
+
+    img {
+      position: absolute
+    }
+
+    .slider ul {
+      margin-left: -12px;
+      padding: 0px;
+      padding-top: 10px;
+      display: flex;
+      position: relative;
+      top: 50px;
+      list-style-type: none;
+      justify-content: space-evenly;
+      font-size: 12px;
+      font-family: Microsoft YaHei;
+      font-weight: 400;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <div class="slider-content">
+      <img src="../img/slider.png" alt="">
+      <input type="range" max="100" min="0" value="70">
+    </div>
+    <ul>
+      <li>20</li>
+      <li>40</li>
+      <li>60</li>
+      <li>80</li>
+      <li>100</li>
+    </ul>
+  </div>
+</body>
+
+</html>

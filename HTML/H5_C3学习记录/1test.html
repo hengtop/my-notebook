@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #box {
+      width: 100px;
+      height: 24px;
+      margin-top: 200px;
+      margin-left: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #box1 {
+      position: absolute;
+      font-size: 14px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .space {
+      color: transparent
+    }
+  </style>
+</head>
+
+<body>
+  <details>
+    <summary>1.hahahaah</summary>
+    woshidettails
+  </details>
+  <div id="box">
+    <span id="box1">@只有你知道的故事<span class="space">kg</span></span>
+  </div>
+  <!-- <script>
+   
+      function marquee(parent,child,time) {
+        let box = document.getElementById(parent);
+        let box1 = document.getElementById(child);
+        let speed = 1 ; //速度
+        let text = box1.innerHTML; //初始文字内容
+        let textWidth = box1.clientWidth; //单段文字内容宽度
+        let boxWidth = box.clientWidth; //容器宽度
+        let left = box1.offsetLeft; //文字相对于容器的偏移量
+        let difLeft = boxWidth - textWidth; //文字宽度与容器宽度的差值
+        //如果文字内容大于容器，文字进行滚动
+        if (boxWidth < textWidth) {
+          //定义定时器
+          let intervalId = setInterval(function () {
+            left -= speed;
+            box1.style.left = left + "px";
+            console.log(left);
+            if (left == difLeft) {
+              //删除多余的重复text，防止内容冗杂（单单实现需求的话这个if可以不添加）
+              box1.innerHTML += text; //文字后面拼接
+              difLeft = boxWidth - box1.clientWidth; //重新计算文字宽度与容器宽度的差值
+            }
+            if (-left >= textWidth) {
+                //box1.innerHTML = box1.innerHTML.replace(text, ""); //删除开头多余的text
+                left = 0; //删除后对偏移量进行重新计算
+              }
+          }, time)
+        }
+      }
+      marquee("box","box1",45);//调用函数
+
+
+
+
+
+  </script> -->
+
+  <script> 
+  var num = foo(1, 2);
+    var foo = function (x, y) {
+      return x - y
+    };
+
+    function foo(x, y) {
+      return x + y;
+    };
+   
+    console.log(num);
+  </script>
+</body>
+
+</html>

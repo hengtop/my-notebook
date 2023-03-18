@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			function fun2() 
+			 {
+			 	function fun3()
+			 	  {
+			 	  	alert("我是fun3");
+			 	  }
+			 	  return fun3;
+			 	  //return fun3();
+			 	  
+			 }
+			 var a=fun2();
+			 //注意下面三种写法
+			 //console.log(a);
+			 a();
+			 //fun2()();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

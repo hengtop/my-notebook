@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //get和set
+    class Phone{
+      get price(){
+        console.log('价格属性被读取了');
+        return 'wryyyyy';
+      }
+      set price(newValue){
+        console.log('价格改变了');
+      }
+    }
+    //实例化对象
+    let s = new Phone();
+    //只要读取了这个属性就会执行对应函数
+    s.price
+    //返回值也一样
+    console.log(s.price);
+    s.price = 'free';
+  </script>
+</body>
+</html>

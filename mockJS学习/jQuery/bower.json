@@ -1,0 +1,13 @@
+{
+  "name": "jQuery",
+  "main": "index.js",
+  "authors": [
+    "zhangheng <heng.top@qq.com>"
+  ],
+  "description": "testMock",
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "mockjs": "^1.0.0"
+  }
+}

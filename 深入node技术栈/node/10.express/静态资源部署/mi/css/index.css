@@ -1,0 +1,1009 @@
+/*顶部导航条外容器*/
+.top-bar-wrapper{
+    /*宽度为body的100%*/
+    width: 100%;
+    background-color: #333333;
+    height: 40px;
+    line-height: 40px;
+
+}
+
+/*设置超链接样式*/
+.top-bar a{
+    font-size: 12px;
+    color: #b0b0b0;
+    display: block ;
+}
+
+/*设置移入效果*/
+.top-bar a:hover{
+    color: #ffffff;
+}
+
+/*设置分隔线*/
+.top-bar .line{
+    color: #424242;
+    font-size: 12px;
+    margin: 0 8px;
+}
+
+/*设置左侧导航条浮动*/
+.service, .top-bar-wrapper li{
+    float: left;
+}
+
+/*设置右侧的导航条*/
+.user-info,.shop-car{
+    float: right;
+}
+
+/*设置购物车样式*/
+.shop-car a{
+    width: 120px;
+    background-color: #424242;
+    /*居中*/
+    text-align: center;
+
+}
+
+/*购物车布局*/
+.shop-car{
+    position: relative;
+    margin-left: 26px;
+}
+
+/*设置购物车图标位置*/
+.shop-car i{
+    margin-right: 2px;
+}
+
+/*设置购物车的移入效果*/
+.shop-car:hover a{
+     background-color: #ffffff;
+     color: #ff6700;
+}
+
+/*设置购物车扩展窗口*/
+.shop-car-pro{
+    position: absolute;
+    left: -196px;
+    top: 40px;
+    width: 316px;
+    height: 0px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    transition:height 0.3s;
+    z-index: 11 ;
+}
+/*设置购物车扩展窗口的文字*/
+.shop-car-pro p{
+    font-size: 12px;
+    color: #424242;
+    line-height: 100px;
+    margin-left: 70px;
+}
+
+/*设置鼠标移入效果展开购物车扩展菜单*/
+.shop-car:hover .shop-car-pro{
+    height: 100px;
+}
+
+/*设置鼠标移出弹出菜单效果*/               
+li:hover>.app .qrcode,
+li:hover>.app::after{
+    display:block;
+    height: 148px;
+}
+
+/*开启相对定位，为子元素绝对定位服务*/
+.app{
+    position: relative;
+
+}
+
+/*设置二维码上的小三角样式*/
+.app::after{
+    /*小三角默认隐藏*/
+    display:none;
+    content: '';
+    /*设置绝对定位*/
+    position: absolute;
+    /*固定宽高*/
+    width: 0;
+    height: 0;
+    /*设置四个方向的边框颜色为透明*/
+    border:8px solid transparent ;
+    /*去除上边框*/
+    border-top: none;
+    /*设置下边框的颜色*/
+    border-bottom-color:#fff ;
+    /*设置小三角位置*/
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+/*设置顶部菜单导航栏弹出二维码样式*/
+.app .qrcode{
+    /*开启绝对定位，腾出位置来，调整弹出框位置*/
+    position: absolute;
+    left: -40px;
+    /*设置宽高颜色*/
+    width: 124px;
+    /*height: 148px;*/
+    /*为了配和高度改变，产生一个过渡效果*/
+    height: 0;
+    /*裁剪溢出部分*/
+    overflow: hidden;
+    /*设置背景*/
+    background-color: #fff;
+    /*设置行高，防止span继承了祖先元素的行高*/
+    line-height: 1;
+    /*居中*/
+    text-align: center;
+    /*设置阴影*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    /*隐藏该弹出栏*/
+    /*display: none;*/
+    /*设置层级*/
+   z-index: 1212;
+
+    /*设置一个过渡效果就不使用display：none*/
+    /*该效果可控制高度改变所需要的时间*/
+    transition:height 0.3s;
+
+}
+
+/*设置弹出栏中图片大小位置*/
+.app .qrcode img{
+    width: 90px;
+    margin: 17px;
+    margin-bottom: 10px;
+}
+
+/*设置弹出栏字体*/
+.app .qrcode span{
+    color: #000000;
+    font-size: 14px;
+}
+
+/*设置header-wrapper的相对定位,服务于goods-info的绝对定位*/
+.header-wrapper{
+    position: relative;
+}
+
+/*设置头部导航栏*/
+.header{
+    /*固定高度*/
+    height: 100px;
+}
+
+/*设置logo*/
+.header .logo{
+    float: left;
+    margin-top: 22px;/*给子元素设置外边距要注意外边距的转递问题，当然这里已经浮动了就不考虑了*/
+    /*为了保证宽高不变*/
+    width: 55px;
+    height: 55px;
+    /*开相对定位服务绝对定位*/
+    position: relative;
+    /*要只显示一个logo，裁掉溢出部分*/
+    overflow: hidden;
+    /*首行缩进，让文字隐藏起来，给搜索引擎看的*/
+    text-indent: -9999px;
+}
+
+/*设置logo超链接*/
+.header .logo a{
+   
+    /*开启绝对定位，使两个图标重叠*/
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    /*这里写不写都无所谓，但要配合transition所以要给定一个起始位置*/
+    left: 0;
+    background-color: #ff6700;
+    /*设置背景图片*/
+    background-image: url(../img/mi-logo.png);
+    /*设置图标居中*/
+    background-position: center;
+    /*过渡效果，设置属性的改变时间，但是要给定一个属性的改变范围*/
+    transition: left 0.2s;
+}
+
+/*设置logo中的home的样式*/
+.header .logo .home{
+    left: -55px;
+    background-image: url(../img/mi-home.png);
+}
+
+/*设置鼠标移入切换logo的效果*/
+.header .logo:hover .mi{
+    left:55px 
+}
+
+.header .logo:hover .home{
+    left: 0;
+}
+
+/*设置导航条容器*/
+.header .nav-wrapper{
+    float: left;
+    margin-left: 7px;
+}
+
+/*设置导航条样式*/
+.header .nav{
+    width: 802px;
+    background-color: #ffffff;
+    /*设置文字垂直居中*/
+    height: 100px;
+    line-height: 100px;
+    /*设置外边距*/
+    padding-left: 48px;
+}
+
+/*设置nav中的子元素li浮动，不是所有的li*/
+.nav >li{
+    float: left;
+}
+
+/*设置字体大小样式,这里不是设置所有的a*/
+.nav >li >a{
+    font-size: 16px;
+    color: #333333;
+    /*设置布局*/
+    padding: 26px 10px 38px;
+}
+
+/*首页默认隐藏“全部商品分类”*/
+.hidden{
+    visibility: hidden;
+}
+
+/*开启相对定位服务绝对定位*/
+.all-goods-wrapper{
+    position: relative;
+}
+
+/*设置该标题下的导航栏*/
+.left-menu{
+    width:234px;
+    height: 420px;
+     /*设置内边距*/
+     padding: 20px 0;
+    background-color: rgba(0,0,0,.6);
+    /*开启绝对定位，设置层级*/
+    position: absolute;
+    z-index:111;
+    left: -110px;
+    /*设置行高*/
+    line-height: 1;
+    /*设置内边距*/
+    padding: 20px 0;
+}
+
+/*设置鼠标移入效果*/
+.left-menu li:hover .left-menu-hidden{
+    display:block;
+}
+
+/*设置每个超链接样式*/
+ .left-menu a{
+    /*将a变为块元素*/
+    display:block;
+    height: 42px;
+    /*设置文字垂直居中*/
+    line-height: 42px;
+    color: white;
+    padding: 0 30px;
+
+}
+
+/*设置a的移入效果*/
+.left-menu a:hover{
+    color: white;
+    background-color: #ff6700;
+}
+
+/*设置小箭头的样式*/                        
+.left-menu a i{
+    float: right;
+    /*垂直居中*/
+    line-height: 42px;
+}
+
+
+
+/*设置超链接样式*/
+.nav >  li >a:hover{
+    color: #ff6700;
+}
+
+/*设置鼠标移入弹出效果*/
+.nav .down:hover ~ .goods-info,
+.nav .goods-info:hover{
+    height: 228px;
+    /*设置阴影*/
+    box-shadow: 0 5px 3px rgba(0,0,0,.2);
+    border-top:1px solid rgb(224,224,224);
+}
+
+/*设置隐藏商品信息栏*/
+    .goods-info{
+    /*height: 228px;*/
+    /*在这里注意，我们添加过渡效果是根据高度改变来设置的，这里是高度变为0，然后在裁剪溢出部分不能把阴影和边框裁去，所以在这里先不设置边框和阴影*/
+    height:0;
+    overflow: hidden;
+    /*该宽度是相对于其包含块（这里指的是离它最近的开启了相对定位的祖先元素）的宽度*/
+    width: 100%;
+    background-color: #fff;
+    /*border-top:1px solid rgb(224,224,224);*/
+    /*开启绝对定位*/
+    position: absolute; 
+    top:100px;
+    left: 0;
+    /*设置层级*/
+    z-index: 1111;
+    /*设置阴影*/
+    /*box-shadow: 0 5px 3px rgba(0,0,0,.2);*/
+    /*过渡效果*/
+    transition: height 0.3s;
+   
+}
+
+/*设置左边垂直菜单隐藏的商品信息栏容器*/
+.left-menu-hidden{
+    width: 991px;
+    height: 458px;
+    border: 1px solid #e0e0e0;
+    border-left: 0;
+    box-shadow: 0 8px 16px rgba(0,0,0,.18);
+    background-color: #fff;
+    /*开启定位*/
+    position: absolute;
+    left:234px;
+    top:-1px;
+    /*设置层级*/
+    z-index: 24px;
+    /*隐藏元素*/
+    display:none;
+}
+
+/*设置ul容器的样式布局*/
+.left-menu-hidden .hidden-list{
+    width: 234px;
+    float: left;
+    margin-right: 13.5px;
+}
+
+/*设置字体的布局样式*/
+.left-menu-hidden .hidden-list a .text{
+    display: block;
+    float: left;
+    width: 172px;
+    line-height: 40px;
+    padding: 18px 20px;
+    color: #333333;
+    text-align: center;
+    
+}
+
+/*这里是在设置鼠标移入效果，但是为了消除样式继承问题就写的稍复杂了些*/
+.left-menu-hidden .hidden-list a:hover .text,
+.left-menu-hidden .hidden-list a:hover{
+    background-color: rgba(0, 0, 0, .0);
+    color: #ff6700;
+}
+
+/*设置li的相对定位，为绝对定位做准备*/
+.left-menu-hidden .hidden-list li{
+    position: relative;
+}
+
+/*设置图片的样式*/
+.left-menu-hidden .hidden-list img{
+    position: absolute;
+    width:40px;
+    /*设置图片垂直居中*/
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    left:25px;
+    margin-right: 12px;
+    
+}
+
+/*设置搜索框的容器*/
+.search-wrapper{
+    width: 296px;
+    height: 50px;
+    float: right;
+    margin-top: 25px;
+}
+
+/*设置from中的input和button浮动，消除两者之间的缝隙*/
+.search-wrapper .search-input{
+    /*宽高设置整个盒子可见框的大小（这时width和height指的是内容区和内边距和边框的总大小）*/
+    box-sizing: border-box;
+    /*去除默认样式*/ 
+     border: none;
+     /*设置搜索框内的内边距*/
+     padding: 0 10px;
+     float: left;
+     /*设置高度*/
+     height: 50px;
+     width: 244px;
+     border: 1px solid rgb(224,224,224);
+}
+
+.search-wrapper .search-btn{
+    float: left;
+    /*设置宽高*/
+    width:52px;
+    height: 50px;
+    /*去除默认样式*/
+    padding: 0 ;
+    border: none;
+    /*去除按钮点击出现的小蓝框*/
+    outline: 0;
+    /*设置背景和图标颜色大小*/
+    background-color: #fff;
+    color: #616161;
+    font-size: 16px;
+    /*设置三个方向的边框*/
+    border:1px solid rgb(224,224,224) ;
+    border-left: none;
+}
+
+/*设置鼠标移入效果*/
+.search-wrapper:hover .search-input,
+.search-wrapper .search-input:hover +.search-btn{
+    outline:0;
+    border-color: #b0b0b0;
+}
+
+/*设置input获取焦点后的样式*/
+.search-wrapper .search-input:focus,
+.search-wrapper .search-input:focus +.search-btn{
+    /*去除默认的轮廓线*/
+    outline: none;
+    /*修改边框颜色*/
+    border-color: #ff6700;
+}
+ 
+/*设置搜索图标鼠标移入效果*/
+.search-wrapper .search-btn:hover{
+    background-color: #ff6700;
+    color: #fff;
+    border: none;
+}
+
+/*给外部容器banner开启相对定位服务绝对定位*/
+.banner{
+    position: relative;
+    height: 460px;
+}
+
+/*设置中部轮播图banner*/
+.banner img{
+    width: 100%;
+    /*消除图片之间的边距*/
+    vertical-align: top;
+}
+
+/*让图片脱离文档流垒叠在一起*/
+.banner .img-list li{
+    /*这里开启绝对定位后其宽度是相对于其包含块的宽度*/
+    position: absolute;
+
+}
+
+/*设置图片右下的五个导航点*/
+.pointer{
+    /*开启绝对定位*/
+    position: absolute;
+    bottom: 22px;
+    right: 35px; 
+}
+
+.pointer a{
+    /*开启浮动*/
+    float: left;
+    /*设置宽高*/
+    width: 6px;
+    height: 6px;
+    /*设置边框*/
+    border: 2px rgba(255, 255, 255, .4) solid;
+    /*变成圆型*/
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .4);
+    /*设置左右外边距*/
+    margin:0 4px;
+
+}
+
+/*设置鼠标移入效果*/
+.pointer a:hover,
+.pointer .active{
+    border-color: rgba(0, 0, 0, .4) ;
+    background-color: rgba(255, 255, 255, .4);
+}
+
+/*轮播图前后切换按钮样式*/
+.change-btn a{
+    width: 41px;
+    height: 69px;
+    /*设置按钮的背景图片*/
+    background-image: url(../img/icon-slides.png);
+    position:absolute;
+    /*设置位置居中靠左*/
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+/*左边按钮*/
+.change-btn .prev-btn{
+    left: 234px;
+    /*设置背景图片的偏移量*/
+    background-position:-84px 0 ;
+}
+
+/*右边按钮*/
+.change-btn .next-btn{
+    right: 0;
+    background-position:-125px 0 ;
+}
+
+/*设置鼠标移入按钮的效果*/
+.change-btn .prev-btn:hover{
+    background-position: 0 0;
+}
+
+.change-btn .next-btn:hover{
+    background-position: -42px 0    ;
+}
+
+/*设置最右边的垂直导航条*/
+.back-top{
+    width: 26px;
+    height: 206px;
+    background-color: orange;
+    /*开启固定定位，根据视口定位*/
+    position: fixed;
+    bottom: 60px;
+    right: 50%;/*设置值为视口宽度的50%*/
+    margin-right: -639px;
+    /* 
+        布局的等式
+            left + margin-left + width + margin-right + right = 视口的宽度
+
+            auto + 0 + 26 + 0 + 60 = 视口宽度
+
+            auto + 0 + 26 + -639px + 50% = 视口宽度
+    */
+
+}
+
+/*设置 轮播图下方的广告栏*/
+.ad-wrapper .ad{
+    height: 170px;
+    margin-top: 14px;
+}
+
+/*设置浮动*/
+.ad .shop-grid,
+.ad .ad-img,
+.ad li{
+    float: left;
+}
+
+/* 设置左侧快捷方式 */
+.ad .shop-grid{
+    width: 228px;
+    height: 168px;
+    background-color: #5f5750;
+    margin-right: 14px;
+    padding-top: 2px;
+    padding-left: 6px;
+}
+.ad .shop-grid li{
+    position: relative;
+}
+
+/* 设置上边框 */
+.ad .shop-grid li::before{
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 1px;
+    background-color: #665e57;
+    /*实现水平居中*/
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0 auto
+}
+
+/* 设置左边框 */
+.ad .shop-grid li::after{
+    content: '';
+    position: absolute;
+    height: 70px;
+    width: 1px;
+    background-color: #665e57;
+    /*实现垂直居中*/
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    left: 0;
+
+}
+
+/* 设置快捷方式中的超链接 */
+.ad .shop-grid a{
+    display: block;
+    color: #cfccca;
+    height: 84px;
+    width: 76px;
+    text-align: center;
+    font-size: 12px;
+    /*开启bfc，避免外边距重叠问题*/
+    overflow: hidden;
+}
+
+.ad .shop-grid a:hover{
+    color: #fff;
+}
+
+/* 设置图标字体 */
+.ad .shop-grid i{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    font-size: 20px;
+}
+
+
+/* 设置左侧的图片 */
+.ad .ad-img li{
+    width: 316px;
+    margin-right:15px; 
+}
+
+/*防止宽度溢出，最后一个不设置外边距*/
+.ad .ad-img li:last-child{
+    margin: 0;
+} 
+
+.ad .ad-img img{
+    width: 100%;
+    vertical-align: top;
+}
+
+/*设置页面主要内容区域*/
+.main-wrapper{
+    margin-top: 30px;
+    width: 100%;
+    /*这里高度在开发时不必写死*/
+   /* height: 6019px;*/
+    background-color: #f5f5f5;
+    padding:4px 0 12px;
+}
+
+
+/*设置秒杀商品标题和切换按钮*/
+.flash-shop .title-box h2,
+.phone .title-box h2{
+    width: 100%;
+    height: 58px;
+    line-height: 58px;
+    font-size: 22px;
+    color: #333333;
+    font-weight: 200;
+}
+
+/*设置按钮布局*/
+.flash-shop .btn{
+    float: right;
+    border: 1px solid #e0e0e0;
+    height: 24.5px;
+    line-height: 24.5px;
+    margin-top: 22px ;
+    
+}
+
+.flash-shop .btn a{
+    font-size: 16px;
+    padding: 0 12.5px;
+    color: #b0b0b0;
+}
+.flash-shop .btn .after-border{
+    border-right:1px solid #e0e0e0;
+    padding-right: 16px;
+}
+
+/*设置鼠标移入效果*/
+.flash-shop .btn a:hover{
+    color: #ff6700;
+}
+
+/*设置秒杀商品栏*/
+.flash-goods{
+    float: left;
+   
+}
+
+/*设置每个li的样式布局*/
+.flash-goods li{
+    float: left;
+    width: 234px;
+    height:339px;
+    margin-right: 14px;
+    background-color: #fff;
+    border-top: 1px solid red;        
+}
+
+/*最后一个li不设置外边距*/
+.flash-goods li:last-of-type{
+    margin-right: 0;
+}
+
+/*设置超链接的范围*/
+.flash-goods li a {
+    display: block;
+    height: 100%;
+}
+
+/*设置图片尺寸布局*/
+.flash-goods li a img{
+    width: 160px;
+    margin: 40px 37px 22px 37px;
+    
+}
+
+/*设置文字描述样式*/
+.flash-goods li a .title{
+    margin: 0 20px 3px;
+    /*居中*/
+    text-align: center;
+    font-size: 14px;
+    /*文字粗细*/
+    font-weight: 400;
+    color: #212121;
+    /*溢出部分裁剪*/
+    overflow: hidden;
+    /*溢出部分用省略号代替*/
+    text-overflow: ellipsis;
+    /*不换行*/
+    white-space: nowrap;
+}
+
+.flash-goods li a .describe{
+    height: 18px;
+    margin: 0 20px 12px;
+    font-size: 12px;
+    text-align: center;
+    text-overflow: ellipsis;
+    color: #b0b0b0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.flash-goods li a .price{
+    color: #ff6709;
+    font-size: 16px;
+    text-align: center;
+}
+
+.flash-goods li a .price del{
+    color: #b0b0b0;
+    font-size: 15px;
+}
+
+/*设置秒杀栏的时间li*/
+
+.flash-goods .last-time{
+    height: 300px;
+    padding-top: 39px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    background: #f1eded;
+    text-align: center;
+}
+
+/*设置图片大小布局*/
+.flash-goods .last-time img{
+   width: 34px;
+   height: 53px;
+   margin: 25px 0;
+}
+
+/*设置字体样式*/
+.flash-goods .last-time .times{
+    font-size: 21px;
+    color: #ef3a3b;
+    padding-top: 15px;
+}
+
+
+.flash-goods .last-time .end-time{
+    font-size: 15px;
+    color: rgba(0,0,0,.54);
+}
+
+/*设置计时器整体布局*/
+.flash-goods .last-time .down-time{
+    width: 168px;
+    margin: 28px auto 0;
+}
+
+/*设置计时器的样式*/
+.flash-goods .last-time .down-time span{
+    width: 46px;
+    height: 46px;
+    background: #605751;
+    color: #fff;
+    font-size: 24px;
+    line-height: 46px;
+    text-align: center;
+    float: left;
+
+}
+
+/*设置时间之间冒号的样式*/
+.down-time i{
+    width: 15px;
+    float: left;
+    height: 46px;
+    line-height: 46px;
+    color: #605751;
+    font-size: 28px;
+    font-style: normal;
+}
+
+/*设置广告栏*/
+.main-wrapper .ad-flag img{
+    width: 1226px;
+    
+}
+
+/*设置上下外边距*/
+.main-wrapper .ad-flag {
+    margin:25px auto;
+}
+
+/*设置手机栏的样式*/
+.phone .more a{
+    width: 92px;
+    float:right;
+    height: 100%;
+    font-size: 16px;
+    line-height: 58px;
+    color: #424242;
+    background-image: url(../img/圆1.png);
+    background-size: 23px;
+    background-repeat: no-repeat;
+    background-position: right;
+    /*样式延迟改变*/
+    transition: all .4s;
+}
+
+/*设置鼠标移入样式*/
+.phone .more a:hover{
+    color: #ff6700;
+    background-image: url(../img/圆1-1.png);
+}
+
+
+/*设置下方手机广告栏*/
+.phone .phone-ad{
+    float: left;
+   
+    
+}
+
+/*设置图片尺寸*/
+.phone .phone-ad img{
+    width: 234px;
+    /*添加过渡效果*/
+    transition: all .2s linear;
+}
+ 
+
+.phone .phone-list li{
+    float: left;
+    height: 260px;
+    padding:20px 0;
+    background-color: #ffffff;
+    margin-left: 14px;
+    margin-bottom: 14px;
+    /* linear表示规定以相同速度开始至结束的过渡效果*/
+    transition: all .2s linear;
+    
+}
+
+/*设置鼠标移入效果*/
+.phone .phone-list li:hover,
+.phone .phone-ad img:hover{
+    z-index: 2;
+    box-shadow: 0 15px 30px rgba(0,0,0,.1);
+    /*在3d的方向让元素想y轴移动*/
+    transform: translate3d(0,-2px,0);
+}
+
+
+/*设置图片的大小位置*/
+.phone .phone-list img{
+    width: 160px;
+    margin: 0px 37px 22px 37px;
+}
+
+/*设置字体颜色*/
+.phone .phone-list .title{
+    margin: 0 10px 2px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+}
+
+.phone .phone-list .describe{
+    margin: 0 10px 10px;
+    height: 18px;
+    font-size: 12px;
+    color: #b0b0b0;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.phone .phone-list .price{
+    margin: 0 10px 14px;
+    text-align: center;
+    color: #ff6700;
+}
+
+.phone .phone-list .price del{
+    color: #b0b0b0;
+    font-size: 15px;
+}
+
+/*设置尾部售后信息*/
+
+.footer-wrapper{
+    height: 272px;
+    background-color: #ffffff;
+}
+
+/*设置售后导航栏*/
+.shouhou-info{
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

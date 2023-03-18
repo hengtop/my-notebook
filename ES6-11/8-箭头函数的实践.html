@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box1{
+      width: 200px;
+      height: 200px;
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1"></div>
+  <script>
+    //需求-1 点击div 2s后颜色变为粉色
+    let box1 = document.getElementById('box1');
+    box1.addEventListener('click',function(){
+      console.log(this)//这里箭头函数的this就职该作用域下的this
+       setTimeout(() => {
+         console.log(this);
+         this.style.backgroundColor = 'red';
+      }, 2000);
+    });
+    //需求2，从数组中返回偶数的元素
+    const arr = [1,6,7,8,9,0];
+    const result = arr.filter(item => item%2 === 0);
+    console.log(result);
+    //所以箭头函数适合与this无关的操作，适合定时器或者数组的操作
+    
+  </script>
+</body>
+</html>

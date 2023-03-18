@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+
+        }
+    </style>
+</head>
+<body>
+    <!--
+    盒模型
+         --每个盒子有以下部分构成：
+               1.内容区（content）
+               2.内边距（padding）
+               2.边框（border）
+               4.外边距（margin）
+
+       边框（border），一般至少设置三个样式
+             宽度（border-width）
+                 --border-width可以用来指定四个方向的值
+                  例如：border-width：10px 20px 30px 40px；是依次为上右下左边框设置宽度（顺时针）
+                  其他写法：
+                        四个值：上 右 下 左
+                        三个值：上 左右 下
+                        两个值：上下 左右
+                        一个值：上下左右
+                  出了border-width还有border-xxx-width，xxx为top，right，left，bottom就是特指某个方向边框的值
+
+
+             颜色（border-color）
+                --规则与上述类似，另外若不设置border-color则边框颜色按照color的值来设置
+
+             样式(border-style)(像什么虚线等)
+                --规则同上
+                   有关样式：
+                        solid 实线
+                        dotted 点状虚线
+                        dashed 虚线
+                        double 双线
+                        none 默认值，表示没有边框
+           
+             border简写属性方式
+               写法：border：solid 10px blue；
+               当然还有border-xxx   top。left。right。bottom
+               
+       内边距（padding），内容区于边框之间的距离就是内边距
+             内边距也有四个方向
+                  padding-top
+                  padding-left
+                  padding-right
+                  padding-bottom
+             内边距会影响到盒子大小，内容区的背景颜色会延伸到内边距上
+             盒子的可见框的大小，就是内容区，边框，内边距
+             简写：规则和border一样
+
+       外边距（margin）
+             外边距不会影响盒子可见框的大小，但是外边距会影响盒子的位置，影响到盒子实际占用空间的大小
+             外边距也有四个方向
+                 margin-top
+                 margin-left
+                 margin-right
+                 margin-bottom
+             默认情况下我们设置的左和上外边距元素会移动自己，设置下右外边距则是改变其他相邻元素的位置
+             简写：margin：
+                写法同border
+                 
+             
+
+                    
+       
+        
+               
+
+
+     -->
+    <div>div1</div>
+</body>
+</html>

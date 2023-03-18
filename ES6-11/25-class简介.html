@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //es5的实例化对象方法
+    function Phone(brand,price){
+      this.brand = brand;
+      this.price = price;
+    }
+    ///添加方法
+    Phone.prototype.call = function(){
+      console.log('我可以打电话！');
+    }
+    let huawei = new Phone('华为',1999);
+    huawei.call();
+    console.log(huawei);
+
+    //es6实例化对象方法
+    class Person{
+      //构造方法
+      constructor(name,age){
+        this.name = name;
+        this.age = age;
+      }
+      //添加方法
+      eat(){
+        console.log('我可以吃饭');
+      }
+    }
+    let one = new Person('zhangheng',21);
+    console.log(one);
+    one.eat();
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 	1.全局作用域
+			 *   直接编写在script标签中的js代码，都在全局作用域中
+			 *   在全局作用域中有一个全局对象window
+			 *   它代表的是一个浏览器的窗口，它由浏览器创建我们可以直接使用
+			 * 在全局作用域中我们创建的对象都会作为window对象的属性储存
+			 * 函数也会作为方法储存
+
+			 *  2.函数作用域
+			 *      调用函数时创建一个函数作用域，调用完成函数作用域就会销毁
+			 * 当在函数作用域中操作变量，会先找自身作用域中的变量，若没有就会向上一级寻找（就近原则），直到全局作用域
+			 * 如果都没有则会报错ReferenceError，在函数中要访问全局就加上window对象
+			 * 另外，在函数作用域中也有 变量提前声明 函数提前声明 的特性
+
+			 * 在函数中不使用var声明的变量会 作为全局变量		
+			 *   
+			 * 
+			 */
+			//var a=10;
+			//console.log(window.a);
+            /* 
+              fun();
+			  fun2();
+
+			function fun(){
+
+				console.log("我是fun");
+			}
+
+			var fun2=function(){
+
+				console.log("我是fun2");
+			} */
+
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

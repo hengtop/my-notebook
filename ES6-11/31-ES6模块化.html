@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="module">
+    //通用导入方式
+    /* import * as m1 from './31-模块化演示/src/js/m1.js'
+    import * as m2 from './31-模块化演示/src/js/m2.js'
+    import * as m3 from './31-模块化演示/src/js/m3.js'
+    console.log(m1);
+    console.log(m2);
+    console.log(m3.default);
+    m3.default.teach(); */
+    //解构赋值方式
+    import { school, teach } from './31-模块化演示/src/js/m1.js'
+    import { school as sch, _teach } from './31-模块化演示/src/js/m2.js'//这里schol与第一个js包中的重名要使用别名
+    //import {default as m3} from './31-模块化演示/src/js/m3.js'
+    import m3 from './31-模块化演示/src/js/m3.js'//就是上句的简写，只针对默认暴露
+    console.log(school);
+    console.log(sch);
+    _teach();
+    console.log(m3)
+    m3.teach();
+
+    console.log("-------------------------")
+  </script>
+  <!-- 通过入口文件统一引入 -->
+  <script src="./31-模块化演示/src/js/app.js" type="module"></script>
+</body>
+
+</html>

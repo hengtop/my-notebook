@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //Object.is 判断两个值是否相等
+    console.log(Object.is(NaN,NaN));
+    console.log(NaN === NaN);
+    //Object.assign 对象的合并
+    const obj = {
+      name:'zhangheng',
+      age:13,
+      savent:'saber'
+    }
+    const obj2 = {
+      name:'topzhang',
+      age:23,
+      stand:'白金之星',
+    }
+    console.log(Object.assign(obj,obj2));
+    /* 出现同名属性后者会覆盖前者 */
+
+    //Object.setPrototypeOf Object.getPrototypeOf 设置原型对象
+    Object.setPrototypeOf(obj,obj2);
+    console.log(obj);
+    console.log(Object.getPrototypeOf(obj))//获取原型  obj2
+  </script>
+</body>
+</html>

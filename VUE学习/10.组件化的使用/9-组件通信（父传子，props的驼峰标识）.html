@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+ <template id="cpn">
+   <div>
+   <h2>
+     {{cInfo}}
+   </h2>
+  </div>
+ </template> 
+
+  <div id="app">
+    <!-- <cpn :cinfo="info"></cpn> -->
+    <!--这里就要加一个 - 然后再这样写就可以了-->
+    <cpn :c-info="info"></cpn>
+  </div>
+
+  <script>
+
+    const cpn={
+      template:'#cpn',
+      props:{
+        //注意这里的命名，没有用驼峰，因为现在的vue版本这个会报错
+        /* cinfo:{
+          type:Object,
+          default(){
+            return {} 
+          }
+        } */
+        //如果要用驼峰
+        cInfo:{
+          type:Object,
+          default(){
+            return {} 
+          }
+        }
+
+      }
+
+    }
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！',
+      info:{
+        name:'zhangheng',
+        age:18,
+        height:1.88
+      }
+    },
+    components:{
+      cpn
+    }
+  });
+  </script>
+</body>
+</html>

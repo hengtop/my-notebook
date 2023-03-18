@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+				/*
+				 * 引用数据类型 Object
+				 * js中的变量都是保存在栈内存中的，基本数据类型直接在栈内存中储存
+				 * 值与值都是独立存在的，修改一个变量不会影响另一个变量
+
+				 * 每创建一个对象新的对象，就会在堆内存中开辟一个新的空间
+				 * 而变量保存的是对象的内存地址（对象的引用）
+				 * 
+				 * 对象是保存在堆内存的
+				 */
+				var a=123;
+				var b=a;
+				a++;
+				//console.log(a);
+				//console.log(b);
+				
+				var obj=new Object();
+				obj.name="yasuo";
+				var obj2=obj;
+				 obj.name="dema";
+				 
+				//console.log(obj.name);
+				//console.log(obj2.name);
+				//obj2.name=null;
+				//console.log(obj.name);
+				//console.log(obj2.name);
+				
+				var obj3=new Object();
+				var obj4=new Object();
+				obj3.name="sha";
+				obj4.name="sha";
+				//当比较两个引用数据类型时，比较的时两者的内存地址，地址不同就返回false
+				console.log(obj3==obj4);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

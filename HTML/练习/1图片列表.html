@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/reset.css">
+    <style>
+            /*ul的样式*/
+           .imgList{
+               /*设置ul的宽高*/
+               width: 190px;
+               height: 470px;
+               /*裁剪图片溢出的部分*/
+               overflow: hidden;
+               /*居中*/
+               margin: 50px auto;
+               /*设置背景颜色*/
+               background-color: #f4f4f4;
+           }
+
+            /*设置li的位置*/
+            .imgList li:not(:last-child){
+                 margin-bottom: 9px;
+            }
+
+           /*设置图片大小*/
+           .imgList img{
+               /*这里宽度等于祖先元素的100%，即为ul的宽度，且图片高度也会等比例改变*/
+               width:100%
+           }
+    </style>
+</head> 
+<body>
+    <ul class="imgList">
+        <li>
+            <a href="javascript:;">
+                <img src="/img/shouji.jpg.webp" alt="">
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:;">
+                <img src="/img/yifu.jpg.webp" alt="">
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:;">
+                <img src="/img/bijiben.jpg.webp" alt="">
+            </a>
+        </li>
+    </ul>
+</body>
+</html>

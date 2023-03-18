@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../react//react.development.js" crossorigin></script>
+  <script src="../react//react-dom.development.js"></script>
+  <script src="../react//babel.min.js"></script>
+  <div id="test"></div>
+  <script type="text/babel">
+
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          count: 0
+        }
+      }
+      addCount = () => {
+        const { count } = this.state;
+        this.setState({
+          count: count + 1
+        })
+      }
+      render() {
+        const { count } = this.state;
+
+        return (
+          <div>
+            <h2>{count}</h2>
+            <button onClick={this.addCount}>点击加一</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

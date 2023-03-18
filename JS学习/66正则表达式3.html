@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 创建一个正则表达式检查字符串中是否含有三个a
+			 */
+			/*
+			 * 量词
+			 *   设置可以出现的次数
+			 *    语法/a{连续出现次数}/
+			 *       例如：/a{3}/等于/aaa/
+			 *    注意量词只对前面一个字符起作用，要对多个字符起作用可以加上（）
+			 *      例如/ab{3}/等于/abbb/，/(ab){3}/等于/ababab/
+			 *      
+			 *      /ab{1,3}c/表示b可出现一到三次都行
+			 *      /ab{m,}c/表示b可出现m次以上都行
+			 *      /ab+c/表示至少有一个b  相当于/ab{1,}c/
+			 *      /ab*c/表示有没有b都行，也可很多个b
+			 *      /ab?c/表示0个或1个b都行 相当于{0,1}
+			 */
+			var reg= /ab{3}/;
+			console.log(reg.test("abbb"));
+			/*
+			 * 检查一个字符串是否以a开头
+			 *   ^a表示以a开头
+			 * 检查一个字符串是否以a结尾
+			 *   a$表示以a结尾
+			 * 
+			 *   ^a$表示开头结尾都是a，且只能是a，就是只有字符串"a"才满足
+			     所以在正则表达式中同时使用^ $,则要求字符串完全满足正则表达式
+				 
+			 */
+			 var reg= /^a|a$/;
+			console.log(reg.test("asd"));
+			       
+			/*
+			 * 检查字符串是否为手机号
+			 *   手机号：
+			 *      11位
+			 *      以1开头
+			 *      第二位是3-9任意数字
+			 *      三位后任意数字（长度九位）
+			 *      /^1[3-9][0-9]{9}$/
+			 */
+			
+			  
+			/*
+			 *  检查字符串中是否有.
+			 *  但是 . 表示任意字符 ，在正则中用\表示转义       所以\.表示.
+			 * 
+			 * 注意使用构造函数时，其参数是一个字符串，而\是字符串的转义字符
+			 * 所以要使用\则需要使用\\来代替
+			 *  \w 任意字母 数字和_ 
+			 *  \W 除了字母 数字和_
+			 *  \d 任意的数字[0-9]
+			 *  \D 除了数字[0-9]
+			 *  \s 空格
+			 *  \S 除了空格
+			 *  \b 单词边界
+			 *  \B 除了单词边界
+			 */
+			
+			/*
+			 * 创建一个正则表达式检查一个字符串检查一个字符串是否含有单词child
+			 */
+			var phoneStr="15541609706";
+			
+			var reg=/aaa/;
+			reg=/ab{3}/
+			reg=/ab{1,3}c/ 
+			reg=/^a/
+			reg=/^a$/
+			reg=/^a|a$/
+			reg=/^a[[A-z]|[0-9]]*a$/;
+			var phoneReg=/^1[3-9][0-9]{9}$/;
+			var reg=/\./
+			reg=/\bchild\b/;
+			//console.log(phoneReg.test(phoneStr));
+			//console.log(reg.test("a4ds65fa4a65a"));
+			//console.log(reg.test("1.")) 
+			console.log(reg.test("child"));
+			/*
+			 * 接受一个用户的输入
+			 * 为了防止输入空格，可以用空串""来替换	
+			 */
+			var str=prompt("请输入你的用户名：")
+			
+			//str=str.replace(/\s/g,"");
+			//考虑去除开头的空格,但是只写^又只表示开头一个所以要加量词
+			//str=str.replace(/^\s*/,"");
+			//去除结尾的空格
+			//str=str.replace(/\s*$/,"");
+			//整合一下      /^\s+|\s+$/g   或把+改为*都行
+			str=str.replace(/^\s+|\s+$/g,"");
+			console.log(str);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

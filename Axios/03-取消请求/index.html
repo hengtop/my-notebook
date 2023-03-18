@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="page-header">基本使用</h2>
+    <button class="btn">get</button>
+    <button class="btn">post</button>
+    <button class="btn">put</button>
+    <button class="btn">delete</button>
+  </div>
+  <script>
+    const btns = document.querySelectorAll('.btn');
+    let cancel = null;
+    btns[0].onclick = function() {
+      //检测上一次请求是否已经完成
+      //判断cancel的值是否为null
+      if(cancel !== null) {
+        cancel();
+      }
+      axios({
+        method: 'GET',
+        url: 'http://localhost:3000/posts',
+        cancelToken: new axios.CancelToken(function(c) {
+          cancel = c;
+        })
+      }).then(res => {
+        console.log(res);
+        cancel = null;//初始化设置
+      })
+    }
+    btns[1].onclick = function() {
+      cancel();
+    }
+
+  </script>
+</body>
+
+</html>

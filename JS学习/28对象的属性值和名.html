@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		  <title></title>
+		  <script type="text/javascript">
+		  		var obj=new Object();
+		  		/*
+		  		 * 对象的属性名不强制要求遵循标识符的规范
+		  		 *   什么名字字符都可以，但是还是按照标准来
+		  		 * 但如果要使用一些特殊的属性名。则不能采用.的方式来操作
+		  		 *   要用另一种方式
+		  		 *       语法，对象["属性名"]=属性值；
+		  		 * 读取也要采用这种方式
+
+		  		 * []中也可以传一个变量，这样变量值是多少就会读取那个属性
+		  		 */
+		  		obj.name="孙悟空";
+		  		//obj.var="hello";
+		  		//obj.123=789;
+		  		obj["123"]=789;
+				  var n="123";
+		  		//console.log(obj["123"]);
+				  //console.log(obj[n]);
+		  		/*
+		  		 * js对象的属性值可以是任意的数据类型，也可以是对象
+		  		 * 
+		  		 */
+		  		var obj2=new Object();
+		  		obj2.name="yasuo";
+		  		obj.test=obj2;
+		  		console.log(obj.test);
+		  		/*
+					* in 运算符
+					语法：
+						"属性名" in 对象
+					*     通过该运算符可以检查一个对象中有没有指定的对象
+					* 如果有 就返回true，没有则返回false
+		  		 * 
+		  		 */
+		  		console.log("name" in obj2);
+		  </script>
+	</head>
+	<body>
+	</body>
+</html>

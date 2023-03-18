@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div id="app">
+         <ul>
+             <!--使用V-for指令，woc真的见识了，还能这么玩~~~-->
+             <li v-for="item in movies">{{item}}</li> 
+         </ul>
+     </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app=new Vue({
+            el:'#app',
+            data:{
+                message:'age',
+                movies:['saber','archer','lancer','man']
+            }
+        });
+        app.movies.push("666");
+    </script>
+</body>
+</html>

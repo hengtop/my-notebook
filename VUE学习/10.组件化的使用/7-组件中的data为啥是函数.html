@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <template id="cpn">
+    <div>
+      <h2>当前计数：{{counter}}</h2>
+      <button @click="add">+</button>
+      <button @click="sub">-</button>
+    </div>
+  </template>
+
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+  <script>
+//如果这样写，就会引起组件之间的影响
+const obj={
+  counter:0
+}
+
+
+  //1.注册组件
+  Vue.component('cpn',{
+    template:'#cpn',
+    //这样写是为了防止组件实例之间相互干扰
+    data(){
+      /* return {
+        counter:0
+      } */
+      return obj
+    
+    },
+    methods: {
+      add(){
+        this.counter++;
+      },
+      sub(){
+        this.counter--;
+      }
+
+    },
+  })
+
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！'
+    }
+  });
+  </script>
+</body>
+</html>

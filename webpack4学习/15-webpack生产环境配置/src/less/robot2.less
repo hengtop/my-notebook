@@ -1,0 +1,801 @@
+/* 背景图片 */
+/* body {
+  background-color: #bfa;
+  background-image: url('../img/机器人界面设计1117.png');
+  background-repeat: no-repeat;
+  background-size:cover ;
+} */
+
+#robot {
+  width: 100%;
+  height: 100vh;
+  user-select: none;
+  background-image: url('../img/line/true.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* bfa外边框问题 */
+  overflow: hidden;
+  position: relative;
+
+  /* 弹窗展示 */
+  .pop-container {
+    .popup {
+      z-index: 99;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 800px;
+      height: 478px;
+      background-color: #0e366b;
+
+      .popupClose {
+        line-height: 40px;
+        box-sizing: border-box;
+        padding: 0 30px;
+        color: #fff;
+        text-align: center;
+        position: relative;
+
+        .title {
+          font-size: 20px;
+          color: #53B3D1;
+        }
+
+        .iconfont {
+          position: absolute;
+          right: 10px;
+          color: #53B3D1;
+        }
+      }
+
+      .video-wrapper {
+        width: 100%;
+        height: 438px;
+        box-sizing: border-box;
+        padding: 0 10px 10px;
+        background-color: #0e366b;
+
+        #popup-video0,
+        #popup-video1,
+        #popup-video2,
+        #popup-video3,
+        #popup-video4,
+        #popup-video5,
+        #popup-video6 {
+          width: 100%;
+          height: 100%;
+          background-color: #000;
+        }
+      }
+    }
+  }
+
+
+  /* 头部 */
+  .header {
+    margin-top: 25px;
+    text-align: center;
+
+    .main-title-wrapper {
+      .title {
+        margin-bottom: -16px;
+      }
+
+      font-size: 34px;
+      color: #88ffff;
+
+      img {
+        width: 100%;
+        height: 62px;
+      }
+    }
+  }
+
+  /* 主要内容 */
+  .body-wrapper {
+    margin: 18px 30px 0;
+    display: flex;
+    justify-content: space-between;
+
+    /* 左边 */
+    .left-wrapper,
+    .right-wrapper {
+      box-sizing: border-box;
+      width: 452px;
+      height: 612px;
+      padding: 12px 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: space-between;
+      background-image: url('../img/jiankongbg.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .left-wrapper-less {
+      flex-direction: column;
+      align-content: center;
+      justify-content: space-around;
+    }
+
+    .left-item {
+      width: 205px;
+      height: 170px;
+
+      .static-item {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        box-shadow: 0px 0px 20px rgba(15, 165, 224, .3);
+        position: relative;
+        overflow: hidden;
+
+        .onclickBtn {
+          width: 30px;
+          height: 30px;
+          vertical-align: middle;
+          cursor: pointer;
+        }
+
+        .btn {
+          position: relative;
+          top: -23px;
+          right: -160px;
+          width: 30px;
+          height: 30px;
+        }
+
+        .static-name {
+          color: #dfe8f3;
+          text-align: center;
+          font-size: 16px;
+          margin-top: 20px;
+          font-weight: 600;
+        }
+
+        .static-img-data {
+          margin-top: 15px;
+          text-align: center;
+
+          span {
+            color: #f0f0f5;
+            font-size: 18px;
+            margin-left: 5px;
+          }
+
+          img {
+            height: 50px;
+            vertical-align: bottom;
+          }
+        }
+
+      }
+
+
+
+    }
+
+    /* 右边 */
+    .right-wrapper {
+      padding: 0;
+      justify-content: center;
+      background-image: none;
+      align-content: space-between;
+
+      .right-item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        width: 100%;
+        height: 48%;
+        padding: 10px 20px;
+        background-image: url('../img/addRobotImg/qianhoubi/footerImg.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+        .video-list {
+          font-size: 16px;
+          color: #fff;
+          width: 100%;
+
+          .text {
+            height: 30px;
+            line-height: 30px;
+            text-align: left;
+            margin-bottom: 5px;
+            margin-left: 15px;
+            font-weight: bold;
+            font-size: 16px;
+          }
+
+          .active {
+            background-color: #0e366b;
+          }
+
+          .video-item {
+            margin: 0 60px;
+            padding: 0px 20px;
+            height: 30px;
+            line-height: 30px;
+            box-sizing: border-box;
+            position: relative;
+            border: 1px solid #53B3D1;
+            color: #53B3D1;
+
+            button {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translateX(50%) translateY(-50%);
+              outline: none;
+              border: none;
+              border-radius: 5px;
+              background-color: #3C57BC;
+              color: #53B3D1;
+              font-size: 10px;
+            }
+          }
+
+        }
+
+        #myChart {
+          width: 100%;
+          height: 100%;
+        }
+        .set-time {
+          z-index: 999;
+          position: absolute;
+          top: 20px;
+          left:100px;
+          input {
+            width: 30px;
+            background-color: #0c3e77;
+            border: 0;
+            padding: 0;
+            outline: none;
+            color: #339cb9;
+          }
+          span {
+            color: #339cb9;
+          } 
+        }
+      }
+
+      .video-right-item {
+        padding: 10px;
+        align-items: flex-start;
+      }
+    }
+
+    /* 中间 */
+    .middle-wrapper {
+      text-align: center;
+
+      .mid-map {
+        background-color: #0e366b;
+        width: 856px;
+        height: 518px;
+        position: relative;
+        border: 1px solid #8be3fe;
+        border-radius: 8px;
+
+        .viewImg {
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          padding: 35px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .video-wrapper {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+
+            /* 视频画布 */
+            canvas {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+
+      /* 中间顶部切换 */
+      .nav-position {
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+
+        .nav-bar {
+          display: flex;
+          width: 240px;
+          height: 31px;
+          margin: 0 auto;
+          justify-content: space-around;
+          align-items: center;
+          position: relative;
+
+          .nav-bar-item {
+            color: #fff;
+            font-size: 12px;
+            line-height: 20px;
+            font-family: MicrosoftYahei;
+            border: 1px solid #0c3e77;
+            padding: 0px 20px;
+            border-radius: 8px;
+            background-color: #0e366b;
+          }
+
+          .active {
+            border: 1px solid #8be3fe;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #0e366b;
+          }
+        }
+      }
+
+    }
+
+  }
+
+  /* 底部操作部份 */
+  .footer {
+    margin: 15px 30px 0;
+    width: 1860px;
+    height: 312px;
+
+    .footer-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+
+      .footer-items {
+        position: relative;
+        width: 49%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .footer-item {
+          width: 441px;
+          height: 310px;
+          background-color: #fff;
+          background: url('../img/addRobotImg/qianhoubi/footerImg.png') no-repeat;
+          background-size: contain;
+
+          .text {
+            margin-top: 20px;
+            margin-left: 26px;
+            font-size: 16px;
+            font-family: Microsoft YaHei;
+            font-weight: 400;
+            color: #FFFFFF;
+          }
+
+          .speed-control {
+            margin: -5px auto 0;
+            box-sizing: border-box;
+            width: 70%;
+            transform: scale(0.9);
+            position: relative;
+
+            .front-text,
+            .back-text {
+              font-size: 16px;
+              font-family: Microsoft YaHei;
+              font-weight: 400;
+              color: #FFFFFF;
+              position: absolute;
+              left: -50px;
+              top: 30px;
+            }
+
+            .speed-slider {
+
+              position: relative;
+              width: 100%;
+              height: 80px;
+              background-image: url('../img/addRobotImg/qianhoubi/slider.png');
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+
+              input {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                width: 85%;
+              }
+
+              input[type=range]:focus {
+                outline: none;
+              }
+
+              input[type=range] {
+                -webkit-appearance: none;
+                background-color: transparent;
+                /*这个属性设置使填充进度条时的图形为圆角*/
+              }
+
+              input[type=range]::-webkit-slider-thumb {
+                position: relative;
+                top: -2px;
+                -webkit-appearance: none;
+                height: 26px;
+                width: 26px;
+                background: #3C57BC;
+                border-radius: 50%;
+                /*外观设置为圆形*/
+                border: solid 8px #A4FFE0;
+              }
+            }
+
+            .speed-data {
+              margin-top: 5px;
+              display: flex;
+              list-style-type: none;
+              justify-content: space-around;
+              font-size: 12px;
+              font-family: Microsoft YaHei;
+              font-weight: 400;
+              color: #fff;
+            }
+
+            /* 底部按钮 */
+            .up_down {
+              box-sizing: border-box;
+              padding-right: 10px;
+              padding-left: 40px;
+              width: 100%;
+              height: 50px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              span {
+                margin-top: 35px;
+                margin-left: -35px;
+                font-size: 12px;
+                font-family: Microsoft YaHei;
+                font-weight: 400;
+                color: #53B3D1;
+              }
+
+              .up,
+              .down {
+                width: 30px;
+                height: 30px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                line-height: 30px;
+                padding: 0 15px;
+              }
+
+              .up {
+                background-image: url("../img/addRobotImg/qianhoubi/upwei.png");
+              }
+
+              .down {
+                background-image: url("../img/addRobotImg/qianhoubi/jiangwei.png");
+              }
+
+              .up:active {
+                background-image: url("../img/addRobotImg/qianhoubi/up.png");
+              }
+
+              .down:active {
+                background-image: url("../img/addRobotImg/qianhoubi/jiang.png");
+              }
+
+              .upKey {
+                background-image: url("../img/addRobotImg/qianhoubi/up.png");
+              }
+
+              .downKey {
+                background-image: url("../img/addRobotImg/qianhoubi/jiang.png");
+              }
+            }
+
+          }
+
+          .speed-control-back {
+            margin-top: -15px;
+          }
+
+          /* 底盘 */
+          .underpan-speed {
+            width: 260px;
+            margin-top: -20px;
+            margin-left: 140px;
+            display: flex;
+            justify-content: space-around;
+
+            .speed-list {
+              display: flex;
+              flex-direction: column;
+
+              span {
+                margin-top: 16px;
+                font-size: 10px;
+                font-family: Microsoft YaHei;
+                font-weight: 400;
+                color: #53B3D1;
+              }
+            }
+          }
+
+          .underpan {
+            margin-top: 35px;
+            margin-left: 20px;
+            width: 160px;
+            height: 160px;
+            background-image: url("../img/addRobotImg/dipan/fangxiangpan.png");
+            position: relative;
+            background-size: contain;
+
+            .sassyBoo {
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              margin: auto;
+              transform: translateX(-50%) translateY(-50%);
+              width: 24px;
+              height: 24px;
+
+            }
+
+            .sassyBoo:nth-child(1) {
+              background-image: url(../img/addRobotImg/dipan/weidianji_8/you.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              transform: rotate(0deg) translate(55px)
+            }
+
+            .sassyBoo:nth-child(2) {
+              background-image: url(../img/addRobotImg/dipan/weidianji_8/you.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              transform: rotate(45deg) translate(55px)
+            }
+
+            .sassyBoo:nth-child(3) {
+              background-image: url(../img/addRobotImg/dipan/weidianji_8/you.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              transform: rotate(90deg) translate(55px)
+            }
+
+            .sassyBoo:nth-child(4) {
+              background-image: url(../img/addRobotImg/dipan/weidianji_8/you.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              transform: rotate(135deg) translate(55px)
+            }
+
+            .sassyBoo:nth-child(5) {
+              background-image: url(../img/addRobotImg/dipan/weidianji_8/you.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              transform: rotate(180deg) translate(55px)
+            }
+
+            .sassyBoo:nth-child(6) {
+              background-image: url(../img/addRobotImg/dipan/weidianji_8/you.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              transform: rotate(225deg) translate(55px)
+            }
+
+            .sassyBoo:nth-child(7) {
+              background-image: url(../img/addRobotImg/dipan/weidianji_8/you.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              transform: rotate(270deg) translate(55px)
+            }
+
+            .sassyBoo:nth-child(8) {
+              background-image: url(../img/addRobotImg/dipan/weidianji_8/you.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              transform: rotate(315deg) translate(55px)
+            }
+
+            /* 点击 */
+            .sassyBoo:active {
+              background-image: url(../img/addRobotImg/dipan/dianji_8/youzhuan.png);
+            }
+
+            .sassyBooKey:nth-child(n) {
+              background-image: url(../img/addRobotImg/dipan/dianji_8/youzhuan.png);
+            }
+          }
+
+          .test-distance {
+            position: relative;
+            top: -160px;
+            left: 260px;
+
+            img {
+              width: 112px;
+              height: 126px;
+            }
+
+            span {
+              position: absolute;
+              width: 55px;
+              height: 20px;
+              color: #339cb9;
+              font-size: 10px;
+              font-family: MicrosoftYahei;
+
+              span {
+                text-align: center;
+              }
+            }
+
+            .num-top {
+              position: absolute;
+              top: -14px;
+              left: 30px;
+            }
+
+            .num-left {
+              position: absolute;
+              top: 50px;
+              left: -60px;
+            }
+
+            .num-left-2 {
+              position: absolute;
+              top: 80px;
+              left: -60px;
+            }
+
+            .num-right {
+              position: absolute;
+              top: 50px;
+              left: 115px;
+            }
+
+            .num-right-2 {
+              position: absolute;
+              top: 80px;
+              left: 115px;
+            }
+
+            .num-bottom {
+              position: absolute;
+              top: 130px;
+              left: 30px;
+            }
+
+          }
+
+
+          .LED {
+            position: absolute;
+            bottom: 30px;
+            left: 165px;
+
+            img {
+              border-radius: 50%;
+              width: 26px;
+            }
+
+            span {
+              position: relative;
+              top: 15px;
+              left: -45px;
+              font-size: 10px;
+              font-family: Microsoft YaHei;
+              color: #53B3D1;
+            }
+          }
+
+          /* 二号机器人补充 */
+          .LED-2 {
+            position: absolute;
+            bottom: 30px;
+            left: 235px;
+          }
+
+          /* 抓斗 */
+          .grab-bucket-container {
+            margin-top: 20px;
+
+            .grab-bucket-wrapper {
+              padding: 8px 20px;
+              box-sizing: border-box;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              .title {
+                width: 140px;
+                color: #fff;
+                font-size: 16px;
+              }
+
+              span {
+                margin-left: -35px;
+                font-size: 12px;
+                font-family: Microsoft YaHei;
+                font-weight: 400;
+                color: #53B3D1;
+              }
+
+              .text {
+                text-align: center;
+              }
+
+              .up,
+              .down {
+                width: 30px;
+                height: 30px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                line-height: 30px;
+                padding: 0 15px;
+              }
+
+              .up {
+                background-image: url("../img/addRobotImg/qianhoubi/upwei.png");
+              }
+
+              .down {
+                background-image: url("../img/addRobotImg/qianhoubi/jiangwei.png");
+              }
+
+              .up:active {
+                background-image: url("../img/addRobotImg/qianhoubi/up.png");
+              }
+
+              .down:active {
+                background-image: url("../img/addRobotImg/qianhoubi/jiang.png");
+              }
+
+              .upKey {
+                background-image: url("../img/addRobotImg/qianhoubi/up.png");
+              }
+
+              .downKey {
+                background-image: url("../img/addRobotImg/qianhoubi/jiang.png");
+              }
+
+
+            }
+            .pole {
+              position: relative;
+              .title{
+                width: 140px;
+              }
+              .height-data {
+                position: absolute;
+                left: 130px;
+              }
+            }
+          }
+        }
+
+      }
+
+    }
+  }
+
+}

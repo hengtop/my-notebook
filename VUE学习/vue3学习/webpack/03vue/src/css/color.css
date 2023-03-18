@@ -1,0 +1,8 @@
+.active {
+  background-color: #bfa;
+  color: blue;
+  font-size: 30px;
+  display: flex;
+  justify-content: baseline;
+  user-select: inherit;
+}

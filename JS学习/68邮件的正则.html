@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 电子邮件
+			 *     例如：
+			 *       heng.top@qq.com
+			 *       任意数字字母下划线和. @  任意字母数字 . 任意字母（2-5位 ）
+			 * 
+			 * \w{3,} (\.\w+)*@[A-z0-9]+ (\. [A-z]{2,5}){1,2} 
+			 */
+			var emailReg=/^\w{3,}(\.\w+)*@[A-Za-z0-9]+(\.[A-Za-z]{2,5}){1,2}$/;
+			var email="heng.top@qq.com";
+			
+			console.log(emailReg.test(email)); 
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

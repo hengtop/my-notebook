@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  <template id="cpn">
+    <!--在这个模板里就只能用自己定义在props中的变量名-->
+    <div>
+      <p>{{cmessage}}</p>
+      <ul>
+        <li v-for=" item in childmovies">{{item}}</li>
+      </ul>
+    </div>
+  </template>
+
+  <div id="app">
+    <!--这样就完成了父组件向子组件传递的作用，此时props中的两个变量都有了内容-->
+    <!--这里注意一定要用v-bind，不然他会把后边的movies当成字符串来传给自己-->
+    <cpn v-bind:childmovies="movies" :cMessage="message"></cpn>
+    
+  </div>
+
+  <script>
+    //父传子通过 props
+    const cpn={
+      template:'#cpn',
+      //这是数组写法，props还有很多写法
+      //props:['childmovies','cmessage'],
+      props:{
+        //类型限制,单独这样写
+       //childmovies:Array,
+       //cmessage:String,
+
+       //还可提供默认值，另一种写法，对象写法
+       cmessage:{
+         //类型限制
+         type:String,
+         //默认值,当没设置父组件的数组传过来，就使用
+         default:"aaaaa",
+         //表示这个值必须传，不传会报错
+         required:true
+       },
+       childmovies:{
+         type:Array,
+         //default:["saber","acher"]//如果是数组，用这样的方法来写默认值会报错
+         //所以如果类型是对象或者数组就需要用函数来设置默认值
+         default(){
+           return ["saberxxx","acher"]
+         }
+       }
+
+      },
+      data(){
+        return { }
+      }
+    }
+
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: "helloWorld!",
+      //下面这个数据是不能给子组件用的，但如果我们要把这数据拿给子组件去展示又怎末办呢
+      movies:['海王','欧拉']
+    },
+    components:{
+      cpn
+    }
+  });
+  </script>
+</body>
+</html>

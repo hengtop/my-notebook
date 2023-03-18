@@ -1,0 +1,21 @@
+
+
+.wrapper {
+  width: 500px;
+  margin: 100px auto;
+}
+.yanzheng {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+}
+.yanzheng input{
+  width: 65%;
+}
+.yanzheng img{
+  margin-right: 50px;
+}
+
+
+/*# sourceMappingURL=./index.css.map */

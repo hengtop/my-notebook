@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    //1.创建虚拟dom
+    const id = "ZhangHENG";
+    const data = "100yuan"
+    const VDOM = (
+      <div >
+        <h2 id={id.toLocaleLowerCase()}>
+          <span style={{color: 'red'}}>{data}</span>
+        </h2>
+        <input type="text" />
+      </div>    
+    );
+    //2.虚拟dom渲染到页面
+    ReactDOM.render(VDOM,document.getElementById('test'));
+    /* 
+      jsx语法规则
+        1.定义虚拟dom时不要写引号
+        2.jsx混入表达式要加上{}
+        3.在jsx中引入样式类名时不能用 class 要使用className
+        4.内联样式style后面不能用字符串的形式，要使用如下 style={{key: value}}
+        5.虚拟dom只能有一个根标签
+        6.标签必须闭合
+        7.（1）在虚拟dom里以小写字母写的标签，则会转换成html中同名的标签，如果是你瞎写的标签，找不到就会报错
+          （2）若以大写字母写的，react就会以为是个组件，组件如果没有定义就报错未定义
+    */
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./CSS/reset.css">
+  <link rel="stylesheet" href="./CSS/main.css">
+</head>
+
+<body>
+
+  <div id="app" class="wrapper">
+    <!--设置开头导航-->
+    <nav id="header-wrapper">
+      <div class="header">
+        <div class="icon-back">
+          <a href="#">
+            <img src="./img/icon_bcak.png" alt="">
+          </a>
+        </div>
+        <div class="header-title">购物车</div>
+
+        <div class="goods-set">
+          <a href="#" @click="set" v-if="change">编辑</a>
+          <a href="#" @click="set" v-else>完成</a>
+        </div>
+      </div>
+    </nav>
+    
+    <!--商品盒子-->
+    <div  id="goodsCar">
+      <ul class="goodsList">
+        <li v-for="(item,index) in goodsList">
+
+          <button class="goods-choose" @click="checked(index)" :class="{active:item.isActive}"></button>
+
+          <div class="goods-img">
+            <img :src="item.img" alt="">
+          </div>
+
+          <div class="goods-info">
+            <h2 class="goods-title">{{item.id}}</h2>
+            <div class="goods-money">{{item.price | showPrice}}</div>
+            <div class="goods-send">
+              <img src="./img/icon_information_blac_samll.png" alt="">
+              <span>满150免运费</span>
+            </div>
+          </div>
+
+          <div class="goods-number">
+            <button @click="sub(index)" :disabled="item.counter <=1">-</button>
+            <span>{{item.counter}}</span>
+            <button @click="add(index)">+</button>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+    
+    <!--没有商品时的页面-->
+    <div v-show="!!!goodsList.length" id="noGoods">
+      <img src="./img/noingshopping.png">
+       <h2>购物车空无一物</h2>
+       <p>赶快前往商城挑选自己喜欢的东西吧</p>
+    </div>
+    <!--底部结算按钮-->
+    <div id="goodsFooter-wrapper">
+
+      <div class="goodsFooter">
+        <div class="all-choose">
+          <button class="goods-all-choose" @click="allChecked" :class="{active:isActive}"></button>
+          <p>全选</p>
+        </div>
+
+        <div class="total">
+          <div class="total-title" v-show="change">合计：</div>
+          <div class="total-money" v-show="change">{{totalPrice | showPrice}}</div>
+          <button class="btn-buy" type="submit" @click="totalMoney" v-show="change">结算<span
+              v-if="totalNumber">({{totalNumber}})</span></button>
+          <button class="btn-buy" type="submit" @click="removeGoods" v-show="!change">删除</button>    
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./JS/vue.js"></script>
+  <script src="./JS/main.js"></script>
+</body>
+
+</html>

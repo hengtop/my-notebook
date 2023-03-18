@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/iconfont.css">
+  <title>Document</title>
+  <style>
+    #container {
+      margin: 0 auto;
+      width: 600px;
+      height: 340px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .list {
+      width: 4200px;
+      height: 340px;
+      position: absolute;
+      left: -600px;
+    }
+
+    img {
+      float: left;
+      width: 600px;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .btn {
+      width: 100%;
+      position: absolute;
+      bottom: 10px;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .btn li {
+      list-style: none;
+      width: 10px;
+      height: 10px;
+      background-color: RGBA(0, 0, 0, .3);
+      border-radius: 50%;
+      border: 1px solid #fff;
+    }
+
+    .btn li:nth-child(2n-1) {
+      margin: 0 5px;
+    }
+
+    .next,
+    .prev {
+      position: absolute;
+      top: 45%;
+      padding: 10px;
+      background-color: RGBA(0, 0, 0, .3);
+      color: #fff;
+      display: none;
+      z-index: 2;
+    }
+
+    .next {
+      right: 0;
+      transform: rotateZ(180deg);
+    }
+
+    .prev {
+      left: 0;
+
+    }
+
+    .arrow:hover {
+      background-color: RGBA(0, 0, 0, 0.7);
+    }
+
+    #container:hover span {
+      display: block;
+    }
+
+    .btn .on {
+      background-color: RGBA(255, 255, 255, 1);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div class="list" id="imgList">
+      <img src="./img/紫罗兰永恒花园+violet+evergarden+(character)+4k壁纸_彼岸图网.jpg" alt="" srcset="">
+      <img src="./img/尼尔_机械纪元NieR_Automata+8k壁纸_彼岸图网.jpg" alt="" srcset="">
+      <img src="./img/女孩+海岸+云+4k动漫壁纸_彼岸图网.jpg" alt="" srcset="">
+      <img src="./img/尼尔机械纪元2b+4k壁纸_彼岸图网.jpg" alt="" srcset="">
+      <img src="./img/时光飞逝+海边+大海+小女孩小男孩3440x1440壁纸_彼岸图网.jpg" alt="" srcset="">
+      <img src="./img/紫罗兰永恒花园+violet+evergarden+(character)+4k壁纸_彼岸图网.jpg" alt="" srcset="">
+      <img src="./img/尼尔_机械纪元NieR_Automata+8k壁纸_彼岸图网.jpg" alt="" srcset="">
+    </div>
+    <ul class="btn" id="btn">
+      <li class="on"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <span id="prev" class="prev arrow iconfont icon-fanhui"></span>
+    <span id="next" class="next arrow iconfont icon-fanhui"></span>
+  </div>
+  <script>
+    //绑定函数
+    function $(id) {
+      return document.getElementById(id);
+    }
+    //绑定点击事件函数
+    function callback(id, callback) {
+      $(id).onclick = callback;
+    }
+    window.onload = function () {
+      const listDiv = $('imgList');//图片列表容器
+      const container = $('container');//整体容器
+      const btn = $('btn').children;//所有的圆点按钮
+      let totalTime = 400;
+      let intervalTime = 10;
+      let intervalId;//间隔移动定时器
+      let imgCount = 5;
+      let moving = false;
+      let otherIntervalId;//自动切换定时器
+      let index = 0;//当前页面下表
+
+      //设置切换页面
+      /* 
+        flag: true 为下一页 false为上一页 number为跳转到指定页面
+      */
+      otherIntervalId = setInterval(function () {
+        switchoverPage(true);
+      }, 3000);
+
+      clickSwitchPage();
+
+
+      function switchoverPage(flag) {
+        if (moving) {
+          return;
+        }
+        moving = true;//标识为正在移动
+        let offset;//图片移动的距离
+        if (typeof flag === "boolean") {
+          offset = flag ? -600 : 600;
+        } else {
+          offset = -600 * (flag - index);
+        }
+        //单位移动距离
+        let itemOffset = offset / (totalTime / intervalTime);
+        let targetOffset = listDiv.offsetLeft + offset;//切换后的偏移量
+        intervalId = setInterval(function () {
+          let imgOffset = listDiv.offsetLeft + itemOffset;//单位移动后的偏移量
+
+          if (imgOffset === targetOffset) {
+            //移除定时器
+            clearInterval(intervalId);
+            //边界处理
+            if (imgOffset === 0) {
+              //移动到倒数第二张
+              imgOffset = -600 * imgCount;
+              //移动到第二张
+            } else if (imgOffset === -600 * (imgCount + 1)) {
+              imgOffset = -600;
+            }
+            moving = false;
+          }
+          //移动图片
+          listDiv.style.left = imgOffset + 'px';
+        }, intervalTime);
+        //更新点位
+        updateBtn(flag);
+      }
+      //更新点位
+      function updateBtn(flag) {
+        btn[index].removeAttribute('class');//移除上一个点的激活样式
+        let targetIndex;
+        if (typeof flag === "boolean") {
+          if (flag) {
+            targetIndex = index + 1;
+            if (targetIndex === imgCount) {
+              targetIndex = 0;
+            }
+          } else {
+            targetIndex = index - 1;
+            if (targetIndex === -1) {
+              targetIndex = imgCount - 1;
+            }
+          }
+        } else {
+          targetIndex = flag;
+        }
+        //更新当前的索引
+        index = targetIndex;
+        //更新样式
+        btn[index].className = "on";
+      }
+
+      //点击按钮跳转
+      function clickSwitchPage() {
+        for (let i = 0; i < btn.length; i++) {
+          btn[i].onclick = function () {
+            switchoverPage(i);
+          }
+        }
+      }
+
+      //鼠标移入内容就停止自动播放
+      container.onmouseenter = function () {
+        console.log("Sss")
+        clearInterval(otherIntervalId)
+      }
+      //鼠标移出就执行
+      container.onmouseleave = function () {
+        otherIntervalId = setInterval(function () {
+          switchoverPage(true);
+        }, 3000);
+      }
+
+      //左右按钮切换
+      $('prev').onclick = function () {
+        switchoverPage(false);
+      }
+      $('next').onclick = function () {
+        switchoverPage(true);
+      }
+
+      //设置拖动切换
+      let moveStart, moveEnd;
+      listDiv.ontouchstart = function (e) {
+        clearInterval(otherIntervalId)
+        e.preventDefault();
+        moveStart = e.touches[0].pageX;
+      }
+      listDiv.ontouchmove = function (e) {
+        e.preventDefault();
+        moveEnd = e.touches[0].pageX;
+      }
+      listDiv.ontouchend = function (e) {
+        e.preventDefault();
+        const offset = moveStart - moveEnd
+        const offset_abs = Math.abs(moveStart - moveEnd);
+        const totalOffset = container.clientWidth;
+        if (offset_abs > totalOffset / 3) {
+          if (offset > 0) {
+            switchoverPage(true);
+          } else {
+            switchoverPage(false);
+          }
+
+        }
+
+      }
+
+    }
+
+
+  </script>
+</body>
+
+</html>

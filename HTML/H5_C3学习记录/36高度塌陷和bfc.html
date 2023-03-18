@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer{
+            border: 10px red solid;
+        }
+        .inner{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            float: left;
+        }
+        
+
+        /*完美解决高度塌陷*/
+        .outer::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+         /*
+             
+             BFC 块级格式化环境
+                   ——bfc是一个css中隐含的属性，可为一个元素开启bfc
+                           开启bfc以后，元素会变成一个独立的布局区域
+                           开启特点：
+                                   1.开启bfc的元素不会被浮动元素所覆盖
+                                   2.开启bfc的元素子元素的外边距和父元素不会重叠，即不会传递给父元素
+                                   3.开启bfc的元素可以包含浮动的子元素
+                           可通过特殊的方式开启bfc来解决高度塌陷问题
+                                   1.设置元素的浮动（不推荐）
+                                   2.将元素设置为行内块元素（不推荐）
+                                   3.将元素的overflow属性值设置为一个非visible值，一般设置为hidden（副作用小）        
+             
+             
+             
+             
+             
+             
+             高度塌陷问题
+                  在浮动布局中，父元素的高度是默认被子元素撑开的
+                  当子元素浮动后，其会完全脱离文档流，将会无法撑起父元素的高度，导致父元素高度丢失,父元素以下的元素会上移导致页面布局混乱
+
+                  clear属性
+                       当两个块元素垂直方向摆放，上面的块元素开启浮动会导致自身脱离文档流，然后下面的元素会移上来
+                       这时候clear就可以解决这个问题
+                         可选值：
+                             left 清除左侧浮动元素对当前元素的影响
+                             right 清除右侧元素对当前元素的影响
+                             both 清除两侧浮动元素影响最大的对当前元素的影响
+                         原理：
+                             设置clear后浏览器会自动为元素加一个上外边距，使位置不受浮动元素影响    
+                            
+             解决高度塌陷的最终方案
+                  使用after伪类
+                  再受影响的元素最后面加一个空标签，但是该空标签是行内元素，所以还要改成块元素
+                  最后加上clear:both;就可完美解决高度塌陷问题
+
+            所以这里就可总结一个样式
+            .clearfix::before,
+            .clearfix::after{
+                content:'';
+                display:table;
+                clear:both;
+            }
+            该样式可完美解决高度塌陷和子元素与父元素外边距传递重叠问题
+        
+        */
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+        <!--<div class="inner1">224</div>-->
+        
+    </div>
+    
+</body>
+</html>

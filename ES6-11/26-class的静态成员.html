@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Phone(){
+       
+    }
+    Phone.nick = "shouji";
+    Phone.change = function () {
+      console.log('change you!');
+    }
+    console.log(Phone);
+    Phone.change();
+    console.log(Phone.nick);
+
+    let nokia = new Phone();
+    console.log(nokia,nokia.nick);
+    //nokia.change();
+    /* 实例对象和函数对象是不通的 */
+    class Person{
+      //静态属性
+      static name = '人';
+      static eat(){
+        console.log('我可以吃饭');
+      }
+    }
+    let one = new Person();
+    console.log(one.name);
+    /* 静态属性是属于类的而不属于实例化对象 */
+  </script>
+</body>
+</html>

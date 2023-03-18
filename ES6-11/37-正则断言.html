@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 根据目标内容前后内容进行识别 */
+    let str = 'js1232312312你知道吗12342拉拉啊了';
+    //正向断言
+    const reg = /\d+(?=拉)/;
+    const res = reg.exec(str);
+    console.log(res);
+    //反向断言
+    const reg1 = /(?<=吗)\d+/;
+    console.log(reg1.exec(str));
+
+    /* dotAll模式  s */
+    //dot . 元字符 除换行符以外的任意单个字符
+    let str1 = `
+     <ul>
+       <li>hhahh</li>
+       <li>hhahh11</li>
+       <li>hhahh2</li>
+       <li>hhahh2231</li>
+     </ul>
+    `
+    /* 将标签中的文本内容提取出来 */
+    const reg2 = /<li>(.*?)<\/li>/gs;
+    //const res2 = reg2.exec(str1);
+    while(res2 = reg2.exec(str1))
+      console.log(res2)
+  </script>
+</body>
+</html>

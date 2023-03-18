@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let a = '888<a href="http://www.baidu.com">string</a>';
+    //提取url和标签文本
+    const reg = /<a href="(.*)">(.*)<\/a>/; 
+    const res = reg.exec(a);
+    console.log(res);
+    
+    //方便了某些属性的提取
+    const reg1 = /<a href="(?<url>.*)">(?<text>.*)<\/a>/; 
+    console.log(reg1.exec(a))
+  </script>
+</body>
+</html>

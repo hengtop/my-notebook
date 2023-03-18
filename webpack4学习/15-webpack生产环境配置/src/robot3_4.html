@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>robot</title>
+</head>
+
+<body>
+  <div id='robot'>
+    <div class="header">
+      <div class="main-title-wrapper">
+        <div class="title"><span v-text="robot.name"></span>实时监控</div>
+        <img src="./img/robot-line.png" alt="">
+      </div>
+    </div>
+
+    <div class="body-wrapper">
+      <!--中间监控 -->
+      <div class="middle-wrapper">
+        <div class="mid-map">
+          <div v-show="item.active" v-for="(item,index) in allVideoList" :key="item.id" class="viewImg">
+            <div class="video-wrapper">
+              <!-- <canvas :id="item.mainId" ></canvas> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 右边监控 -->
+      <div class="right-wrapper">
+        <div v-show="!item.active" v-for="(item,index) in allVideoList" :key="item.id" class="right-item" @click="changeVideo(item.id)">
+          <div class="video-wrapper">
+            <canvas :id="item.id"></canvas>
+          </div>
+          <div class="video-title">{{item.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</body>
+
+
+</html>

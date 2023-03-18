@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./手写实现promiseA+规范.js"></script>
+  <!-- <script src="./js练习/手写实现promise.js"></script> -->
+  <script>
+    let p = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        //resolve(Promise.reject(234));
+        resolve(2222)
+      }, 1000)
+      //resolve(345)
+    });
+    p.then((res) => {
+      console.log(res);
+    }).catch((res) => {
+      console.log(res);
+    }).finally(res => {
+      console.log("123", "我执行完了");
+    })
+   /*  const p1 = Promise.resolve(Promise.reject(123)); */
+    /*     const p2 = Promise.resolve(22);
+        const p3 = Promise.resolve(123);
+        const p4 = Promise.resolve(4);
+        Promise.race([1, p2, p3, p4]).then(res => {
+          console.log(res);
+        }, rea => {
+          console.log(rea);
+        }
+        ) */
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+     script start
+     async2 end 
+     Promise
+     script end
+     123
+    */
+    /* 微队列
+       123
+       promise1
+       宏队列
+       setTimeout
+    */
+
+
+/*     async function async1() {
+      await async2()
+      console.log('async1 end')
+    }
+    async function async2() {
+      return Promise.resolve().then(function () {
+        console.log('async2')
+      })
+    }
+    async1() */
+    new Promise(resolve => {
+      resolve()
+    }).then(function () {
+      console.log('promise1')
+    }).then(function () {
+      console.log('promise2')
+    }).then(() => {
+      console.log('promise3')
+    })
+    new Promise(resolve => {
+      resolve()
+    }).then(function () {
+      console.log('promise4')
+    }).then(function () {
+      console.log('promise5')
+    }).then(() => {
+      console.log('promise6')
+    })
+
+
+
+    /*
+      script start
+      async1 start
+      async2
+      promise1
+      script end
+      123
+      promise2
+      promise3
+      宏
+      setTimeout
+      微
+      promise3
+    */
+  </script>
+</body>
+
+</html>

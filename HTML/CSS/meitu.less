@@ -1,0 +1,210 @@
+a{
+    text-decoration: none;
+    color: #ffffff;
+    &:hover{
+        color: rgb(197,196,196);
+    }
+}
+
+//导航条外部容器
+.top-bar-wrapper{
+         background-color: #000000;
+    .top-bar{
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 48px;
+    padding: 0 14px;
+    //开启弹性盒子
+    display: flex;
+    //辅轴对齐方式
+    align-items: center;
+    //空间分配
+    justify-content: space-between;
+    background-color: #000000;
+
+
+}
+
+}
+
+
+
+//设置左侧导航的图标
+.left-menu{
+    //position: relative;
+    
+    //鼠标移入显示菜单
+    @media only screen {
+
+    @media (max-width:768px){
+         &:hover{
+        .nav-list{
+                 display: block;
+              }
+            }
+        }
+    }
+   
+
+    //设置菜单
+    .nav-list{
+        //开启绝对定位，这里是根据html定位的
+        position: absolute;
+        //使元素的大小撑开占满整个屏幕
+        top: 48px;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #000000;
+        //设置一个上内边距
+        padding-top: 60px;
+
+        //隐藏
+        display: none;
+
+        //设置li
+        li{
+            width:80%;
+            margin: 0 auto;
+            border-bottom: 1px solid #757474;
+
+            a{
+                //设置块元素
+                display: block;
+                //设置行高元素
+                line-height: 44px;
+                font-size: 14px;
+               
+            }
+
+            &:last-child a{
+                //变为行内块元素
+                 display: inline-block;
+                 margin-right: 6px;
+            }
+
+            span{
+                color: #fff;
+                font-size: 14px;
+            }
+        }
+        
+    }
+
+    //导航的图标
+    .menu-icon{
+        width: 18px;
+        height:48px;
+        //服务绝对定位
+        position: relative;
+      //三条导航的线
+        li{
+             width: 18px;
+             height: 1px;
+             background-color: #ffffff;
+             position: absolute;
+             //修改变形原点
+             transform-origin: left;
+             transition: 0.5s;
+        }
+        
+        //定位
+        li:nth-child(1){
+            top: 18px;
+        }
+
+        li:nth-child(2){
+            top: 24px;
+        } 
+
+        li:nth-child(3){
+            top: 30px;
+        }
+        
+        //&表示外层元素，添加移入效果
+        &:hover{
+            li:nth-child(1){
+                //向下旋转
+                transform: rotateZ(42deg);
+            }
+    
+            li:nth-child(2){
+                //隐藏
+                opacity: 0;
+            } 
+    
+            li:nth-child(3){
+                //向上转
+                transform: rotateZ(-42deg);
+            }
+        }
+
+    }
+}
+
+//设置logo
+.logo{
+    a{
+        //把字隐藏了
+       text-indent: -9999px;
+        display: block;
+        width: 244/2px;
+        height: 64/2px;
+        background-image: url(../img/meitu.png);
+        background-size: 400px 400px;        
+    }
+}
+
+//设置媒体查询
+@media only screen{
+    //断点768px
+    @media (min-width:768px) {
+
+        .left-menu{
+            //顺序
+            order: 2;
+            //设置增长系数
+            flex: auto;
+
+            //显示菜单中的list
+            .nav-list{
+                display: flex;
+                //关定位
+                position: static;
+                padding: 0;
+
+                //设置主轴空间分布
+                justify-content: space-around;
+
+                li{
+                    //重制样式
+                    width:auto;
+                    border-bottom: none;
+                    margin: 0;
+
+                    a{
+                        line-height: 48px;
+                    }
+
+                    span{
+                        //把字藏起来
+                        display: none;
+                    }
+                }
+            }
+
+            //隐藏菜单的路标
+            .menu-icon{
+                display: none;
+            }
+        }
+
+        .logo{
+            order: 1;
+        }
+
+        .user-info{
+            order: 3;
+        }
+}
+}

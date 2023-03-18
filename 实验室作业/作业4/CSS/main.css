@@ -1,0 +1,248 @@
+html {
+  font-size: 5.55555556vw;
+  background-color: #F6F8FA;
+}
+a {
+  text-decoration: none;
+}
+.wrapper {
+  background-image: url(../img/BG.png);
+  background-size: 18rem;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.w,
+#header-wrapper .header,
+#goodsCar,
+#goodsFooter-wrapper .goodsFooter {
+  width: 16.8rem;
+  margin: 0 auto;
+}
+#header-wrapper {
+  display: flex;
+  width: 100%;
+  height: 2.6rem;
+  background-color: transparent;
+  margin-top: 1.2rem;
+}
+#header-wrapper .header {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  /*设置内部样式*/
+}
+#header-wrapper .header .icon-back img {
+  width: 1.2rem;
+  vertical-align: bottom;
+  margin-left: 0.25rem;
+}
+#header-wrapper .header .header-title {
+  font-family: NotoSansCJKsc-Medium;
+  font-size: 0.8rem;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+#header-wrapper .header .goods-set a {
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.7rem;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  line-height: 2.6rem;
+  margin-right: 0.5rem;
+}
+#goodsCar .goodsList {
+  margin-top: 1.5rem;
+}
+#goodsCar .goodsList li {
+  width: 100%;
+  height: 7.1rem;
+  margin-bottom: 0.825rem;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#goodsCar .goodsList li .goods-choose {
+  width: 0.9rem;
+  height: 0.9rem;
+  outline: none;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 0.1rem solid #c7c7c7;
+  margin-left: 0.5rem;
+}
+#goodsCar .goodsList li .active {
+  background-image: url(../img/button-mutilate\ select-select.png);
+  background-size: 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+}
+#goodsCar .goodsList li .goods-img {
+  height: 80%;
+  width: 100px;
+}
+#goodsCar .goodsList li .goods-img img {
+  width: 5.5rem;
+}
+#goodsCar .goodsList li .goods-info {
+  box-sizing: border-box;
+  width: 6.25rem;
+  padding-left: 0.5rem;
+  padding-top: 0.625rem;
+}
+#goodsCar .goodsList li .goods-info .goods-title {
+  opacity: 0.9;
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.6rem;
+  color: #000000;
+  position: absolute;
+  margin-top: 0.25rem;
+}
+#goodsCar .goodsList li .goods-info .goods-money {
+  font-family: NotoSansCJKsc-Medium;
+  font-size: 0.7rem;
+  color: #DE1C23;
+  margin-top: 1.625rem;
+  margin-bottom: 2.95rem;
+}
+#goodsCar .goodsList li .goods-info .goods-send {
+  height: 1.2rem;
+}
+#goodsCar .goodsList li .goods-info .goods-send span {
+  opacity: 0.4;
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.4rem;
+  color: #000000;
+  line-height: 1.2rem;
+  margin-left: -0.3rem;
+}
+#goodsCar .goodsList li .goods-info .goods-send img {
+  width: 1.2rem;
+  vertical-align: bottom;
+}
+#goodsCar .goodsList li .goods-number {
+  width: 3.175rem;
+  height: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#goodsCar .goodsList li .goods-number button {
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: transparent;
+  font-size: 1.25rem;
+}
+#goodsCar .goodsList li .goods-number span {
+  display: inline-block;
+  width: 1.1rem;
+  height: 0.75rem;
+  opacity: 0.7;
+  font-family: NotoSansCJKsc-Regular;
+  color: #000000;
+  font-size: 0.5rem;
+  background-color: #e5e5e5;
+  text-align: center;
+  line-height: 0.75rem;
+  border-radius: 0.125rem;
+}
+#goodsFooter-wrapper {
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 2.3rem;
+  background-color: #fff;
+}
+#goodsFooter-wrapper .goodsFooter {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#goodsFooter-wrapper .goodsFooter .all-choose {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+#goodsFooter-wrapper .goodsFooter .all-choose .goods-all-choose {
+  width: 0.9rem;
+  height: 0.9rem;
+  outline: none;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 0.1rem solid #c7c7c7;
+  margin-left: 1.1rem;
+}
+#goodsFooter-wrapper .goodsFooter .all-choose .active {
+  background-image: url(../img/button-mutilate\ select-select.png);
+  background-size: 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+}
+#goodsFooter-wrapper .goodsFooter .all-choose p {
+  margin-left: 0.5rem;
+  opacity: 0.7;
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.6rem;
+  color: #000000;
+}
+#goodsFooter-wrapper .goodsFooter .total {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#goodsFooter-wrapper .goodsFooter .total .total-title {
+  opacity: 0.7;
+  font-family: NotoSansCJKsc-Medium;
+  font-size: 0.6rem;
+  color: #000000;
+}
+#goodsFooter-wrapper .goodsFooter .total .total-money {
+  font-family: NotoSansCJKsc-Medium;
+  font-size: 0.6rem;
+  color: #DE1C23;
+  text-align: center;
+}
+#goodsFooter-wrapper .goodsFooter .total .btn-buy {
+  width: 5rem;
+  height: 1.8rem;
+  background-image: linear-gradient(250deg, #FF632F 8%, #FE0300 100%);
+  border-radius: 23px;
+  border: none;
+  outline: none;
+  margin-right: -0.25rem;
+  margin-left: 0.5rem;
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.7rem;
+  color: #FFFFFF;
+  text-align: center;
+}
+#noGoods img {
+  margin-left: 6.5rem;
+  margin-top: 7.5rem;
+  width: 7.45rem;
+  height: 5.75rem;
+}
+#noGoods h2 {
+  opacity: 0.9;
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.8rem;
+  color: #000000;
+  text-align: center;
+  line-height: 1.1rem;
+}
+#noGoods p {
+  opacity: 0.4;
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 0.6rem;
+  color: #000000;
+  text-align: center;
+  line-height: 1.1rem;
+}
+/*# sourceMappingURL=./main.css.map */

@@ -1,0 +1,1 @@
+import{p as a,a as o,o as c,c as s,w as e,b as d}from"./vendor.ebce3c30.js";const t={name:"",data:()=>({}),created(){},mounted(){},methods:{},components:{}},n=e("data-v-ad2f86cc");a("data-v-ad2f86cc");const m={class:""};o();const p=n(((a,o,e,d,t,n)=>(c(),s("div",m," vue渲染出来的 "))));t.render=p,t.__scopeId="data-v-ad2f86cc",d(t).mount("#app"),console.log(1+2),console.log(123);

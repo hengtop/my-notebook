@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          .box1{
+                  width: 200px;
+                  height: 199px;
+          }
+          .box2{
+                  width: 100px;
+                  height: 99px;
+          }
+          /*外边距的折叠，只有垂直方向才会发生
+                   --相邻的的垂直方向外边距会发生重叠现象
+                   --兄弟元素间相邻的垂直外边距会取两者之间较大值（两者都是正值）
+                      特殊情况：
+                               若相邻的外边距一正一负，则取两者之和
+                               若两个都是负数，则取绝对值较大的
+                   
+                   --父子元素之间的相邻外边距，子元素会传递给父元素（上外边距），所以需要进行处理
+                        1.可通过加内边距减高度来实现
+                        2.或者通过某种方式使两个元素隔开，比如加上一个边框
+                        3.也是基于第二点的方式使用before伪类在父元素前面加上内容（但这个内容不存在）
+                   
+          
+          
+          */
+          .box1{
+              background-color: blue;
+              /*设置下外边距*/
+              margin-bottom:0px;
+              /*border-top: 1px red solid;*/
+          }
+          .box1::before{
+              content: '';
+              display: table;
+          }
+          .box2{
+              background-color: #bfa;
+              /*上外边距*/
+              margin-top: 100px;    
+
+          }
+    </style>
+</head>
+<body>
+    <div class="box1"><div class="box2"></div></div>
+    
+</body>
+</html>

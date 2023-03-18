@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //声明Map
+    let m = new Map();
+    m.set('name','zhangheng');
+    m.set('change',function(){
+      console.log("我们可以改变你!");
+    })
+    let key = {
+      school:'swust',
+    };
+    m.set(key,['北京','上海','深圳']);
+    console.log(m.size);
+    console.log(m);
+    //删除
+    //m.delete('name');
+    console.log(m);
+    //获取(通过key获取value)
+    console.log(m.get('change'));
+    //清空
+    m.clear();
+    //当然也可进行for of运算
+  </script>
+</body>
+</html>

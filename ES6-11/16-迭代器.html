@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //声明一个数组
+    const xiyou = ['saber', 'lancer', 'jojo'];
+    for (let item of xiyou) {
+      console.log(item);
+    }
+    //先获取迭代器属性
+    let iterator = xiyou[Symbol.iterator]();
+    console.log(iterator);
+    console.log(iterator.next());//没每调用一次就像后迭代一次，内部是指针操纵移动
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+  </script>
+</body>
+
+</html>

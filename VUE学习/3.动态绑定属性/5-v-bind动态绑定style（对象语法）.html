@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    
+    <div id="app">
+        <!-- <h2 :style="{属性名:属性值}">{{message}}</h2> -->
+        <!--这里的50px本质上是不加单引号，但是不加的话vue会把它当成变量解析，所以要加个单引号-->
+        <h2 :style="{fontSize:'50px'}">{{message}}</h2>
+        <h2 :style="{fontSize:finalSize}">{{message}}</h2>
+        <h2 :style="{fontSize:finalSize1+'px',color:finalColor}">{{message}}</h2>
+        <h2 :style="getStyle()">{{message}}</h2>
+    </div>
+    <script>
+    const app = new Vue({
+    el: '#app',
+    data: { 
+       message: 'helloWorld！',
+       finalSize:'100px',
+       finalSize1:100,
+       finalColor:'red'
+      },
+      methods: {
+          getStyle:function(){
+              return {fontSize:this.finalSize1+'px',color:this.finalColor}
+          }
+      }
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <title></title>
+  <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
+  <!--设置信息窗体的样式-->
+  <style type="text/css">
+    html,
+    body,
+    #container {
+      height: 100%;
+      width: 100%;
+    }
+
+    .amap-icon img {
+      width: 48px;
+      height: 48px;
+    }
+  </style>
+  <script type="text/javascript"
+    src="https://webapi.amap.com/maps?v=1.4.15&key=41c27ea03f58f2cd50ed74f1512fb009"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+  <div class="input-card">
+    <h4>地图自适应</h4>
+    <input id="setFitView" type="button" class="btn" value="地图自适应显示" />
+  </div>
+  <script type="text/javascript">
+    //TODO  这里进来可以将当前位置作为默认地图中心
+    const map = new AMap.Map("container", {
+      resizeEnable: true,
+      center: [117.214418, 31.809823]//地图中心位置
+    });
+    map.clearMap();
+    console.log(window.location.search.split("=")[1]);//获取地址参数参数
+    //TODO  通过这个参数向后台发送数据,拿到该车辆的位置和其他信息
+    let marker = {//样例数据
+      "icon": "./huoche.png",
+      "position": [
+        116.205467,
+        39.907761
+      ],
+      "info": {
+        "name": "奔驰",
+        "time": "2020-11-11",
+        "speed": "100km"
+      }
+    }
+
+    let instance = new AMap.Marker({
+            map: map,
+            icon: marker.icon,
+            position: [marker.position[0], marker.position[1]],
+            offset: new AMap.Pixel(-13, -30)
+          });
+        map.setFitView();//设置缩放使得所有标记点可见
+  </script>
+</body>
+
+</html>

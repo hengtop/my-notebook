@@ -1,0 +1,320 @@
+//设置变量
+@total-width:720;
+//@center-width:693/40rem;
+
+//设置根元素
+html {
+  //设置rem的比值 
+  font-size: 100vw/@total-width*40;
+  background-color: #F6F8FA;
+}
+
+a {
+  text-decoration: none;
+}
+
+//设置整体背景
+.wrapper {
+  
+  background-image: url(../img/BG.png);
+  background-size: 720/40rem;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  //height: 1000px;
+}
+
+//设置整体宽度
+.w {
+  width: 672/40rem;
+  margin: 0 auto;
+}
+
+//设置开头导航
+#header-wrapper {
+
+  display: flex;
+  width: 100%;
+  height: 104/40rem;
+  background-color: transparent;
+  margin-top: 48/40rem;
+
+  .header:extend(.w) {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+
+    /*设置内部样式*/
+    //图片样式
+    .icon-back img {
+      width: 48/40rem;
+      vertical-align: bottom;
+      margin-left: 10/40rem;
+
+    }
+
+    //字体样式
+    .header-title {
+      letter-spacing: 0;
+      font-family: NotoSansCJKsc-Medium;
+      font-size: 32/40rem;
+      color: #FFFFFF;
+      letter-spacing: 0;
+
+
+    }
+
+    //靠右字体样式
+    .goods-set a {
+      font-family: NotoSansCJKsc-Regular;
+      font-size: 28/40rem;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      line-height: 104/40rem;
+      margin-right: 20/40rem;
+      ;
+    }
+  }
+}
+
+//设施购物列表
+#goodsCar:extend(.w) {
+  .goodsList {
+    margin-top: 60/40rem;
+   
+    //设置盒子布局
+    li {
+      width: 100%;
+      height: 284/40rem;
+      margin-bottom: 33/40rem;
+      background-color: #fff;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      
+      //选择图案
+      .goods-choose {
+        width: 36/40rem;
+        height: 36/40rem;
+        outline: none;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 4/40rem solid #c7c7c7;
+        margin-left: 20/40rem;
+
+      }
+      
+      //点击添加的样式
+      .active {
+        background-image: url(../img/button-mutilate\ select-select.png);
+        background-size: 40/40rem;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: none;
+      }
+
+      //设置盒子里面的样式
+      .goods-img {
+        height: 80%;
+        width: 100px;
+
+        img {
+          width: 220/40rem;
+        }
+      }
+       
+      //商品文字信息
+      .goods-info {
+        box-sizing: border-box;
+        width: 250/40rem;
+        padding-left: 20/40rem;
+        padding-top: 25/40rem;
+      
+        .goods-title {
+          opacity: 0.9;
+          font-family: NotoSansCJKsc-Regular;
+          font-size: 24/40rem;
+          color: #000000;
+          position: absolute;
+          margin-top: 10/40rem;
+         
+        }
+
+        .goods-money {
+          font-family: NotoSansCJKsc-Medium;
+          font-size: 28/40rem;
+          color: #DE1C23;
+          margin-top:65/40rem;
+          margin-bottom: 118/40rem;
+        }
+
+        .goods-send {
+          height: 48/40rem;
+
+          span {
+            opacity: 0.4;
+            font-family: NotoSansCJKsc-Regular;
+            font-size: 16/40rem;
+            color: #000000;
+            line-height: 48/40rem;
+            margin-left: -12/40rem;
+          }
+
+          img {
+            width: 48/40rem;
+            vertical-align: bottom;
+          }
+        }
+      }
+      
+      //商品数量
+      .goods-number {
+        width: 127/40rem;
+        height: 35/40rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        button {
+          border: none;
+          outline: none;
+          padding: 0;
+          background-color: transparent;
+          font-size: 50/40rem;
+        }
+
+        //设置数量方块样式
+        span {
+          display: inline-block;
+          width: 44/40rem;
+          height: 30/40rem;
+          opacity: 0.7;
+          font-family: NotoSansCJKsc-Regular;
+          color: #000000;
+          font-size: 20/40rem;
+          background-color: #e5e5e5;
+          text-align: center;
+          line-height: 30/40rem;
+          border-radius: 5/40rem;
+        }
+      }
+    }
+  }
+}
+
+//设置页脚
+#goodsFooter-wrapper {
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 92/40rem;
+  background-color: #fff;
+
+  .goodsFooter:extend(.w) {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .all-choose {
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      .goods-all-choose {
+        width: 36/40rem;
+        height: 36/40rem;
+        outline: none;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 4/40rem solid #c7c7c7;
+        margin-left: 44/40rem;
+      }
+      
+      //点击添加样式
+      .active {
+        background-image: url(../img/button-mutilate\ select-select.png);
+        background-size: 40/40rem;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: none;
+      }
+
+      p {
+        margin-left: 20/40rem;
+        opacity: 0.7;
+        font-family: NotoSansCJKsc-Regular;
+        font-size: 24/40rem;
+        color: #000000;
+      }
+    }
+    
+    //右边金额和按钮设置
+    .total {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+
+      .total-title {
+        opacity: 0.7;
+        font-family: NotoSansCJKsc-Medium;
+        font-size: 24/40rem;
+        color: #000000;
+
+      }
+
+      .total-money {
+        font-family: NotoSansCJKsc-Medium;
+        font-size: 24/40rem;
+        color: #DE1C23;
+        text-align: center;
+
+      }
+
+      .btn-buy {
+        width: 200/40rem;
+        height: 72/40rem;
+        background-image: linear-gradient(250deg, #FF632F 8%, #FE0300 100%);
+        border-radius: 23px;
+        border: none;
+        outline: none;
+        margin-right: -10/40rem;
+        margin-left: 20/40rem;
+        font-family: NotoSansCJKsc-Regular;
+        font-size: 28/40rem;
+        color: #FFFFFF;
+        text-align: center;
+
+      }
+    }
+  }
+}
+
+//没有商品的样式
+#noGoods{
+  img{
+    margin-left: 260/40rem;
+    margin-top: 300/40rem;
+    width:149*2/40rem;
+    height: 115*2/40rem;
+  }
+  h2{
+    opacity: 0.9;
+    font-family: NotoSansCJKsc-Regular;
+    font-size: 32/40rem;
+    color: #000000;
+    text-align: center;
+    line-height: 44/40rem;
+  }
+  p{
+    opacity: 0.4;
+    font-family: NotoSansCJKsc-Regular;
+    font-size: 24/40rem;
+    color: #000000;
+    text-align: center;
+    line-height: 44/40rem;
+  }
+}

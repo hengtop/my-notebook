@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    
+    <div id="app">
+        <!-- v-cloak这个指令会在js执行后被删除，有时如果发生js加载卡顿，这个h2中就会先显现出{{message}}变量名，等js
+             加载后后才会正常显示。
+             这会给用户带来一种不好的体验，所以我们可以通过这个属性来设置一些样式，js代码加载完成前，让内容隐藏，等加载完成后这个属性被去除，
+             则内容就会正常显示了
+        -->
+        <h2 v-cloak>{{message}}</h2>
+    </div>
+    <script>
+        //设置个延时函数来模拟js出现加载迟缓
+        setTimeout(function(){
+            const app = new Vue({
+              el: '#app',
+              data: { 
+               message: 'helloWorld！'
+            }
+            })
+        },1000);
+    
+    </script>
+</body>
+</html>

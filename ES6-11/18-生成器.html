@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+   //简介，异步编程的一个解决方案
+    function * gen(){
+      //console.log('hello generator');
+      yield '一直没有耳朵';//这个yield可以看作函数内部的分隔符
+      //console.log('111')
+      yield '一直没有眼睛';
+      //console.log('222')
+      yield '一直没有尾巴';
+      //console.log('333')
+      yield '真奇怪';
+      //console.log('444')
+    }
+    let iterator = gen();//通过next()代码进行一步一步的执行
+    /* iterator.next();//还必须调用next()方法才能调用
+    iterator.next();
+    iterator.next();
+    iterator.next();
+    iterator.next(); */
+    console.log(iterator.next());
+     console.log(iterator.next());
+      console.log(iterator.next());
+       console.log(iterator.next());
+        console.log(iterator.next());
+    //当然还是可以对函数进行遍历
+    for(let item of gen()){
+      console.log(item);
+    }
+
+  </script>
+</body>
+</html>

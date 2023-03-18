@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <a href="/home">home</a>
+    <a href="/about">about</a>
+  </div>
+  <div class="content">content</div>
+
+  <script>
+    const content = document.querySelector('.content');
+
+    const aList = document.getElementsByTagName('a');
+    for (let aItem of aList) {
+      aItem.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log("click");
+        const href = aItem.getAttribute('href');
+        console.log(href);
+        history.pushState({}, "", href);
+        switch (location.pathname) {
+          case "/home":
+            content.innerHTML = "home";
+            break;
+          case "/about":
+            content.innerHTML = "about";
+            break;
+          default:
+            content.innerHTML = "default";
+        }
+      })
+    }
+    
+    //监听返回按钮 
+    window.addEventListener('popstate', () => {
+      switch (location.pathname) {
+        case "/home":
+          content.innerHTML = "home";
+          break;
+        case "/about":
+          content.innerHTML = "about";
+          break;
+        default:
+          content.innerHTML = "default";
+      }
+    })
+  </script>
+</body>
+
+</html>

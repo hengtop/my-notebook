@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/4.0.0/immutable.min.js"
+    integrity="sha512-YKSQecLkGrea3bKro680kYyxBrlTbD0coQvdrpZV5swPcuZbAJQurJHtfinPSjDTGBz2K4Cjs4INsjm5nhB2kg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    const im = Immutable;
+
+    //map的使用
+    const info = {
+      name: 'kobe',
+      age: 30,
+      firend: {
+        name: 'zhangsan',
+        age: 24
+      }
+    }
+    const infoIM = im.Map(info);
+
+    const obj = infoIM;
+    const infoIM2 = infoIM.set('name', 'lisi');
+
+    console.log(info.name);
+    console.log(obj.get('name'));
+    console.log(infoIM2.get('name'));
+
+
+    //List的使用
+    const names = ['abc', '123', 567];
+
+    const namesIM = im.List(names);
+    const arrIM = namesIM.set(0, 'zhangsan');
+    console.log(namesIM.get(0));
+    console.log(arrIM.get(0));
+
+    //fromJS会对
+  </script>
+</body>
+
+</html>

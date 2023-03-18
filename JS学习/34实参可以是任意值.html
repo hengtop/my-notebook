@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 定义一个函数判断函数是否偶数
+			 * 实参可以是个对象，也可是个函数
+			 */
+			function isOu(a)
+			  {
+			  	return a%2==0;
+			  }
+			console.log (isOu(5));
+			//计算圆的面积
+			function area(r)
+			  {
+			  	return r*r*3.14;
+			  }
+			  console.log(area(1));
+			  //输出人的name gender age address
+			  /*function information(name,gender,age,address)
+			    {
+			    	console.log("我叫"+name+"，"+gender+"，我今年"+age+",我住在"+address);
+			    }
+			    information("zhangheng","nan",18,"andawd");  */
+			   var obj={
+			   	name:"张恒",
+			   	age:18,
+			   	gender:"男",
+			   	address:"SWUST"
+			   	
+			   }
+			   
+			   function inf(man)
+			     {
+			     	console.log("我叫"+man.name+"，我今年"+man.age+"，我是一个"+man.gender+"人，"+"家住"+man.address);
+			     }
+			     inf(obj);
+			   function fun(a)
+			     {
+			     	//函数也可做为一个参数
+			     	//此时的a（obj）就相当调用inf函数  
+			     	a(obj);
+			     }
+			     fun(inf);
+		</script>"
+	</head>
+	<body>
+	</body>
+</html>

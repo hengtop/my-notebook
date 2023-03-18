@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    /*
+    * react的受控组件,类似于vue中的双向绑定
+    * */
+    class Login extends React.Component {
+      //初始化状态
+      state = {
+        username: '张三',
+        password: ''
+      }
+      handleSubmit = () => {
+        event.preventDefault();//阻止默认事件
+        const {username, password} = this.state;
+        alert(`用户名：${username},密码：${password}`);
+      }
+      //保存用户名到状态中
+      saveUsername = (event) => {
+        console.log(event.target.value);
+        //存在状态里
+        this.setState({username: event.target.value})
+      }
+      savePassword = (event) => {
+        console.log(event.target.value);
+        //存在状态里
+        this.setState({password: event.target.value})
+      }
+      render() {
+        return (
+                <form onSubmit={this.handleSubmit}>
+                  用户名：<input onChange={this.saveUsername}  type="用户名" name="username" />
+                  密码：<input onChange={this.savePassword} type="password" name="password" />
+                  <button>登录</button>
+                </form>
+        );
+      }
+    }
+    ReactDOM.render(<Login/>, document.getElementById('test'));
+
+  </script>
+</body>
+
+</html>

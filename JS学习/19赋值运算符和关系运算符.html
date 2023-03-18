@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 大于号小于号
+			 *   如果关系成立，则返回true，反之则返回false
+			 *    任何值与NaN作比较都返回false
+			 
+			 *    与非Number作比较会先转化为Number再比较
+
+			 *    注意：如果符号两边都是字符串，则会先转化为对应字符串的unicode编码比较
+			 *         如："a"<"b"-->61<62
+			 *   比较编码是一位一位的进行，如果两位一样，则比较下一位，所以可以用来对英文排序
+			 */
+			var a,b;
+			a=5>6;
+			a="abc"<"bgf";
+			//如果比较两个字符串型的数字，可能得到不可预期的结果
+			//所以注意！！！在比较两个字符串型的数字时，一定要转型，如加+转型
+			console.log("1132465"<+"5");
+			console.log(a);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

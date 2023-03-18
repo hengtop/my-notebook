@@ -1,0 +1,95 @@
+/* 一些乱七八糟的额样式代码,抽屉背景还有线条背景 */
+
+//两边弹窗标题样式
+.line-style {
+  position: relative;
+  .border-line,
+  .border-line-right {
+    position: absolute;
+  }
+  .border-line:nth-of-type(1) {
+    top: 0px;
+    left: 35px;
+    height: 6px;
+    width: 80px;
+  }
+  .border-line:nth-of-type(2) {
+    width: 45px;
+    height: 25px;
+    top: 0px;
+    right: 0px;
+  }
+  .border-line-right:nth-of-type(1) {
+    top: 0px;
+    right: 35px;
+    height: 5px;
+    width: 80px;
+  }
+  .border-line-right:nth-of-type(2) {
+    width: 45px;
+    height: 25px;
+    top: 0px;
+    left: 0px;
+  }
+  .right-header {
+    margin-top: 10px;
+    text-align: center;
+    color: var(--themeColor);
+    font-size: 20px;
+  }
+}
+
+.drawer-wrapper {
+  /* 底部线条 */
+  .border-line-3 {
+    position: absolute;
+    left: 50px;
+    bottom: 70px;
+    width: 200px;
+    height: 6px;
+  }
+  .border-line-4 {
+    width: 6px;
+    height: 200px;
+    position: absolute;
+    right: 0px;
+    bottom: 180px;
+  }
+  .border-line-3-right {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    width: 200px;
+    height: 6px;
+    transform: rotateZ(180deg);
+  }
+  .border-line-4-right {
+    width: 6px;
+    height: 200px;
+    position: absolute;
+    left: 0px;
+    bottom: 180px;
+  }
+}
+
+/deep/.el-drawer__container {
+  top: 50px;
+}
+/deep/.el-drawer__header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: var(--backgroundColor);
+  margin-bottom: 0px;
+  padding: 0;
+}
+/deep/ .el-drawer__body {
+  background-color: var(--backgroundColor);
+}
+/deep/ .el-drawer__wrapper {
+  z-index: 99 !important;
+}
+//右边高度
+.right-drawer {
+  height: 50%;
+}

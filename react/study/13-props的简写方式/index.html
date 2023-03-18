@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    class Person extends React.Component {
+      constructor(props) {
+        //构造器是否接收props,s是否传递给super，取决于是否希望在构造器中通过this访问props
+        super(props);
+      }
+      render() {
+        const {name, age, sex, speak} = this.props;
+        //this.props.name = "xxx";//这行代码会报错，因为props只读
+        speak();
+        return (
+          <ul>
+            <li>{name}</li>
+            <li>{age}</li>
+            <li>{sex}</li>
+          </ul>
+        )
+      }
+      static propTypes = {//对传入的属性进行限制
+        name: PropTypes.string.isRequired,//表示必须传入一个字符串
+        sex: PropTypes.string.isRequired,
+        age: PropTypes.number,
+        speak: PropTypes.func//这里要设置函数类型必须这样写
+     }
+      static defaultProps = {//对传入的数据默认值进行设置
+        age: 17,
+        sex: '你是啥子',
+        speak() {
+          console.log('我是默认的');
+        }
+     }
+    }
+    
+    const p = {name:'老刘', age: 15, sex:'无'}
+    function speak() {
+      console.log('我说话了')
+    }
+    ReactDOM.render(<Person name="jeke" age={19} speak={speak} />, document.getElementById('test'));
+    ReactDOM.render(<Person {...p} />, document.getElementById('test1'));
+  </script>
+</body>
+
+</html>

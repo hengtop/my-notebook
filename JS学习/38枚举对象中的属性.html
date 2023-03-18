@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			var obj={
+				name:"孙悟空",
+				age:18,
+				address:"花果山"
+			};
+			//枚举对象中的属性
+			//使用for。。。。in语句
+			/*
+			 * 语法：
+			 *    for（var 变量 in 对象）{
+			 * 	
+			 * }
+			 * 
+			 * 对象中有几个属性这个语句就循环几次
+			 * 每次执行都会依此把 属性名 赋给 变量
+			 */
+			for(var n in obj){
+				//console.log("属性名："+n);
+				//console.log("hello");
+				//consolo.log(obj.n);
+				//n是变量所以要输出相应的属性值就要使用中括号
+				console.log(obj[n]);
+			}
+
+			for(var m in document){
+				console.log(m);
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

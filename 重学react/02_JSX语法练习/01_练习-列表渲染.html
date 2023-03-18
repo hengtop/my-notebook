@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../react//react.development.js" crossorigin></script>
+  <script src="../react//react-dom.development.js"></script>
+  <script src="../react//babel.min.js"></script>
+  <div id="test"></div>
+  <script type="text/babel">
+
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          movieList: [
+            { name: '大话西游', id: 1 },
+            { name: '你好世界', id: 2 },
+            { name: '星际穿越', id: 3 },
+            { name: '星球大战', id: 4 },
+            { name: '疯狂的石头', id: 5 }
+          ],
+          message: '电影列表'
+        }
+      }
+      render() {
+        const { message, movieList } = this.state;
+        //两种写法
+        const listArr = [];
+        for (const item of movieList) {
+          listArr.push(<li>{item.name}</li>);
+        }
+        return (
+          <div>
+            <ul>
+              {listArr}
+            </ul>
+            <ul>
+              {
+                movieList.map((item) => {
+                  return <li>{item.name}</li>
+                })
+              }
+            </ul>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

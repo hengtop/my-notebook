@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 在js中有三个包装类可以将基本数据类型转换为对象
+			 *   String（）
+			 *        可以将基本数据类型转换为string对象
+			 *   Number（）同理
+			 *   Boolean（）同理
+			 *  这种方法一般不用，会产生一些不可预期的问题
+			 */
+			var num=new Number(3);
+			console.log(typeof num);
+			var str=new String("hello");
+			console.log(typeof str);
+			//向num中添加一个属性
+			num.hello="aasdf";
+			console.log(num.hello);
+
+			var a=3;
+			a.hello="assd";
+			console.log(a.hello);
+
+            //当我们对基本数据类型去调用属性和方法时浏览器会临时将其使用包装类转换为对象，然后再调用对象的属性和方法 
+
+
+		</script>
+		 
+		 
+	</head>
+	<body>
+	</body>
+</html>

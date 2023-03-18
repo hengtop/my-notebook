@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    class Person extends React.Component {
+      
+      state = {
+        isHot:true
+      }
+
+      showInfo = () => {
+        console.log(this.input1.value);
+      }
+      change = () => {
+        const {isHot} = this.state;
+        this.setState({
+          isHot:!isHot
+        }); 
+      }
+      saveInput = (c) => {
+        this.input1 = c;
+        console.log('@',c);
+      }
+      render() {
+        const {isHot} = this.state;
+        return (//ref的回调函数执行几次？？？ 第一次启动时执行一次之后更新render后就会执行两次,可以将内联写法改为外部调用形式来避免这种多次调用，当然本身这个问题没啥影响
+          <div>
+            <h1 onClick={this.change}>今天很{isHot ? '炎热' : '凉爽'}</h1>
+            {/* <input ref={(c) => {this.input1 = c;console.log("@",c);}} type="text" /> */}
+            <input ref={this.saveInput} type="text" />
+            <button onClick={this.showInfo}>点击提示数据</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Person />, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

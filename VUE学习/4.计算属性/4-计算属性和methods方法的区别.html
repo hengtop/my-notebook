@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    
+    <div id="app">
+        <!--第一种，直接拼接  （不采用，语法过于繁琐）-->
+        <h2>{{firstName}} {{lastName}}</h2>
+        <!--第二种调用方法-->
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <!--第三种使用计算属性-->
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+    </div>
+    <script>
+    const app = new Vue({
+    el: '#app',
+    data: { 
+        message: 'helloWorld！',
+        firstName:'阿尔托莉雅',
+        lastName:'潘德拉贡'
+       },
+       //计算属性（）
+       computed: {
+           fullName:function(){
+               //这个函数只执行了一次，因为系统为这个函数做了缓存，所以性能比用methods高，只有改变了返回值才会重新调用
+               console.log("fullName");
+            return this.firstName+" "+this.lastName;
+           }
+       },
+       methods: {
+           //这个是es6语法，getFullName(){}就等于getFullName:function(){}
+           getFullName(){
+               //检测被调用了几次
+               console.log("getFullName");
+               return this.firstName+" "+this.lastName;
+           }
+       }
+    });
+    </script>
+</body>
+</html>

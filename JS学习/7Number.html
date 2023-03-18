@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 在js中所有的数值都是Number型
+			 * 包括整数和浮点数
+			 */
+			var a=123;
+			var b="123";
+			console.log( typeof a);
+			console.log(b);
+			/*
+			 * 可以使用typeof来检测一个变量的类型
+			 * 语法 typeof 变量
+			 * 其返回值就是变量的类型
+			 */
+
+			/*
+			 * js中表示最大数值
+			 *  Number.MAX_VALUE
+			 * 如果表示的数超过该值，那么输出就是Infinity(字面量，就当成一个数字)来表示正无穷
+			 * Infinity表示正无穷 
+			 * -Infinity表示负无穷
+			 * NaN 是一个特殊的数字 Not A Number 使用typeof检查NaN返回的也是Number
+			 * Number.MIN_VALUE在js中是最小的正值	
+			 */
+			console.log(Number.MAX_VALUE); 
+			var c=Infinity;
+			console.log(c); 
+			var d=Number.MIN_VALUE;
+			console.log(d);
+			/*
+			 * 在js中整数运算基本能保证精确，如果进行浮点运算，则结果可能是一个不精确的结果
+			 * 所以不推荐用js进行对精确度要求高的运算
+			 */
+			var e=123+456;
+			e=0.1+0.2;
+			console.log(e);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../js/vue.js"></script>
+
+  <!--子组件-->
+  <template id="cpn">
+    <div>
+      <button @click="add">+</button>
+      <button @click="sub">-</button>
+    </div>
+  </template>
+
+  <!--父组件-->
+  <div id="app">
+    <h2>{{total}}</h2>
+    <cpn @btnadd="changeTotal" @btnsub="changeTotal"></cpn>
+  </div>
+  <script>
+  
+    const app = new Vue({
+      el: '#app',
+      data: {
+        total: 0
+      },
+      methods: {
+        changeTotal(counter) {
+          this.total = counter;
+        }
+      },
+      //子组件（局部组件）
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              counter: 0,
+            }
+          },
+          methods: {
+            add() {
+              this.counter++;
+              this.$emit('btnadd', this.counter);
+            },
+            sub() {
+              this.counter--;
+              this.$emit('btnsub', this.counter);
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <title>自适应显示多个点标记</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <style>
+    html,
+    body,
+    #container {
+      height: 100%;
+      width: 100%;
+    }
+
+    /* 图标大小 */
+    .amap-icon img {
+      width: 48px;
+      height: 48px;
+    }
+
+    .main {
+      padding: 0 10px;
+      text-align: center;
+      list-style-type: none;
+      position: relative;
+    }
+    #detail {
+      color:burlywood;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script type="text/javascript"
+    src="https://webapi.amap.com/maps?v=1.4.15&key=41c27ea03f58f2cd50ed74f1512fb009"></script>
+  <script type="text/javascript">
+
+    //TODO  这里进来可以将当前位置作为默认地图中心
+    //初始化地图
+    const map = new AMap.Map('container', {
+      center: [117.214418, 31.809823],//地图中心位置
+      resizeEnable: true,
+      zoom: 12
+    });
+
+    //新建窗口信息实例
+    const infoWindow = new AMap.InfoWindow({
+      offset: new AMap.Pixel(10, -30),
+      content: ""
+    });
+    map.clearMap();  // 清除地图覆盖物
+
+    //请求获取标记点
+    let markers = [];
+    //这如果要轮询更新,将整个请求放在定时器中定时执行
+    $.ajax({
+      url: 'http://altria.f3322.net:3000/mock/15/markers',
+      dataType: 'json',
+      success: (res) => {
+        map.remove(markers);
+        markers = [];//更新标记点状态的时候清空标点数组防止标记点一直增加
+        let instance;//保存标记点实例
+        res.forEach(function (marker) {
+          instance = new AMap.Marker({
+            map: map,
+            icon: marker.icon,
+            position: [+marker.position.split(',')[0], +marker.position.split(',')[1]],
+            offset: new AMap.Pixel(-13, -30)
+          });
+          //添加事件
+          instance.on('click', infoWindowOpen(marker));
+          markers.push(instance);//放入标记点数组
+        });
+        map.setFitView();//设置缩放使得所有标记点可见
+      }
+    });
+
+    //打开窗口展示单个标记点信息
+    function showOnlyMarker(marker) {
+      return function (e) {
+        window.open('./singleMarker.html?markerId=' + marker.markerId, '_blank');
+      }
+    }
+
+    //鼠标移入打开窗口显示标记点简略信息
+    function infoWindowOpen(marker) {
+      return function (e) {
+        infoWindow.setContent(`
+      <ul class='main'>
+        <li>运单号<span style='color:blue'>${marker.info.name}</span></li>
+				<li>派车单号<span style='color:blue'>${marker.info.time}</span></li>
+				<li>发货地址<span style='color:blue'>${marker.info.speed}</span></li>
+				<li>收货地址<span style='color:blue'>:123456</span></li>
+        <li>车辆状态<span style='color:blue'>:123456</span></li>
+        <li id="detail">详情</li>
+      </ul>
+      `)
+        infoWindow.open(map, e.lnglat);
+        setTimeout(() => {
+          document.querySelector('#detail').addEventListener('click', showOnlyMarker(marker), false);
+        }, 0)
+
+      }
+    }
+
+    /*     //关闭窗口信息
+        function infoWindowClose() {
+          return function (e) {
+            infoWindow.close();
+          }
+        } */
+  </script>
+</body>
+
+</html>

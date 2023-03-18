@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 新增rest可以像数组一样操纵对象 */
+    function connect({host,port,...user}){
+      console.log(host);
+      console.log(port);
+      console.log(user);
+    }
+    connect({
+      host:'127.0.0.1',
+      port:3306,
+      username:'root',
+      password:'root',
+      type:'master',
+    })
+    const yasuo = {
+      name:'yasuo',
+      q:'钢斩闪',
+      e:'踏前闪'
+    }
+    const k = {
+        _name: 'yasuo',
+        _q: '钢斩闪',
+        _e: '踏前闪'
+      }
+    const m = {
+      ...yasuo,
+      ...k
+    }
+    console.log(m);
+  </script>
+</body>
+</html>

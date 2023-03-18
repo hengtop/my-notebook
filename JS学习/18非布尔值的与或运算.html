@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * &&	||非布尔值的情况
+			 *    对于非布尔值的运算，会先将其转换为布尔值，然后再运算，并且返回原值
+			 */
+		var a=1&&2;
+		//如果两个值都为true，则返回后边的值
+		//如果有false，则返回靠前的false
+		//   也就是如果与运算第一个值为true,则必定返回第二个值
+		//               第一个值为false,则必定返回第一个值 
+      //a=0&&NaN;	 
+		a=NaN&&0;
+		console.log(a);
+		
+		//true||true
+		//如果第一个值为true，则直接返回第一个值
+		//如果第一个为false。则直接返回第二个
+		var b;
+		b=2||1;
+		b=""||"hello";
+		console.log(b);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

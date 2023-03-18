@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //Number.EPSILON 是js表示的最小精度
+    console.log(Number.EPSILON);
+    /* 在js中两个数的差的绝对值小于了这个精度就认为两数相等，通常用于浮点数运算*/
+    console.log(0.1 + 0.2 === 0.3);
+    //这就可以用这个最小精度来解决
+    function equal(a, b) {
+      if (Math.abs(a - b) < Number.EPSILON) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    console.log(equal(0.1 + 0.2, 0.3));
+    //二 八 十六进制表示
+    let b = 0b1010;
+    let o = 0o777;
+    let x = 0xff;
+    console.log(b, o, x);
+
+    //Number.isFinite() 检测一个数值是否为有限数
+  </script>
+</body>
+
+</html>

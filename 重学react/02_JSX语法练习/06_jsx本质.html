@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <script src="../react//react.development.js" crossorigin></script>
+  <script src="../react//react-dom.development.js"></script>
+  <script src="../react//babel.min.js"></script>
+  <div id="test"></div>
+  <script type="text/babel">
+    //实质上jsx是React.createElement的语法糖
+    //查看createElement的源码
+      /* 三个参数 
+         1. type
+         2. config
+         3. children
+
+         通过createElement创建出来的对象就是ReactElement对象，最终形成一个虚拟DOM
+         react渲染流程
+         jsx -> createElement函数 -> ReactElement(对象树) -> ReactDOM.render -> 真实的DOM
+         react native
+         jsx -> createElement函数 -> ReactElement(对象树) -> ReactDOM.render -> 原生的控件（UIButton/Button）
+         
+      */
+    const VDOM = React.createElement('h1', { id: 'title' }, 'hhhhh');
+    ReactDOM.render(VDOM, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

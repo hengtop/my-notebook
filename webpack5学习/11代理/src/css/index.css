@@ -1,0 +1,18 @@
+@import "./res.css";
+@import url("../font/iconfont.css");
+.content {
+  font-size: 20px;
+  color:red;
+  user-select: all;
+  transition: all 2s ease;
+  color:#12345678;
+  width: 500px;
+  height: 500px;
+  background-image: url("../img/668521.jpg");
+}
+:fullscreen {
+  color: red;
+}
+img{
+  width: 300px;
+}

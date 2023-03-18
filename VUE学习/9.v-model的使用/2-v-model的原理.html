@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <!-- <input type="text" v-model="message"> -->
+    <!--其实v-model可以看作下面的操作-->
+    <input type="text" :value="message"><!--这里实现了一次单向绑定，即修改data中的message可修改此value，但是修改value就不能改掉data中的message-->
+    <input type="text" :value="message" v-on:input="changeMessage"><!--这里的v-on:input表示监听输入事件,注意：这里不带括号就默认传入一个事件对象到方法中-->
+    <!--这样就实现了双向绑定，下面是另一种简写，没使用方法，直接用的表达式-->
+    <input type="text" :value="message" v-on:input="message=$event.target.value">
+    <h2>{{message}}</h2>
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！'
+    },
+    methods: {
+      changeMessage(event){
+          this.message=event.target.value;//将修改值赋给message
+      }
+    },
+    
+  });
+  </script>
+</body>
+</html>

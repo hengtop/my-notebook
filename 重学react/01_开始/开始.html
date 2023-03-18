@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <div id="test"></div>
+  <!-- crossorigin该属性可以获取到跨域脚本的错误信息 -->
+  <script src="../react//react.development.js" crossorigin></script>
+  <script src="../react//react-dom.development.js"></script>
+  <script src="../react//babel.min.js"></script>
+
+  <script type="text/babel">
+    let message = 'hello saber';
+    function btnClick() {
+      message = 'hello react';
+      render();
+    }
+
+    function render() {
+      const VDOM = (
+        <div>
+          <div>{message}</div>
+          <button onClick={btnClick}>改变文本</button>
+          <div>
+            <span>你</span>
+            <span>好</span>
+          </div>
+        </div>
+
+      )
+      ReactDOM.render(VDOM, document.getElementById('test'))
+    }
+    render();
+  </script>
+
+  <script>
+    class Person {
+      constructor() {
+        this.name = 'zansgan';
+      }
+
+      get() {
+        console.log(this);
+        return this.name;
+      }
+      set() {
+        'use strict';
+        const name = this.get.apply(undefined, []);
+        console.log(name, 'set');
+      }
+    }
+    const p = new Person();
+    p.set()
+  </script>
+</body>
+
+</html>

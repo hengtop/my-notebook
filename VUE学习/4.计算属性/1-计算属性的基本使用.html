@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    
+    <div id="app">
+        <h2>{{firstName}} {{lastName}}</h2>
+        <h2>{{firstName+' '+lastName}}</h2>
+        <!--但是这样的拼接有点麻烦,尝试下面的方法-->
+        <h2>{{getFullName()}}</h2>
+        <!--但是这样还是不太好看，毕竟我们标签一般都是填写变量名，这里搞个方法名我看着有点别扭，这里就要引入 计算属性 了-->
+        <!--这样写就看起来很简洁，注意不用加（），因为是一个属性了-->
+        <h2>{{fullName}}</h2>
+    </div>
+    <script>
+    const app = new Vue({
+    el: '#app',
+    data: { 
+        message: 'helloWorld！',
+        firstName:'阿尔托莉雅',
+        lastName:'潘德拉贡'
+       },
+       //计算属性（）
+       computed: {
+           fullName:function(){
+            return this.firstName+" "+this.lastName;
+           }
+       },
+       methods: {
+           //这个是es6语法，getFullName(){}就等于getFullName:function(){}
+           getFullName(){
+               return this.firstName+" "+this.lastName;
+           }
+       }
+    });
+    </script>
+</body>
+</html>

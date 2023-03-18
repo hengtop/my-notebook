@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+           属性选择器
+              语法：[xxx]{}
+                   也可以在前面加上标签
+                   例如：p[title]{}
+
+             1.[属性名] 选择含有指定属性的元素
+             2.[属性名=属性值] 选择含有指定属性和属性值的元素（有且仅有）
+             3.[属性名^=属性值] 选择属性值以指定开头开始的元素
+             4.[属性名$=属性值] 选择属性值以指定结尾结束的元素    
+             5.[属性名*=属性值] 选择属性值含有某值的元素（含有）
+        */
+    </style>
+</head>
+<body>
+    <p title="勾指起誓">你是诗的开头，信的内容，童话的结尾</p>
+    <p title="abc">你是诗的开头，信的内容，童话的结尾</p>
+    <p title="abcdef">你是诗的开头，信的内容，童话的结尾</p>
+    <p title="gdgabc">你是诗的开头，信的内容，童话的结尾</p>
+    <p>你是诗的开头，信的内容，童话的结尾</p>
+    <p>你是诗的开头，信的内容，童话的结尾</p>
+</body>
+</html>

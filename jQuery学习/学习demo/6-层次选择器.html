@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>AAAAA</li>
+    <li class="box">CCCCC</li>
+    <li title="hello"><span>BBBBB</span></li>
+    <li title="hello"><span class="box">DDDD</span><span>xxx</span></li>
+    <span>EEEEE</span>
+  </ul>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+  <script>
+    $('ul span').css('background', 'red');
+    $('ul > span').css('background', 'blue');
+    $('.box + li').css('background', 'pink');
+    $('ul .box~*').css('background', 'yellow')
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="div1" class="box">class为box的div1</div>
+  <div id="div2" class="box">class为box的div2</div>
+  <div id="div3">div3</div>
+  <span class="box">class为box的span</span>
+  <br />
+  <ul>
+    <li>AAAAA</li>
+    <li title="hello">BBBBB</li>
+    <li class="box">CCCCC</li>
+    <li title="hello">DDDDDD</li>
+    <li title="two">BBBBB</li>
+    <li style="display: none;">我本来是隐藏的</li>
+  </ul>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+  <script>
+    $('div:first').css('background', 'red');
+    $('div:last').css('background', 'red');
+    $('div:not(.box)').css('background', 'pink');//没有class也满足条件
+    $('li:gt(0):lt(3)').css('background', 'red');
+    $('li:contains("BBBB")').css('background', 'blue');
+    $('li:hidden').css('display', 'table');
+    $('li[title]').css('background', 'yellow');
+    $('li[title=hello]').css('background', 'green');
+  </script>
+</body>
+
+</html>

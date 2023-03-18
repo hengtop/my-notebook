@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Person{
+      //作用就是可以自己控制类型的检测
+      static [Symbol.hasInstance](param){
+        console.log(param);//为instanceof前面的对象
+        console.log('我被用来检测类型了')
+        //return true;
+      }
+      constructor(){
+
+      }
+    }
+    
+    let o = {
+      test:'测试'
+    };
+    let _o = new Person();
+    console.log(o instanceof Person);
+    console.log(_o instanceof Person);//false 因为修改了静态方法。_o本身就是MyClass的实例，如果注释了静态方法就会返回true。
+
+    const arr = [1,2,3];
+    const arr2 = [2,3,4];
+    arr2[Symbol.isConcatSpreadable] = false;//表示合并数组不展开
+    console.log(arr.concat(arr2));
+  </script>
+</body>
+</html>

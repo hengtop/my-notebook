@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //现在有三个任务，一秒执行第一个，两秒执行第二个，三秒执行第三个
+    function one() {
+      setTimeout(() => {
+        console.log(111);
+        iterator.next()//保证运行继续下去
+      }, 1000);
+    }
+    function two() {
+      setTimeout(() => {
+        console.log(222);
+        iterator.next()
+      }, 2000);
+    }
+    function three() {
+      setTimeout(() => {
+        console.log(333);
+        iterator.next()
+      }, 3000);
+    }
+    function* gen() {
+      yield one();
+      yield two();
+      yield three();
+    }
+    //声明迭代器对象
+    /* let iterator = gen();
+    iterator.next(); */
+
+
+    //模拟获取 用户数据 订单数据 商品数据
+    function getUSers() {
+      setTimeout(() => {
+        let data = "用户数据"
+        _iterator.next(data);//第二次调用其中的参数会作为第一个yield的语句的返回值
+      }, 1000);
+    }
+    function getOrders() {
+      setTimeout(() => {
+        let data = "订单数据"
+        _iterator.next(data);
+      }, 1000);
+    }
+    function getGoods() {
+      setTimeout(() => {
+        let data = "商品数据"
+        _iterator.next(data);
+      }, 1000);
+      
+    }
+    //声明生成器函数
+    function * _gen(arg){
+      let user = yield getUSers(arg); 
+      console.log(user);
+      let order = yield getOrders();
+      console.log(order)
+      let goods = yield getGoods();
+      console.log(goods)
+    }
+    let _iterator = _gen();
+    _iterator.next();
+    
+  </script>
+</body>
+
+</html>

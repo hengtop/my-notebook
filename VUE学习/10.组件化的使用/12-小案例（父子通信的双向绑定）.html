@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  <template id="cpn">
+    <div>
+      <h2>props:{{number1}}</h2>
+      <h2>data:{{dNumber1}}</h2>
+      <input type="text" :value="dNumber1" @input="num1Input">
+      <h2>props:{{number2}}</h2>
+      <h2>data:{{dNumber2}}</h2>
+      <input type="text" :value="dNumber2" @input="num2Input">
+     </div>
+  </template>
+
+  <div id="app">
+    <cpn :number1="num1" :number2="num2" @changenum1="changenum1" @changenum2="changenum2"></cpn>
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！',
+      num1:0,
+      num2:1
+    },
+    methods: {
+      changenum1(value){
+        this.num1=value;
+      },
+      changenum2(value){
+        this.num2=value;
+      }
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        props:{
+          number1:Number,
+          number2:Number
+        },
+        data(){
+          return {
+            dNumber1:this.number1,
+            dNumber2:this.number2
+          }
+        },
+        methods: {
+          num1Input(event){
+            //1.将input中的内容传给dNumber,然后再发送出去，这里注意传进去的时string类型
+            this.dNumber1=+event.target.value; 
+            this.$emit('changenum1',this.dNumber1);
+            //2.修改dNumber2的值
+            this.dNumber2=this.dNumber1*100;
+            this.$emit('changenum2',this.dNumber2);
+          },
+          num2Input(event){
+            this.dNumber2=+event.target.value;
+            this.$emit('changenum2',this.dNumber2);
+            this.dNumber1=this.dNumber2/100;
+            this.$emit('changenum1',this.dNumber1);
+          }
+        }
+      }
+    }
+  });
+  </script>
+</body>
+</html>

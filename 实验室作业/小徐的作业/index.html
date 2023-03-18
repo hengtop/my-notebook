@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../小徐的作业/CSS/index.css">
+    <link rel="stylesheet" href="../小徐的作业/CSS/reset.css">
+
+
+    <script type="text/javascript">
+    //代码网上找的，有很多的这个不写了
+    window.onload=function(){
+        var clock = '';
+        var nums = 60;
+        //var btn;
+        var getCode=document.querySelector(".getCode");
+        getCode.onclick=function(){
+            //btn=arguments[0];
+            this.disabled = true; //将按钮置为不可点击
+            this.innerHTML = nums+'s';
+            clock = setInterval(doLoop, 1000); //一秒执行一次
+        }
+        /* function sendCode()
+        {
+            btn=arguments[0];
+            btn.disabled = true; //将按钮置为不可点击
+            btn.innerHTML = nums+'s';
+            clock = setInterval(doLoop, 1000); //一秒执行一次
+        } */
+     
+        function doLoop()
+        {
+            nums--;
+            if(nums > 0){
+                getCode.innerHTML = nums+'s';
+            }else{
+                clearInterval(clock); //清除js定时器
+                getCode.disabled = false;
+                getCode.innerHTML = '重新发送';
+                nums = 60; //重置时间
+            }
+        }
+    }
+        
+    
+     </script>
+    
+
+</head>
+<body>
+
+    <!--创建一个容器-->
+    <nav class="nav-wrapper">
+        
+        <!--内部容器-->
+        <div class="wrapper">
+           <div class="title">
+               <img src="../小徐的作业/img/Logo_Register.png" alt="">
+               <h2 class="text">登陆账号开启应用服务</h2>
+           </div> 
+           
+           <!--表单-->
+           <div class="denglu">
+               <form class="use-phone" action="#">
+                  
+                <input class="phone-num" type="text" name="user-phone" placeholder="请输入电话号码">
+                <button class="reset" type="reset">
+                    <img src="../小徐的作业/img/icon_clean.png" alt="">
+                </button>
+
+                <input class="yanzhengma" type="text" name="yanzhengma" placeholder="请输入验证码">
+                <button type="button" class="getCode">获取验证码</button>
+              
+           </form>
+           </div>
+           
+           <div class="zhuce-wrapper">
+               <button class="zhuce" type="submit">
+               <div class="zhuce-text">注册/登录</div> 
+              </button>
+           </div>
+
+           <div class="other">
+               <a href="#">其他登陆方式</a>
+           </div>
+            
+           
+      
+        </div>
+    </nav>
+    
+</body>
+</html>

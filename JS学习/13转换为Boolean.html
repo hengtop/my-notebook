@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 使用Boolean（）函数转换
+			 * 数字-->布尔
+			 *  除了0和NaN，其余转换的都是true
+			 * 字符串-->布尔
+			 *  除了空串，其余的都是true
+			 * 
+			 * null和undefined转换都为false
+			 
+			 * 对象也会转换为true 
+			 */
+			var a=123;
+			a=0;
+			a=NaN;
+			a=undefined;
+			//a=Infinity;
+			a=Boolean(a);
+			console.log(typeof a);
+			console.log(a);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

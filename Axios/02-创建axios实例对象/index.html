@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="page-header">基本使用</h2>
+    <button class="btn">get</button>
+    <button class="btn">post</button>
+    <button class="btn">put</button>
+    <button class="btn">delete</button>
+  </div>
+  <script>
+    const btns = document.querySelectorAll('.btn');
+    //get请求获取
+    const duanzi = axios.create({
+      baseURL: 'https://api.apiopen.top',
+      timeout: 2000
+    });
+
+    duanzi.interceptors.request.use(function (res) {
+      console.log('请求拦截成功');
+      return res;
+    }, function (err) {
+      console.log('请求拦截失败');
+      return Promise.reject(err);
+    });
+    duanzi.interceptors.response.use(function (res) {
+      console.log('响应拦截成功');
+      return res;
+    }, function (err) {
+      console.log('响应拦截失败');
+      return Promise.reject(err);
+    })
+    //这里duanzi和axios的功能几乎一样
+    duanzi({
+      url: '/getJoke'
+    }).then(res => {
+      console.log(res);
+    })
+  </script>
+</body>
+
+</html>

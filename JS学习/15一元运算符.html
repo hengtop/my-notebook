@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 只需要一个操作符
+			 * + 正号  无影响
+			 * - 负号   对数字取负值 对于非Number值会先转换为Number，再取负
+			 * 所以我们可以对一个其他的类型数据使用+来使其转换为Number，其原理和Number（）一样
+			 */
+			var a=132;
+			a=-a;
+			a=true;
+			a="18";
+			a=+a;
+			console.log(typeof a);
+			console.log(a);
+			var result;
+			result=1+ +"2" + 3;
+			result=1+"2"+3;
+			console.log(result);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

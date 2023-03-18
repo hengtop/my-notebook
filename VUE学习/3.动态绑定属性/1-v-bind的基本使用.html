@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+   
+    <div>
+        <img src="https://i0.hdslb.com/bfs/sycp/creative_img/202004/ac1d8d1717d1b762eae3fd1d7c806c20.jpg" alt="">
+    </div>
+     <!--要动态的设置图片的地址url使用v-bind指令来实现,href也行-->
+    <div id="app">
+        <img v-bind:src="imgURL" alt="">
+        <img :src="imgURL" alt="">
+        <a href="https://www.bilibili.com/">23333</a>
+        <a v-bind:href="aHref">23333</a>
+        <a :href="aHref">23333</a>
+    </div>
+    <!--
+        v-bind语法糖的写法
+          v-bind:src 可简写成 :src
+          v-bind:href 可简写为 :href
+    -->
+
+    
+    <script>
+    const app = new Vue({
+    el: '#app',
+    data: { 
+    message: 'helloWorld！',
+    imgURL:'https://i0.hdslb.com/bfs/sycp/creative_img/202004/ac1d8d1717d1b762eae3fd1d7c806c20.jpg',
+    aHref:'https://www.bilibili.com/'
+    }
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../react//react.development.js" crossorigin></script>
+  <script src="../react//react-dom.development.js"></script>
+  <script src="../react//babel.min.js"></script>
+  <div id="test"></div>
+  <script type="text/babel">
+    //jsx语法
+    /* 
+      1.顶层只能有一个根元素
+      2.内部可以写双标签也可以写单标签，但必须有结尾的 / 
+      3. 在{}可以展示的变量类型
+           string,number, Array
+         在{}不能展示的变量类型，如果需要展示的话可以转换类型或者调用toString()方法
+           undefined, null, boolean  
+         注意，对象不能作为jsx的子类，即对象不能直接放置在{}中
+      4.标签中的属性也可以使用{}来表示变量
+      5. 标签中class属性要用className来代替，防止和class冲突 ，另外还有label标签中的for属性，要使用htmlFor来代替  
+      6.要动态修改属性值的话推荐使用三元运算符
+      7.事件绑定模板 onXxx 比如onClick, onInput
+    */
+    const element = <div>hello world</div>
+    class App extends React.Component {
+
+      constructor() {
+        super();
+        /* 第一种方式显示绑定this */
+        this.btnClick = this.btnClick.bind(this);
+      }
+      render() {
+        return (
+          <div>
+            <h2 onClick={this.btnClick}>点击</h2>
+            <h2 onClick={this.increment}>点击</h2>
+            {/* 第三种，通过箭头函数表达式隐式绑定，这样传递参数也很方便，就不用使用柯里化了 */}
+            <h2 onClick={(e) => {this.decrement(e)}}>点击</h2>
+          </div>
+        )
+      }
+      btnClick(e) {
+        console.log(this, e);
+      }
+      /* 第二种方式，使用箭头函数 class fields方式 */
+      increment = () => {
+        console.log(this)
+      }
+      decrement(e){
+        console.log(e);
+        console.log(this)
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

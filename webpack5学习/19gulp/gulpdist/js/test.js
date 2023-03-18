@@ -1,0 +1,1 @@
+"use strict";console.log("hello gulp");var l="hello";console.log(l),console.log(123);

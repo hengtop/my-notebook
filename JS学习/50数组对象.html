@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 内建对象
+			 * 
+			 * 宿主对象
+			 * 
+			 * 数组对象
+			 * 
+			 * 数组Array
+			 *     数组也是一个对象
+			 *     与一般的普通的对象不同，普通的对象是使用字符串来作为属性名
+			 *     数组是使用使用数字来当作索引操纵元素
+			 * 索引：
+			 *     从零开始的整数
+			 * 
+			 */
+			//创建一个数组对象
+			var arr=new Array();
+			console.log(Array.isArray(arr));//检查一个值是否为数组
+			//使用typeof来检查一个数组会返回object
+			//console.log(typeof arr);
+			//向数组中添加元素，尽量不要创建非连续数组
+			arr[0]=10;
+			arr[1]=33;
+			arr[2]=45;
+			//获取数组的长度
+			console.log(arr.length);
+			//console.log(arr);
+			//设置数组长度，如果修改的长度大于原长度则多的会空出来
+			//如果小于原长度则会删除一部分
+			//arr.length=2;
+			
+			//向数组最后部分添加元素
+			arr[arr.length]=457;
+			console.log(arr);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

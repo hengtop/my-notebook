@@ -1,0 +1,18 @@
+.content {
+  font-size: 20px;
+  color:red;
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
+  transition: all 2s ease;
+}
+:-webkit-full-screen {
+  color: red;
+}
+:-ms-fullscreen {
+  color: red;
+}
+:fullscreen {
+  color: red;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixTQUFTO0VBQ1Qsd0JBQWdCO0tBQWhCLHFCQUFnQjtVQUFoQixnQkFBZ0I7RUFDaEIsdUJBQXVCO0FBQ3pCO0FBQ0E7RUFDRSxVQUFVO0FBQ1o7QUFGQTtFQUNFLFVBQVU7QUFDWjtBQUZBO0VBQ0UsVUFBVTtBQUNaIiwiZmlsZSI6InJlc3VsdC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGVudCB7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG4gIGNvbG9yOnJlZDtcclxuICB1c2VyLXNlbGVjdDogYWxsO1xyXG4gIHRyYW5zaXRpb246IGFsbCAycyBlYXNlO1xyXG59XHJcbjpmdWxsc2NyZWVuIHtcclxuICBjb2xvcjogcmVkO1xyXG59Il19 */

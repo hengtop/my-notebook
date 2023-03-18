@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    class Person extends React.Component {
+      render() {
+        const {name, age, sex} = this.props;
+        return (
+          <ul>
+            <li>{name}</li>
+            <li>{age}</li>
+            <li>{sex}</li>
+          </ul>
+        )
+      }
+    }
+    ReactDOM.render(<Person name="jeke" age="19" sex="男" />, document.getElementById('test'));
+    ReactDOM.render(<Person name="kak" age="23" sex="女" />, document.getElementById('test1'));
+    ReactDOM.render(<Person name="tom" age="14" sex="男" />, document.getElementById('test2'));
+  </script>
+</body>
+
+</html>

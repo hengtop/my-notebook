@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //1.数组的解构
+    const F4 = ['saber','lancer','archer','caster'];
+    let [s,l,a,c] = F4;
+    console.log(s,l,c,a);
+    //2.对象的解构
+    const stand = {
+      name:'白金之星',
+      master:'承太郎',
+      age:'19',
+      methods:function() {
+        for (let i = 0; i < 3; i++) {
+          console.log('欧拉!');
+          console.log(this.name);//这个函数解构后this是会变成window的 注意
+        }
+      },
+    }
+    let {name,age,master,methods} = stand;
+    console.log(name);
+    console.log(master);
+    methods();
+    console.log(stand.name);
+    stand.methods();
+  </script>
+</body>
+</html>

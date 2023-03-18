@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button>测试1</button>
+    <button>测试2</button>
+    <button id="btn3">测试3</button>
+    <button>测试4</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+  <script>
+    $(function(){
+     let $buttons = $('button');//伪数组
+     console.log($buttons instanceof Array);//false
+     //console.log(buttons.size())//该方法jQuery高版本已经舍弃，用length代替
+     console.log($buttons.length);
+     console.log($buttons[1].innerHTML,$buttons.get(0).innerHTML);
+     /* $buttons.each(function(index,domItem){
+       console.log(index,domItem.innerHTML,this);
+     }); */
+    //不想用index,可以直接答应this
+    $buttons.each(function(){
+      console.log(this,this.innerHTML);
+    });
+    console.log($('#btn3').index())
+    })
+  </script>  
+</body>
+</html>

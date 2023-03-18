@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 圣杯布局 */
+    body,
+    html {
+      height: 100%;
+    }
+
+    .container {
+      padding-left: 220px;
+      padding-right: 220px;
+      background-color: darkmagenta;
+      height: 100%;
+    }
+
+    .left {
+      float: left;
+      width: 200px;
+      background: red;
+      margin-left: -100%;/* 换行到上面去了 */
+      position: relative;
+      left: -220px;
+      height: 100%;
+    }
+
+    .center {
+      float: left;
+      width: 100%;
+      background: yellow;
+      height: 100%;
+    }
+
+    .right {
+      float: left;
+      width: 200px;
+      background: blue;
+      margin-left: -200px;
+      position: relative;
+      right: -220px;
+      height: 100%;
+    }
+
+ 
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="center">
+
+    </div>
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</body>
+
+</html>

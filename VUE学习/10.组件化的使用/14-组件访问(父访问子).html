@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  <template id="cpn">
+    <div>
+      <h2>我是子组件</h2>
+    </div>
+  </template>
+
+  <div id="app">
+    <cpn></cpn>
+    <cpn ref="aaa"></cpn>
+    <button @click="btnClick">点击一下</button>
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！'
+    },
+    methods:{
+      btnClick(){
+        //1.$children的讲解
+        //这里的this.$children创建的是一个数组，可以通过这种方式来访问子组件中的属性或者一些方法
+        //this.$children[0].showMessage();
+        //console.log(this.$children);
+        for(let c of this.$children){
+          //console.log(c.name);
+          c.showMessage();
+        }
+
+        //2.$refs的讲解，对象类型，默认是一个空对象。当有组件标签上加上了ref="xxx",这时这个对象才会返回这个组件的一些属性
+        //console.log(this.$refs);
+        //console.log(this.$refs.aaa.name);
+        //this.$refs.aaa.showMessage();
+      }
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        data(){
+          return {
+            name:'我是子组件的name'
+          }
+        },
+        methods: {
+          showMessage(){
+            console.log("showMessage");
+          }
+        },
+      }
+    }
+  });
+  </script>
+</body>
+</html>

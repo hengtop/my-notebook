@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          div{
+              color: red;
+          }
+          .red{
+              color: blue;
+          }
+          /*样式的冲突
+              --通过不同的选择器，选中相同的元素，并且为相同的样式设置不同的值
+            此时就需要选择器的优先级来决定
+             选择器权重由高到低
+                 内联样式        1000
+                 id选择器        100
+                 类和伪类选择器   10
+                 元素选择器       1
+                 通配选择器       0
+                 继承的样式      没有
+                 1. 比较优先级要将多个选择器权重进行相加再比较（注意：分组选择器是单独计算的不会相加）
+                 2. 另外如果元素有多个类选择器，进行优先级累加时也不会超过其最大的数量级
+                    -- 比如十个类累加的权重也不会超过id选择器的权重
+                 3. 另外同级选择器则按照就近原则进行生效，（优先使用靠下的样式）
+                 4.可在某个样式的后边加上！important 使其样式优先级最高
+          */
+    </style>
+</head>
+<body>
+    <div id="box1" class="red">我是一个div</div>
+</body>
+</html>

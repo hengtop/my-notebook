@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>robot</title>
+</head>
+
+<body>
+  <div id='robot'>
+    <div class="header">
+      <div class="main-title-wrapper">
+        <div class="title"><span v-text="robot.name"></span>实时监控</div>
+        <img src="./img/robot-line.png" alt="">
+      </div>
+    </div>
+
+    <div class="body-wrapper">
+      <!-- 左边菜单 -->
+      <div :class="{'left-wrapper':true,'left-wrapper-less':detectorList.length <= 3}">
+        <div class="left-item" v-for="(item,index) in detectorList" v-if="index < 6">
+          <div class="static-item">
+            <div class="static-name">{{item.name}}</div>
+            <span v-if="item.isOff == 0" class="btn">
+              <img src="./img/imgFAST/2.png" @click="off(item.id)" class="onclickBtn" style="cursor:pointer;">
+            </span>
+            <span v-if="item.isOff !== 0" class="btn">
+              <img src="./img/imgFAST/1.png" @click="on(item.id,item.code,item.robotId)" class="onclickBtn"
+                style="cursor:pointer;">
+            </span>
+            <div class="static-img-data">
+              <img :src="urlHead + item.icon" alt="">
+              <span>
+                <span
+                  v-if="(!item.thresholdMax && !item.thresholdMin) || (item.val < item.thresholdMax && item.val > item.thresholdMin)"
+                  v-text="item.val + (item.unit || '')">
+                </span>
+                <span :style="{color : '#F56C6C'}" v-if="item.thresholdMax && item.val >= item.thresholdMax"
+                  v-text="item.val + item.unit">
+                </span>
+                <span :style="{color : '#E6A23C'}" v-if="item.thresholdMin && item.val <= item.thresholdMin"
+                  v-text="item.val + item.unit">
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--中间监控 -->
+      <div class="middle-wrapper">
+        <!-- <div class="nav-position">
+          <div class="nav-bar">
+            <div class="nav-bar-item" @click="isActive(index)" :class="isStyle(index)" v-for="(item,index) in navItem"
+              :key="index">{{item}}</div>
+          </div>
+        </div> -->
+        <div class="mid-map">
+          <div v-show="nowIndex === 0" class="viewImg">
+            <div class="video-wrapper">
+              <div style="width: 100%; height: 100%;" v-show="popupNum === 0">
+                <canvas id="main-video"></canvas>
+              </div>
+              <!-- <iframe src="http://localhost:8888/stream/player/1" width="100%" height="100%" scrolling="no" frameborder="0"></iframe> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 右边监控 -->
+      <div class="right-wrapper">
+        <div class="right-item video-right-item">
+          <div class="video-list">
+            <div class="text">视频列表</div>
+            <div :class="{'video-item':true,active:viewCurrentIndex === index}" @click="chooseVideo(index)"
+              v-for="(item, index) in viewList">
+              <span>{{item.name}}</span>
+
+              <button @click="openPopup($event,index)" v-show="viewCurrentIndex === index">弹窗</button>
+            </div>
+          </div>
+        </div>
+        <div class="right-item">
+            <div class="set-time">
+            <span>计数时间(s)</span>
+            <input type="text" v-model = "timer">
+            <span>&nbsp;&nbsp;&nbsp;平均计数率：{{avg}}</span>
+          </div>
+          <div id="myChart"></div>
+        </div>
+      </div>
+    </div>
+    <!-- 底部操作菜单 -->
+    <div class="footer">
+      <div class="footer-wrapper">
+
+        <div class="footer-items">
+          <div class="footer-item">
+            <div class="text">底盘控制</div>
+            <div class="underpan-speed">
+              <div class="speed-list" @click="selectSpeed(index)" v-for="(item,index) in speed" :key="index">
+                <img :src="(currentIndex === index) ? item.img : item._img " alt="">
+                <span>{{item.speedItem}}</span>
+              </div>
+            </div>
+            <div class="underpan">
+              <div @mousedown="armMove('IPR',robotId)" @mouseup="armStop('IPR')" @mouseleave="armStop('IPR')"
+                :class={sassyBoo:true,sassyBooKey:isBottomKey_D}></div>
+              <div @mousedown="armMove('BACKWARD_RIGHT',robotId)" @mouseup="armStop('BACKWARD_RIGHT')" @mouseleave="armStop('BACKWARD_RIGHT')"
+                :class={sassyBoo:true,sassyBooKey:isBottomKey_C}></div>
+              <div @mousedown="armMove('BACKWARD',robotId)" @mouseup="armStop('BACKWARD')" @mouseleave="armStop('BACKWARD')"
+                :class={sassyBoo:true,sassyBooKey:isBottomKey_S}></div>
+              <div @mousedown="armMove('BACKWARD_LEFT',robotId)" @mouseup="armStop('BACKWARD_LEFT')" @mouseleave="armStop('BACKWARD_LEFT')"
+                :class={sassyBoo:true,sassyBooKey:isBottomKey_Z}></div>
+              <div @mousedown="armMove('IPL',robotId)" @mouseup="armStop('IPL')" @mouseleave="armStop('IPL')"
+                :class={sassyBoo:true,sassyBooKey:isBottomKey_A}></div>
+              <div @mousedown="armMove('FORWARD_LEFT',robotId)" @mouseup="armStop('FORWARD_LEFT')" @mouseleave="armStop('FORWARD_LEFT')"
+                :class={sassyBoo:true,sassyBooKey:isBottomKey_Q}></div>
+              <div @mousedown="armMove('FORWARD',robotId)" @mouseup="armStop('FORWARD')" @mouseleave="armStop('FORWARD')"
+                :class={sassyBoo:true,sassyBooKey:isBottomKey_W}></div>
+              <div @mousedown="armMove('FORWARD_RIGHT',robotId)" @mouseup="armStop('FORWARD_RIGHT')" @mouseleave="armStop('FORWARD_RIGHT')"
+                :class={sassyBoo:true,sassyBooKey:isBottomKey_E}></div>
+            </div>
+            <div class="test-distance ">
+              <span class="num-top"><span>{{ultrasonicList[0]}}mm</span></span>
+              <span class="num-left"><span>{{ultrasonicList[1]}}mm</span></span>
+              <span class="num-left num-left-2"><span>{{ultrasonicList[2]}}mm</span></span>
+              <span class="num-right"><span>{{ultrasonicList[3]}}mm</span></span>
+              <span class="num-right num-right-2"><span>{{ultrasonicList[4]}}mm</span></span>
+              <span class="num-bottom"><span>{{ultrasonicList[5]}}mm</span></span>
+              <img src="./img/imgFAST/testScope.png" alt="">
+            </div>
+            <div class="LED" @click="LEDSwitch(LEDFrontSwitch, 'FL')">
+              <img v-if="LEDFrontSwitch" @click="LEDFrontSwitch = !LEDFrontSwitch" src="./img/imgFAST/2.png" alt="">
+              <img v-else @click="LEDFrontSwitch = !LEDFrontSwitch" src="./img/imgFAST/1.png" alt="">
+              <span>前补光灯</span>
+            </div>
+            <div class="LED LED-2" @click="LEDSwitch(LEDBackSwitch, 'BL')">
+              <img v-if="LEDBackSwitch" @click="LEDBackSwitch = !LEDBackSwitch" src="./img/imgFAST/2.png" alt="">
+              <img v-else @click="LEDBackSwitch = !LEDBackSwitch" src="./img/imgFAST/1.png" alt="">
+              <span>后补光灯</span>
+            </div>
+          </div>
+          <div class="footer-item">
+            <div class="text">摆臂控制</div>
+            <div class="speed-control">
+              <span class="front-text">前臂</span>
+              <div class="speed-slider">
+                <input @change="sliderInput('front')" ref="front" type="range" step=20 max="100" min="20" value="20">
+              </div>
+              <div class="speed-data">
+                <div>20</div>
+                <div>40</div>
+                <div>60</div>
+                <div>80</div>
+                <div>100</div>
+              </div>
+              <div class="up_down">
+                <div @mousedown="armMove('FAUP',robotId)" @mouseup="armStop('FAUP')" @mouseleave="armStop('FAUP')" :class="{up:true,upKey:FAUP}">
+                  <span>升</span>
+                </div>
+                <div @mousedown="armMove('FADOWN',robotId)" @mouseup="armStop('FADOWN')" @mouseleave="armStop('FADOWN')"
+                  :class="{down:true,upKey:FADOWN}">
+                  <span>降</span>
+                </div>
+              </div>
+            </div>
+            <div class="speed-control speed-control-back">
+              <span class="back-text">后臂</span>
+              <div class="speed-slider">
+                <input @change="sliderInput('after')" ref="after" type="range" step=20 max="100" min="20" value="40">
+              </div>
+              <div class="speed-data">
+                <div>20</div>
+                <div>40</div>
+                <div>60</div>
+                <div>80</div>
+                <div>100</div>
+              </div>
+              <div class="up_down">
+                <div @mousedown="armMove('BAUP',robotId)" @mouseup="armStop('BAUP')" @mouseleave="armStop('BAUP')" :class="{up:true,upKey:BAUP}">
+                  <span>升</span>
+                </div>
+                <div @mousedown="armMove('BADOWN',robotId)" @mouseup="armStop('BADOWN')" @mouseleave="armStop('BADOWN')"
+                  :class="{down:true,downKey:BADOWN}">
+                  <span>降</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-items">
+          <div class="footer-item">
+            <div class="text">地图 <span class="input">原点坐标&nbsp;X&nbsp;<input type="text" v-model="origin[0]" />&nbsp;Y&nbsp;<input type="text" v-model="origin[1]" /></span></div>
+            <div class="img-wrapper">
+              <img ref="maps" src="./img/test_lab1.jpg" />
+              <div class="point" ref="point"></div>
+            </div>
+
+          </div>
+          <div class="footer-item">
+            <div class="text">抓斗 / 升降杆</div>
+            <div class="grab-bucket-container">
+              <div class="grab-bucket-wrapper">
+                <div class="title">抓斗杆自身方向</div>
+                <div @mousedown="sendData('GSU',robotId)" @mouseup="sendStop('GSU',robotId)" @mouseleave="sendStop('GSU',robotId)"
+                  :class="{up:true,upKey:FAUP}">
+                  <span>升</span>
+                </div>
+                <div @mousedown="sendData('GSD',robotId)" @mouseup="sendStop('GSD',robotId)" @mouseleave="sendStop('GSD',robotId)"
+                  :class="{down:true,upKey:FADOWN}">
+                  <span>降</span>
+                </div>
+              </div>
+              <div class="grab-bucket-wrapper">
+                <div class="title">竖直方向</div>
+                <div @mousedown="sendData('VBU',robotId)" @mouseup="sendStop('VBU',robotId)" @mouseleave="sendStop('VBU',robotId)"
+                  :class="{up:true,upKey:FAUP}">
+                  <span>升</span>
+                </div>
+                <div @mousedown="sendData('VBD',robotId)" @mouseup="sendStop('VBD',robotId)" @mouseleave="sendStop('VBD',robotId)"
+                  :class="{down:true,upKey:FADOWN}">
+                  <span>降</span>
+                </div>
+              </div>
+              <div class="grab-bucket-wrapper">
+                <div class="title">水平方向</div>
+                <div @mousedown="sendData('HBU',robotId)" @mouseup="sendStop('HBU',robotId)" @mouseleave="sendStop('HBU',robotId)"
+                  :class="{up:true,upKey:FAUP}">
+                  <span>升</span>
+                </div>
+                <div @mousedown="sendData('HBD',robotId)" @mouseup="sendStop('HBD',robotId)" @mouseleave="sendStop('HBD',robotId)"
+                  :class="{down:true,upKey:FADOWN}">
+                  <span>降</span>
+                </div>
+              </div>
+              <div class="grab-bucket-wrapper pole">
+                <div class="title">上升降杆</div>
+                <span class="height-data">高度:{{upPoleData}}mm</span>
+                <div @mousedown="sendData('ONLUP',robotId)" @mouseup="sendStop('ONLUP',robotId)"  @mouseleave="sendStop('ONLUP',robotId)"
+                  :class="{up:true,upKey:FAUP}">
+                  <span>升</span>
+                </div>
+                <div @mousedown="sendData('ONLDO',robotId)" @mouseup="sendStop('ONLDO',robotId)" @mouseleave="sendStop('ONLDO',robotId)"
+                  :class="{down:true,upKey:FADOWN}">
+                  <span>降</span>
+                </div>
+              </div>
+              <div class="grab-bucket-wrapper pole">
+                <div class="title">下升降杆</div>
+                <span class="height-data">高度:{{downPoleData}}mm</span>
+                <div @mousedown="sendData('UNLUP',robotId)" @mouseup="sendStop('UNLUP',robotId)" @mouseleave="sendStop('UNLUP',robotId)"
+                  :class="{up:true,upKey:FAUP}">
+                  <span>升</span>
+                </div>
+                <div @mousedown="sendData('UNLDO',robotId)" @mouseup="sendStop('UNLDO',robotId)" @mouseleave="sendStop('UNLDO',robotId)"
+                  :class="{down:true,upKey:FADOWN}">
+                  <span>降</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 弹窗 -->
+    <div v-show="showPopup0" class="pop-container">
+      <div class="popup">
+        <div class="popupClose"><span class="title">{{viewList[0].name}}</span><span @click="closePopup(0)"
+            class="iconfont icon-guanbifanhui"></span></div>
+        <div class="video-wrapper">
+          <canvas id="popup-video0"></canvas>
+        </div>
+      </div>
+    </div>
+    <div v-show="showPopup1" class="pop-container">
+      <div class="popup">
+        <div class="popupClose"><span class="title">{{viewList[1].name}}</span><span @click="closePopup(1)"
+            class="iconfont icon-guanbifanhui"></span></div>
+        <div class="video-wrapper">
+          <canvas id="popup-video1"></canvas>
+        </div>
+      </div>
+    </div>
+    <div v-show="showPopup2" class="pop-container">
+      <div class="popup">
+        <div class="popupClose"><span class="title">{{viewList[2].name}}</span><span @click="closePopup(2)"
+            class="iconfont icon-guanbifanhui"></span></div>
+        <div class="video-wrapper">
+          <canvas id="popup-video2"></canvas>
+        </div>
+      </div>
+    </div>
+    <div v-show="showPopup3" class="pop-container">
+      <div class="popup">
+        <div class="popupClose"><span class="title">{{viewList[3].name}}</span><span @click="closePopup(3)"
+            class="iconfont icon-guanbifanhui"></span></div>
+        <div class="video-wrapper">
+          <canvas id="popup-video3"></canvas>
+        </div>
+      </div>
+    </div>
+    <div v-show="showPopup4" class="pop-container">
+      <div class="popup">
+        <div class="popupClose"><span class="title">{{viewList[4].name}}</span><span @click="closePopup(4)"
+            class="iconfont icon-guanbifanhui"></span></div>
+        <div class="video-wrapper">
+          <canvas id="popup-video4"></canvas>
+        </div>
+      </div>
+    </div>
+    <div v-show="showPopup5" class="pop-container">
+      <div class="popup">
+        <div class="popupClose"><span class="title">{{viewList[5].name}}</span><span @click="closePopup(5)"
+            class="iconfont icon-guanbifanhui"></span></div>
+        <div class="video-wrapper">
+          <canvas id="popup-video5"></canvas>
+        </div>
+      </div>
+    </div>
+    <div v-show="showPopup6" class="pop-container">
+      <div class="popup">
+        <div class="popupClose"><span class="title">{{viewList[6].name}}</span><span @click="closePopup(6)"
+            class="iconfont icon-guanbifanhui"></span></div>
+        <div class="video-wrapper">
+          <canvas id="popup-video6"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+
+</html>

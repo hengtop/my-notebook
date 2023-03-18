@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //形参的初始值,一般要把这种有默认值的形参放在参数列表的最后
+    function add(a=3,b=6){
+      return a+b;
+    }
+    console.log(add(1,2));
+    console.log(add());
+    //可以与解构赋值相结合
+    function connect({host,username,password,port=3366}){
+      console.log(host,username,password,port);
+    }
+    connect({
+      host:'localhost',
+      username:'root',
+      password:'123456',
+      /* port:2233, */
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  <!--子组件模板-->
+ <template id="cpn">
+   <div>
+   <h2>
+     {{cinfo}}
+   </h2>
+   <button v-for="item in categories" @click="btnClick(item)">{{item.name}}</button>
+  </div>
+ </template> 
+
+ <!--父组件-->
+  <div id="app">
+    <!--父组件通过v-on 来监听接受，再通过父组件定义的一个方法来处理-->
+    <!--注意这里的方法虽然没加括号但不是默认传递的event事件而是转递了item这个对象-->
+    <cpn :cinfo="info" @itemclick="cpnClick"></cpn>
+  </div>
+
+  <script>
+//子组件
+ const cpn={
+      template:'#cpn',
+      data(){
+        return {
+          categories:[
+            {id:'aaa',name:'hot',age:18},
+            {id:'bbb',name:'slow',age:19},
+            {id:'ccc',name:'cho',age:20}
+          ]
+        }   
+      },
+      props:{
+        cinfo:{
+          type:Object,
+          default(){
+            return {}; 
+          }
+        }
+      },
+      methods: {
+        btnClick(item){
+          //这里演示了下点击事件，但是我们要怎样告诉父组件这个事件?
+          console.log(item.name);
+          //通过这样来告知父组件,通过这种方式发射事件, 这之后还可以添加一个参数 这里是item，
+          this.$emit('itemclick',item);
+        }
+      },
+    }
+//父组件
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！',
+      info:{
+        name:'zhangheng',
+        age:18,
+        height:1.88
+      }
+    },
+    components:{
+      cpn
+    },
+    methods: {
+      //测试接受，并打印下item对象
+      cpnClick(item){
+        console.log(typeof item);
+        console.log("子组件你是不是点击了下",item);
+      }
+    },
+  });
+  </script>
+</body>
+</html>

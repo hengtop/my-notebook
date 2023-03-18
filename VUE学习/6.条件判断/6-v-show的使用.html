@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <!--
+        v-if   当条件为false时，就是把对应的元素直接删掉了，为true时，再添加回来
+        v-show 当条件为false时，只是把元素的display设置成none，其实元素还是存在的
+        如果元素的切换频繁就选用v-show，反之就用v-if
+    -->
+    <h2 v-if="isShow" id="aaa">{{message}}</h2>
+    <h2 v-show="isShow" id="bbb">{{message}}</h2>
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！',
+      isShow:true
+    }
+  });
+  </script>
+</body>
+</html>

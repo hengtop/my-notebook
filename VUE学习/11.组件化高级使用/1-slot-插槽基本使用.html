@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  <template id="cpn">
+    <div>
+      <h2>哈哈哈</h2>
+      <p>我是组件</p>
+      <slot><button>我是默认值</button></slot><!--就相当于再这个组件中预留一个为位置作为扩展,可以在这个标签中添加内容作为默认值
+      在使用这个组件时如果没有指定内容就使用默认值
+      -->
+    </div>
+  </template>
+  <!--有时需要再增添些内容向组件中，这时候就需要插槽了-->
+  <div id="app">
+    <!--现在我只想向第一个组件中加一个按钮，如下写法-->
+    <cpn><button>按钮</button></cpn>
+    <cpn><span>哈哈</span></cpn>
+    <cpn></cpn>
+    <cpn><a href="#">走你</a></cpn> 
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！'
+    },
+    components:{
+      cpn:{
+        template:'#cpn'
+      }
+    }
+  });
+  </script>
+</body>
+</html>

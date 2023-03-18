@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+      <title>saberhub</title>
+      <meta charset="utf-8" />
+      <style>@charset "UTF-8";
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* 外层轨道 */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset006pxrgba(255, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+  font-size: 13px;
+  line-height: 25px;
+  color: #393838;
+  position: relative;
+}
+
+table {
+  margin: 10px 0 15px 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid #ddd;
+  padding: 3px 10px;
+}
+
+th {
+  padding: 5px 10px;
+}
+
+a, a:link, a:visited {
+  color: #34495e;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #59d69d;
+  text-decoration: none;
+}
+
+a img {
+  border: none;
+}
+
+p {
+  padding-left: 10px;
+  margin-bottom: 9px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #404040;
+  line-height: 36px;
+}
+
+h1 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-size: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ddd;
+  line-height: 50px;
+}
+
+h2 {
+  font-size: 28px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+h3 {
+  clear: both;
+  font-weight: 400;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-left: 3px solid #59d69d;
+  padding-left: 8px;
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 13px;
+}
+
+hr {
+  margin: 0 0 19px;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+blockquote {
+  padding: 13px 13px 21px 15px;
+  margin-bottom: 18px;
+  font-family: georgia, serif;
+  font-style: italic;
+}
+
+blockquote:before {
+  font-size: 40px;
+  margin-left: -10px;
+  font-family: georgia, serif;
+  color: #eee;
+}
+
+blockquote p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+code,
+pre {
+  font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+
+code {
+  background-color: #fee9cc;
+  color: rgba(0, 0, 0, 0.75);
+  padding: 1px 3px;
+  font-size: 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+pre {
+  display: block;
+  padding: 14px;
+  margin: 0 0 18px;
+  line-height: 16px;
+  font-size: 11px;
+  border: 1px solid #d9d9d9;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: #f6f6f6;
+}
+
+pre code {
+  background-color: #f6f6f6;
+  color: #737373;
+  font-size: 11px;
+  padding: 0;
+}
+
+sup {
+  font-size: 0.83em;
+  vertical-align: super;
+  line-height: 0;
+}
+
+* {
+  -webkit-print-color-adjust: exact;
+}
+
+@media print {
+  body,
+  code,
+  pre code,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: black;
+  }
+
+  table,
+  pre {
+    page-break-inside: avoid;
+  }
+}
+html,
+body {
+  height: 100%;
+}
+
+.table-of-contents {
+  position: fixed;
+  top: 61px;
+  left: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 260px;
+}
+
+.table-of-contents > ul > li > a {
+  font-size: 20px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.table-of-contents ul {
+  overflow: auto;
+  margin: 0px;
+  height: 100%;
+  padding: 0px 0px;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+.table-of-contents ul li {
+  padding-left: 20px;
+}
+
+.table-of-contents a {
+  padding: 2px 0px;
+  display: block;
+  text-decoration: none;
+}
+
+.content-right {
+  max-width: 700px;
+  margin-left: 290px;
+  padding-left: 70px;
+  flex-grow: 1;
+}
+.content-right h2:target {
+  padding-top: 80px;
+}
+
+body > p {
+  margin-left: 30px;
+}
+
+body > table {
+  margin-left: 30px;
+}
+
+body > pre {
+  margin-left: 30px;
+}
+
+.curProject {
+  position: fixed;
+  top: 20px;
+  font-size: 25px;
+  color: black;
+  margin-left: -240px;
+  width: 240px;
+  padding: 5px;
+  line-height: 25px;
+  box-sizing: border-box;
+}
+
+.g-doc {
+  margin-top: 56px;
+  padding-top: 24px;
+  display: flex;
+}
+
+.curproject-name {
+  font-size: 42px;
+}
+
+.m-header {
+  background: #32363a;
+  height: 56px;
+  line-height: 56px;
+  padding-left: 60px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.m-header .title {
+  font-size: 22px;
+  color: #fff;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  margin-left: 16px;
+  padding: 0;
+  line-height: 56px;
+  border: none;
+}
+.m-header .nav {
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  right: 32px;
+  top: 0;
+}
+.m-header .nav a {
+  color: #fff;
+  margin-left: 16px;
+  padding: 8px;
+  transition: color .2s;
+}
+.m-header .nav a:hover {
+  color: #59d69d;
+}
+
+.m-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/*# sourceMappingURL=defaultTheme.css.map */
+</style>
+      </head>
+      <body>
+        <div class="m-header">
+          <a href="#" style="display: inherit;"><svg class="svg" width="32px" height="32px" viewBox="0 0 64 64" version="1.1"><title>Icon</title><desc>Created with Sketch.</desc><defs><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1"><stop stop-color="#FFFFFF" offset="0%"></stop><stop stop-color="#F2F2F2" offset="100%"></stop></linearGradient><circle id="path-2" cx="31.9988602" cy="31.9988602" r="2.92886048"></circle><filter x="-85.4%" y="-68.3%" width="270.7%" height="270.7%" filterUnits="objectBoundingBox" id="filter-3"><feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset><feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur><feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.159703351 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix></filter></defs><g id="首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="大屏幕"><g id="Icon"><circle id="Oval-1" fill="url(#linearGradient-1)" cx="32" cy="32" r="32"></circle><path d="M36.7078009,31.8054514 L36.7078009,51.7110548 C36.7078009,54.2844537 34.6258634,56.3695395 32.0579205,56.3695395 C29.4899777,56.3695395 27.4099998,54.0704461 27.4099998,51.7941246 L27.4099998,31.8061972 C27.4099998,29.528395 29.4909575,27.218453 32.0589004,27.230043 C34.6268432,27.241633 36.7078009,29.528395 36.7078009,31.8054514 Z" id="blue" fill="#2359F1" fill-rule="nonzero"></path><path d="M45.2586091,17.1026914 C45.2586091,17.1026914 45.5657231,34.0524383 45.2345291,37.01141 C44.9033351,39.9703817 43.1767091,41.6667796 40.6088126,41.6667796 C38.040916,41.6667796 35.9609757,39.3676862 35.9609757,37.0913646 L35.9609757,17.1034372 C35.9609757,14.825635 38.0418959,12.515693 40.6097924,12.527283 C43.177689,12.538873 45.2586091,14.825635 45.2586091,17.1026914 Z" id="green" fill="#57CF27" fill-rule="nonzero" transform="translate(40.674608, 27.097010) rotate(60.000000) translate(-40.674608, -27.097010) "></path><path d="M28.0410158,17.0465598 L28.0410158,36.9521632 C28.0410158,39.525562 25.9591158,41.6106479 23.3912193,41.6106479 C20.8233227,41.6106479 18.7433824,39.3115545 18.7433824,37.035233 L18.7433824,17.0473055 C18.7433824,14.7695034 20.8243026,12.4595614 23.3921991,12.4711513 C25.9600956,12.4827413 28.0410158,14.7695034 28.0410158,17.0465598 Z" id="red" fill="#FF561B" fill-rule="nonzero" transform="translate(23.392199, 27.040878) rotate(-60.000000) translate(-23.392199, -27.040878) "></path><g id="inner-round"><use fill="black" fill-opacity="1" filter="url(#filter-3)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#path-2"></use><use fill="#F7F7F7" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#path-2"></use></g></g></g></g></svg></a>
+          <a href="#"><h1 class="title">YAPI 接口文档</h1></a>
+          <div class="nav">
+            <a href="https://hellosean1025.github.io/yapi/">YApi</a>
+          </div>
+        </div>
+        <div class="g-doc">
+          <div class="table-of-contents"><ul><li><a href="#u7528u6237u8bf7u6c42">用户请求</a><ul><li><a href="#u6ce8u518c0a3ca20id3du6ce8u518c3e203ca3e">注册
+<a id=注册> </a></a></li><li><a href="#u6d4bu8bd5u6388u67430a3ca20id3du6d4bu8bd5u6388u67433e203ca3e">测试授权
+<a id=测试授权> </a></a></li><li><a href="#u767bu5f550a3ca20id3du767bu5f553e203ca3e">登录
+<a id=登录> </a></a></li></ul></li><li><a href="#u52a8u6001u63a5u53e3">动态接口</a><ul><li><a href="#u4e3au52a8u6001u6dfbu52a0u6807u7b7e0a3ca20id3du4e3au52a8u6001u6dfbu52a0u6807u7b7e3e203ca3e">为动态添加标签
+<a id=为动态添加标签> </a></a></li><li><a href="#u4feeu6539u52a8u60010a3ca20id3du4feeu6539u52a8u60013e203ca3e">修改动态
+<a id=修改动态> </a></a></li><li><a href="#u5220u9664u52a8u60010a3ca20id3du5220u9664u52a8u60013e203ca3e">删除动态
+<a id=删除动态> </a></a></li><li><a href="#u53d1u8868u52a8u60010a3ca20id3du53d1u8868u52a8u60013e203ca3e">发表动态
+<a id=发表动态> </a></a></li><li><a href="#u83b7u53d6u591au6761u52a8u60010a3ca20id3du83b7u53d6u591au6761u52a8u60013e203ca3e">获取多条动态
+<a id=获取多条动态> </a></a></li><li><a href="#u83b7u53d6u67d0u4e00u6761u52a8u60010a3ca20id3du83b7u53d6u67d0u4e00u6761u52a8u60013e203ca3e">获取某一条动态
+<a id=获取某一条动态> </a></a></li></ul></li><li><a href="#u8bc4u8bbau63a5u53e3">评论接口</a><ul><li><a href="#u4feeu6539u8bc4u8bba0a3ca20id3du4feeu6539u8bc4u8bba3e203ca3e">修改评论
+<a id=修改评论> </a></a></li><li><a href="#u5220u9664u8bc4u8bba0a3ca20id3du5220u9664u8bc4u8bba3e203ca3e">删除评论
+<a id=删除评论> </a></a></li><li><a href="#u53d1u8868u8bc4u8bba0a3ca20id3du53d1u8868u8bc4u8bba3e203ca3e">发表评论
+<a id=发表评论> </a></a></li><li><a href="#u56deu590du8bc4u8bba0a3ca20id3du56deu590du8bc4u8bba3e203ca3e">回复评论
+<a id=回复评论> </a></a></li><li><a href="#u83b7u53d6u67d0u6761u52a8u6001u7684u8bc4u8bba0a3ca20id3du83b7u53d6u67d0u6761u52a8u6001u7684u8bc4u8bba3e203ca3e">获取某条动态的评论
+<a id=获取某条动态的评论> </a></a></li></ul></li><li><a href="#u6807u7b7eu63a5u53e3">标签接口</a><ul><li><a href="#u6dfbu52a0u6807u7b7e0a3ca20id3du6dfbu52a0u6807u7b7e3e203ca3e">添加标签
+<a id=添加标签> </a></a></li><li><a href="#u83b7u53d6u6807u7b7e0a3ca20id3du83b7u53d6u6807u7b7e3e203ca3e">获取标签
+<a id=获取标签> </a></a></li></ul></li><li><a href="#u4e0au4f20u56feu7247">上传图片</a><ul><li><a href="#u4e0au4f20u52a8u6001u914du56fe0a3ca20id3du4e0au4f20u52a8u6001u914du56fe3e203ca3e">上传动态配图
+<a id=上传动态配图> </a></a></li><li><a href="#u4e0au4f20u5934u50cf0a3ca20id3du4e0au4f20u5934u50cf3e203ca3e">上传头像
+<a id=上传头像> </a></a></li><li><a href="#u5c55u793au67d0u52a8u6001u7684u67d0u5f20u56feu72470a3ca20id3du5c55u793au67d0u52a8u6001u7684u67d0u5f20u56feu72473e203ca3e">展示某动态的某张图片
+<a id=展示某动态的某张图片> </a></a></li><li><a href="#u5c55u793au7528u6237u5934u50cf0a3ca20id3du5c55u793au7528u6237u5934u50cf3e203ca3e">展示用户头像
+<a id=展示用户头像> </a></a></li></ul></li></ul></div>
+          <div id="right" class="content-right">
+           <h1 class="curproject-name"> saberhub </h1> 
+ 一个小巧的动态分享接口
+<h1 id="u7528u6237u8bf7u6c42">用户请求</h1>
+<p></p>
+<h2 id="u6ce8u518c0a3ca20id3du6ce8u518c3e203ca3e">注册
+<a id=注册> </a></h2>
+<p></p>
+<h3 id="">基本信息</h3>
+<p><strong>Path：</strong> /users</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-2">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> username</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> password</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h3 id="-3">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> username</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">用户名</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> password</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">密码</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u6d4bu8bd5u6388u67430a3ca20id3du6d4bu8bd5u6388u67433e203ca3e">测试授权
+<a id=测试授权> </a></h2>
+<p></p>
+<h3 id="-4">基本信息</h3>
+<p><strong>Path：</strong> /test</p>
+<p><strong>Method：</strong> GET</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-5">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td>Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoic2FiZXIiLCJpYXQiOjE2MjIwNzg4NTgsImV4cCI6MTYyMjA4MjQ1OH0.T-fhBJbvjyg5NdhrZrH8_KQHQA3IaxLAhwDShRVXD6H10WhVQmkDaFTsU-Ijp1lFkmPmLfyZlybehrx8ORLq1oTS_caGfHpE8URwgiwjt_xoi_ib5ZZH3o9K_cnjExTsEXXRJsMr29ZXsgGfEROU7lIShod1r1qCET-m9UGeVrw</td>
+<td>测试token有效</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-6">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody">
+               </tbody>
+              </table>
+<h2 id="u767bu5f550a3ca20id3du767bu5f553e203ca3e">登录
+<a id=登录> </a></h2>
+<p></p>
+<h3 id="-7">基本信息</h3>
+<p><strong>Path：</strong> /login</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-8">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> username</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> password</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h3 id="-9">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody">
+               </tbody>
+              </table>
+<h1 id="u52a8u6001u63a5u53e3">动态接口</h1>
+<p></p>
+<h2 id="u4e3au52a8u6001u6dfbu52a0u6807u7b7e0a3ca20id3du4e3au52a8u6001u6dfbu52a0u6807u7b7e3e203ca3e">为动态添加标签
+<a id=为动态添加标签> </a></h2>
+<p></p>
+<h3 id="-10">基本信息</h3>
+<p><strong>Path：</strong> /moment/:momentId/labels</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-11">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>路径参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>momentId</td>
+<td>28</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> labels</span></td><td key=1><span>string []</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">标签数组</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">标签名称</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u4feeu6539u52a8u60010a3ca20id3du4feeu6539u52a8u60013e203ca3e">修改动态
+<a id=修改动态> </a></h2>
+<p></p>
+<h3 id="-12">基本信息</h3>
+<p><strong>Path：</strong> /moment/:momentId</p>
+<p><strong>Method：</strong> PATCH</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-13">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>路径参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>momentId</td>
+<td>28</td>
+<td>需要修改的动态id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> content</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">修改内容</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u5220u9664u52a8u60010a3ca20id3du5220u9664u52a8u60013e203ca3e">删除动态
+<a id=删除动态> </a></h2>
+<p></p>
+<h3 id="-14">基本信息</h3>
+<p><strong>Path：</strong> /moment/:momentId</p>
+<p><strong>Method：</strong> DELETE</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-15">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>路径参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>momentId</td>
+<td>28</td>
+<td>删除动态的id</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u53d1u8868u52a8u60010a3ca20id3du53d1u8868u52a8u60013e203ca3e">发表动态
+<a id=发表动态> </a></h2>
+<p></p>
+<h3 id="-16">基本信息</h3>
+<p><strong>Path：</strong> /moment</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-17">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td>Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoic2FiZXIiLCJpYXQiOjE2MjIwNzg4NTgsImV4cCI6MTYyMjA4MjQ1OH0.T-fhBJbvjyg5NdhrZrH8_KQHQA3IaxLAhwDShRVXD6H10WhVQmkDaFTsU-Ijp1lFkmPmLfyZlybehrx8ORLq1oTS_caGfHpE8URwgiwjt_xoi_ib5ZZH3o9K_cnjExTsEXXRJsMr29ZXsgGfEROU7lIShod1r1qCET-m9UGeVrw</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> content</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">动态内容</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h3 id="-18">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody">
+               </tbody>
+              </table>
+<h2 id="u83b7u53d6u591au6761u52a8u60010a3ca20id3du83b7u53d6u591au6761u52a8u60013e203ca3e">获取多条动态
+<a id=获取多条动态> </a></h2>
+<p></p>
+<h3 id="-19">基本信息</h3>
+<p><strong>Path：</strong> /moment</p>
+<p><strong>Method：</strong> GET</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-20">请求参数</h3>
+<p><strong>Query</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>offset</td>
+<td>是</td>
+<td>0</td>
+<td>动态在数据库开始查找的位置</td>
+</tr>
+<tr>
+<td>size</td>
+<td>是</td>
+<td>4</td>
+<td>查找多少条</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u83b7u53d6u67d0u4e00u6761u52a8u60010a3ca20id3du83b7u53d6u67d0u4e00u6761u52a8u60013e203ca3e">获取某一条动态
+<a id=获取某一条动态> </a></h2>
+<p></p>
+<h3 id="-21">基本信息</h3>
+<p><strong>Path：</strong> /moment/:momentId</p>
+<p><strong>Method：</strong> GET</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-22">请求参数</h3>
+<p><strong>路径参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>momentId</td>
+<td>28</td>
+<td>动态id</td>
+</tr>
+</tbody>
+</table>
+<h1 id="u8bc4u8bbau63a5u53e3">评论接口</h1>
+<p></p>
+<h2 id="u4feeu6539u8bc4u8bba0a3ca20id3du4feeu6539u8bc4u8bba3e203ca3e">修改评论
+<a id=修改评论> </a></h2>
+<p></p>
+<h3 id="-23">基本信息</h3>
+<p><strong>Path：</strong> /comment/:commentId</p>
+<p><strong>Method：</strong> PATCH</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-24">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>路径参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>commentId</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> content</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">内容</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u5220u9664u8bc4u8bba0a3ca20id3du5220u9664u8bc4u8bba3e203ca3e">删除评论
+<a id=删除评论> </a></h2>
+<p></p>
+<h3 id="-25">基本信息</h3>
+<p><strong>Path：</strong> /comment/:commentId</p>
+<p><strong>Method：</strong> DELETE</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-26">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>路径参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>commentId</td>
+<td>2</td>
+<td>删除评论id</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u53d1u8868u8bc4u8bba0a3ca20id3du53d1u8868u8bc4u8bba3e203ca3e">发表评论
+<a id=发表评论> </a></h2>
+<p></p>
+<h3 id="-27">基本信息</h3>
+<p><strong>Path：</strong> /comment</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-28">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> momentId</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">动态id</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> content</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">内容</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u56deu590du8bc4u8bba0a3ca20id3du56deu590du8bc4u8bba3e203ca3e">回复评论
+<a id=回复评论> </a></h2>
+<p></p>
+<h3 id="-29">基本信息</h3>
+<p><strong>Path：</strong> /comment/:comentId/reply</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-30">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>路径参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>comentId</td>
+<td>10</td>
+<td>回复评论的id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> content</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">评论内容</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> momentId</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">动态id</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u83b7u53d6u67d0u6761u52a8u6001u7684u8bc4u8bba0a3ca20id3du83b7u53d6u67d0u6761u52a8u6001u7684u8bc4u8bba3e203ca3e">获取某条动态的评论
+<a id=获取某条动态的评论> </a></h2>
+<p></p>
+<h3 id="-31">基本信息</h3>
+<p><strong>Path：</strong> /comment</p>
+<p><strong>Method：</strong> GET</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-32">请求参数</h3>
+<p><strong>Query</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>momentId</td>
+<td>是</td>
+<td>28</td>
+<td>动态的id</td>
+</tr>
+</tbody>
+</table>
+<h1 id="u6807u7b7eu63a5u53e3">标签接口</h1>
+<p></p>
+<h2 id="u6dfbu52a0u6807u7b7e0a3ca20id3du6dfbu52a0u6807u7b7e3e203ca3e">添加标签
+<a id=添加标签> </a></h2>
+<p></p>
+<h3 id="-33">基本信息</h3>
+<p><strong>Path：</strong> /label</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-34">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> name</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">标签名</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u83b7u53d6u6807u7b7e0a3ca20id3du83b7u53d6u6807u7b7e3e203ca3e">获取标签
+<a id=获取标签> </a></h2>
+<p></p>
+<h3 id="-35">基本信息</h3>
+<p><strong>Path：</strong> /label</p>
+<p><strong>Method：</strong> GET</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-36">请求参数</h3>
+<p><strong>Query</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>offset</td>
+<td>是</td>
+<td>2</td>
+<td>标签查找起始点</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>是</td>
+<td>4</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<h1 id="u4e0au4f20u56feu7247">上传图片</h1>
+<p></p>
+<h2 id="u4e0au4f20u52a8u6001u914du56fe0a3ca20id3du4e0au4f20u52a8u6001u914du56fe3e203ca3e">上传动态配图
+<a id=上传动态配图> </a></h2>
+<p></p>
+<h3 id="-37">基本信息</h3>
+<p><strong>Path：</strong> /upload/picture</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-38">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>multipart/form-data</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Query</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>momentId</td>
+<td>是</td>
+<td>1</td>
+<td>动态id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>picture</td>
+<td>file</td>
+<td>是</td>
+<td></td>
+<td>图片,可上传多张,参数名称都一样</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u4e0au4f20u5934u50cf0a3ca20id3du4e0au4f20u5934u50cf3e203ca3e">上传头像
+<a id=上传头像> </a></h2>
+<p></p>
+<h3 id="-39">基本信息</h3>
+<p><strong>Path：</strong> /upload/avatar</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-40">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>multipart/form-data</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>avatar</td>
+<td>file</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="u5c55u793au67d0u52a8u6001u7684u67d0u5f20u56feu72470a3ca20id3du5c55u793au67d0u52a8u6001u7684u67d0u5f20u56feu72473e203ca3e">展示某动态的某张图片
+<a id=展示某动态的某张图片> </a></h2>
+<p></p>
+<h3 id="-41">基本信息</h3>
+<p><strong>Path：</strong> /moment/images/:filename</p>
+<p><strong>Method：</strong> GET</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-42">请求参数</h3>
+<p><strong>路径参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filename</td>
+<td>e149d7c0-bbc0-11eb-abf0-77d17140fe51</td>
+<td>图片的名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Query</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size</td>
+<td>否</td>
+<td>large</td>
+<td>指定图片的尺寸有三种,small, middel, large</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u5c55u793au7528u6237u5934u50cf0a3ca20id3du5c55u793au7528u6237u5934u50cf3e203ca3e">展示用户头像
+<a id=展示用户头像> </a></h2>
+<p></p>
+<h3 id="-43">基本信息</h3>
+<p><strong>Path：</strong> /users/:userId/avatar</p>
+<p><strong>Method：</strong> GET</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-44">请求参数</h3>
+<p><strong>路径参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>15</td>
+<td>用户id</td>
+</tr>
+</tbody>
+</table>
+
+            <footer class="m-footer">
+              <p>Build by <a href="https://ymfe.org/">YMFE</a>.</p>
+            </footer>
+          </div>
+        </div>
+      </body>
+      </html>
+      

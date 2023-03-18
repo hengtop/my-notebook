@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  //添加方式一
+    //向对象中添加up down 方法，前提是不知道里面有有没有该同名方法了
+    let game = {
+        name: '给她爱5',
+        up(){
+          console.log('上划')
+        },
+        down(){
+          console.log('下滑');
+        }
+      }
+
+    //声明一个方法 
+    let methods = {
+      up:Symbol(),
+      down:Symbol()
+    };
+    game[methods.up] = function(){
+      console.log('我奥上划');
+    }
+    game[methods.down] = function(){
+      console.log('我要下滑');
+    }
+    console.log(game);
+
+
+    //方式二
+    let youxi = {
+      name:'狼人杀',
+      //添加独一无二的方法
+      [Symbol('say')]:function(){
+        console.log('说话');
+      }
+    }
+    console.log(youxi);
+    
+  </script>
+</body>
+</html>

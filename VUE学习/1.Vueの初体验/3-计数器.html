@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>当前计数：{{counter}}</h2>
+        <!--新的指令
+          语法糖：简写
+          如v-on:click的简写就可以用@click
+        -->
+
+        <button v-on:click="add">+</button>
+        <button @click="sub">-</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                counter: 0
+            },
+            methods: {
+                add: function () {
+                    console.log("add被执行");
+                    this.counter++;
+                    //一点疑惑，这里的this咋能获取到counter，这里好像是vue做了一层代理（proxy）
+                },
+                sub: function () {
+                    console.log("sub被执行");
+                    this.counter--;
+                }
+            },
+            beforeCreate: function () {
+
+            },
+            //当对象执行到这一步时就会调用，我们可以通过此方式来知道对象执行到哪一步了
+            created: function () {
+                console.log("create");
+            },
+            mounted: function () {
+
+            }
+
+        });
+    </script>
+</body>
+
+</html>

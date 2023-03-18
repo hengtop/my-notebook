@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    class Person extends React.Component {
+      showData = () => {
+        console.log(this.refs.input1.value);
+        //这种形式操作ref现在已经有点过时不推荐使用
+      }
+      showData2 = () => {
+        console.log(this.refs.input2.value);
+      }
+      render(){
+        return (  
+          <div>
+            <input ref="input1" type="text" placeholder="点击按钮提示" />&nbsp;
+            <button onClick={this.showData}>点击以下提示</button>&nbsp;
+            <input ref="input2" onBlur={this.showData2} type="text" placeholder="失去焦点提示" />
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Person />, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

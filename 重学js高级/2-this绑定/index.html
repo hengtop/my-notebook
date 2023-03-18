@@ -1,0 +1,54 @@
+<!--
+ * @Date: 2022-03-20 19:42:52
+ * @LastEditors: zhangheng
+ * @LastEditTime: 2022-03-20 20:59:12
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #bfa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+</body>
+
+<script>
+
+  const boxDiv = document.querySelector('.box');
+  boxDiv.onclick = function () {
+    console.log(this);
+  }
+
+  boxDiv.addEventListener('click', function () {
+    console.log(this);
+  })
+  boxDiv.addEventListener('click', function () {
+    console.log(this, 'next');
+  })
+
+  const arr = [1, 2, 3];
+
+  arr.forEach(function () {
+    console.log(this);
+  }, 'abc')
+  arr.map(function () {
+    console.log(this);
+  }, 'abc')
+</script>
+
+<!-- <script src="./this规则之外.js"></script> -->
+<script src="./箭头函数.js"></script>
+
+</html>

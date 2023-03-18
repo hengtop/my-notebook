@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        audio 标签 用来向页面中引入一个外部音频文件
+        音视频文件引入时，默认不让用户自己控制播放停止
+        属性：
+           1.controls 是否允许用户控制播放，这个属性没有值，加上就有用户控制界面
+           2.autoplay 设置自动播放，也没属性值，页面会在打开时播放，但是现在页面大部会不会自动播放
+                   相当于这个属性有时会被忽略
+           3.loop 音乐是否循环播放，也没属性值        
+    -->
+    <audio src="xxx" controls autoplay></audio>
+    <!--
+        除了src来指定外部文件，还可以用source来指定,可以处理有些浏览器对不同的音频文件格式不兼容的问题
+    -->
+    <audio controls>
+        <source src="xxx.mp3">
+        <source src="xxx.ogg">
+    </audio>
+    <!--
+        ie8不兼容audio标签，可以使用embed标签，这个标签是自动播放音乐，好像还不知道怎末禁用这个功能
+    -->
+     <embed src="xxx" type="audio/mp3" width="" height="">
+    <!--
+        可以把embed标签放入audio中来解决兼容问题
+    -->
+    <audio controls>
+        <source src="xxx.mp3">
+        <source src="xxx.ogg">
+        <embed src="xxx" type="audio/mp3" width="" height="">
+    </audio>    
+   
+
+    <!--
+        使用video标签来引入一个视频文件，使用方式基本和audio一样
+        当然ie8也是不兼容这个标签，就可以用embed
+    -->
+    <video controls>
+        <source src="xxx">
+       <embed src="xxx" type="video/mp4">
+    </video>
+    
+     
+</body>
+</html>

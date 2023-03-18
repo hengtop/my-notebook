@@ -1,0 +1,1 @@
+"use strict";function e(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var o=e(require("lodash")),l=function(e,o){console.log(e+o)};console.log("hello rollup"),console.log(o.default.join),l(1,30),exports.message="hello rollup";

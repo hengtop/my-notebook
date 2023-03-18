@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      display: inline-block;
+      margin: 5px;
+      width: 100px;
+      height: 100px;
+      background-color: #bfa;
+      text-align: center;
+      line-height: 100px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+   const ary = [];
+   for(let i = 0; i < 1000; i++) {
+     ary.push(i);
+   }
+
+    const timeChunk = function (ary, fn, count) {
+      let t = null;
+      const start = function () {
+        for (let i = 0; i < Math.min(count || 1, ary.length); i++) {
+          const obj = ary.shift();
+          fn(obj);
+        }
+      }
+      return function () {
+        t = setInterval(() => {
+          if (ary.length === 0) {
+            return clearInterval(t);
+          }
+          start();
+        }, 200);
+      }
+    }
+
+    const renderList = timeChunk(ary, function(n) {
+      const div = document.createElement('div');
+      div.innerHTML = n;
+      document.body.appendChild(div);
+    }, 8)
+
+    renderList();
+
+
+  </script>
+</body>
+
+</html>

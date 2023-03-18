@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <style>
+        /*将class为red的div元素中的字体设置为红色*/
+        div.red{
+            color: red;
+        }
+        /*
+          1.交集选择器
+            选择同时符合多个条件的元素
+            语法：选择器1选择器2选择器3{}
+            注意：交集选择器中要把元素选择器放在最前面
+          
+          2.并集选择器
+             可同时选择多个选择器对应的元素
+             语法：选择器1，选择器2，选择器3{}
+             例如：#one,.red{}
+        
+        */
+    </style>
+</head>
+<body>
+    <div class="red">我是div</div>
+    <p class="red">我是p元素</p>
+    <p class="red">我是p元素</p>
+    <p class="one">我是p元素</p>
+</body>
+</html>

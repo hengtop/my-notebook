@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn1">点击</button>
+  <script>
+    const btn = document.getElementById('btn1');
+
+
+    //节流
+    const throttle = (fn, interval) => {
+      let timer = null;
+      let firstClick = true;
+
+      return function () {
+        if (firstClick) {
+          fn.apply(this, arguments);
+          return firstClick = false;
+        }
+
+        if (timer) {//true表示上一个定时器任务仍在执行
+          return false;
+        }
+
+        timer = setTimeout(() => {
+          clearTimeout(timer);
+          timer = null;//表示已经执行完毕
+          fn.apply(this, arguments);
+        }, interval || 500);
+      }
+    }
+    
+    const throttle2 = (fn, delay=500) => {
+      let begin = 0;
+      return function() {
+        const cur = new Date().getTime();
+        if(cur - begin > delay) {
+          fn.apply(this, arguments);
+          begin = cur;
+        } else {
+          return false;
+        }
+      }
+    }
+
+    btn.addEventListener('click', throttle(function(e){
+      console.log('点击');
+      console.log(e);
+      console.log(this);
+    }), false);
+  </script>
+</body>
+
+</html>

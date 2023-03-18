@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * forEach（）该方法只支持ie8以上（不包括ie8）的浏览器
+			 *  用来遍历数组
+			 * 该方法需要一个函数来作为参数
+			 * 像这种函数由我们创建单不由我们调用则称为回调函数
+			 * 数组中有几个元素就会执行几次函数，每次执行时，浏览器都会将遍历到的元素以实参的形式传递进来
+			 * 我们可以定义形参来读取这些内容 
+			 * 浏览器会在回调函数传递三个参数
+			 *   第一个 就是数组元素的值value
+			 *   第二个 就是就是数组的元素的索引index
+			 *   第三个就是数组全部的元素array
+			 */
+			//建立一个数组
+			var arr=["书八戒","孙悟空","唐僧"];
+			/*arr.forEach(function()
+			  {
+			  	console.log("hello");
+			  }
+			)*/
+			arr.forEach(function(value,index,obj)
+			 {
+			 	//console.log(c==arr);
+			 	console.log(value);
+			 	console.log(index);
+			 	//console.log(obj);
+			 }
+			
+			);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

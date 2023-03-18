@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <!--选择1个-->
+    <select name="abc" id="" v-model="fruit" >
+      <option value="苹果" >苹果</option>
+      <option value="香蕉" >香蕉</option>
+      <option value="榴莲" >榴莲</option>
+      <option value="梨子" >梨子</option>
+    </select>
+    <h2>你选了个{{fruit}}</h2>
+    <br>
+    <select name="abc" id="" v-model="fruits" multiple><!--加了这个属性就可以多选了，但是要按住ctrl再点击-->
+      <option value="苹果" >苹果</option>
+      <option value="香蕉" >香蕉</option>
+      <option value="榴莲" >榴莲</option>
+      <option value="梨子" >梨子</option>
+    </select>
+    <h2>你选了这些：{{fruits}}</h2>
+   
+   
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！',
+      fruit:'香蕉',
+      fruits:[]
+    }
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+$dark:#000;
+
+.main{
+  color:$dark;
+}
+
+/* 编译后保存，压缩不保存 */
+/*! 编译压缩都保存 */
+// 不保存
+
+
+
+/* 数据类型 */
+//string, 有引号和无引号
+$name1:"wang";
+$name2:'li';
+$name3:wangli;
+body {
+  color:$name1;
+  background-color: $name2;
+  font-size: $name3;
+}
+
+//数字 带单位和不带单位
+$number:1213;
+$height:200px;
+
+.box1{
+  height: $height;
+  z-index:$number;
+}
+
+//数组
+
+$list:1px 2px 3px 4px;
+//多维数组写法
+$list1:1px 2px, 5px 6px;
+$list2:(1px 2px) (3px 4px);
+.test{
+  font:$list;
+  background:$list1;
+  flex:$list2;
+}
+
+
+//插值语法
+$slot:mei;
+body .#{$slot}{
+  color:#000;
+}
+
+$value:null;
+$value:new !default;
+
+div{
+  font:$value;
+}

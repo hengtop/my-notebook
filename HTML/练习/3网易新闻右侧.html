@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/reset.css">
+    <style>
+        
+        /*去除所有超链接的下划线*/
+        a{
+            text-decoration: none;
+        }
+
+        /*设置容器大小样式*/
+        .new-nav{
+            /*设置宽高*/
+            width: 300px;
+            height: 357px;
+            /*设置居中*/
+            margin: 50px auto;
+            /*设置上边框*/
+            border-top: 1px solid #dddddd;
+            /*设置背景颜色*/
+            background-color: #ffffff;
+        }
+
+        /*设置新闻标题样式*/
+        .new-title{
+            /*设置盒子高度*/
+            height: 30px;
+            /*为了边框和子同宽，则要将h2转换为行内块元素*/
+            display:inline-block;
+            /*设置标题的上边框*/
+            border-top:1px  red solid ;
+            /*为了字体的边框与容器的边框重合*/
+            margin-top:-1px ;
+            /*设置内边距*/
+            padding-top: 10px;
+        }
+
+        /*设置新闻标题中超链接样式*/
+        .new-title a{
+            /*去掉下划线*/
+            text-decoration: none;
+            /*设置颜色*/
+            color: #404040;
+            /*字体加粗*/
+            font-weight: bold;
+           
+        }
+
+        /*设置图片容器高度*/
+        .news-img{
+            height: 150px;
+        }
+
+
+        /*设置图片中文字的效果*/
+       .news-img h3{
+            /*向上移动文字*/
+            margin-top: -30px;
+            /*设置右左外边距*/
+            margin-left: 39px;
+            /*设置颜色*/
+            color: #ffffff;
+            /*设置加粗*/
+            font-weight: bold;
+
+       }
+
+       /*设置新闻列表布局*/
+       .new-list{
+           /*设置上外边距*/
+           margin-top: 20px;
+           /*设置左内边距*/
+           padding-left: 14px;
+
+       }
+
+       /*设置新闻列表中的每条新闻*/
+       .new-list li{
+           /*设置下外边距*/
+           margin-bottom: 17px;
+       }
+
+       /*设置每条新闻字体样式*/
+       .new-list li a{
+           /*设置字体大小*/
+           font-size: 14px;
+           /*设置字体颜色*/
+           color: #666;
+       }
+       
+       /*通过伪元素设置每条新闻前的项目符号*/
+       .new-list li::before{
+           content:"▪";
+           color: #dddddd;
+           font-size: 12px;
+           margin-right:4px;
+       }
+
+       /*设置每条新闻超链接移入效果*/
+       .new-list li a:hover{
+           color: red;
+       }
+    </style>
+</head>
+<body>
+    <div class="new-nav"> 
+
+        <!--创建一个标题标签-->
+        <h2 class="new-title"><a href="">体育</a></h2>
+
+        <!--创建一个图片容器--> 
+        <div class="news-img">
+            <a href="#">
+                <img src="/img/feiji.webp" alt="飞机">
+                 <!--创建一个图片的下标题-->    
+                <h3>歼20和多型号战机混编飞行尽显霸气</h3>
+           </a>
+        </div>
+
+        <!--创建新闻列表-->
+        <ul class="new-list">
+            <li class="list-font"><a href="#">日本退役“鬼怪”式战斗机 已破旧不堪</a></li>
+            <li class="list-font"><a href="#">时隔一周 金正恩再次视察超大型火箭炮试射</a></li>
+            <li class="list-font"><a href="#">澳航反悔？日出计划的12架A350飞机先不要</a></li>
+            <li class="list-font"><a href="#">南航两包机运送遵义周边工人返深</a></li>
+        </ul>
+            
+    </div>
+</body>
+</html>

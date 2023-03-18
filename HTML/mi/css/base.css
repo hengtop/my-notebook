@@ -1,0 +1,29 @@
+/*公共样式*/
+
+/*解决高度塌陷和子元素外边距传递*/
+.clearfix::before,
+.clearfix::after{
+        content:'';
+        display:table;
+        clear:both;
+}
+
+/*字体设置*/
+body{
+    font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
+    color: #333;
+    /*设置页面最小宽度,防止内容溢出*/
+    min-width: 1226px;
+}
+
+/*设置中间容器的宽度*/
+.w{
+    width: 1226px;
+    /*居中*/
+    margin: 0 auto;
+}
+
+/*去除a的下划线*/
+a{
+    text-decoration: none;
+}

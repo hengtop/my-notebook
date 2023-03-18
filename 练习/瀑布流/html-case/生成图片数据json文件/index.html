@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="file" multiple />
+  <button onclick="onclickCB(event)">点击生成json文件</button>
+
+  <script>
+    function onclickCB(event) {
+      const button = event.target;
+      const files = document.querySelector("input").files;
+      if (files.length === 0) {
+        console.log(files);
+        console.warn("请选择文件");
+        return;
+      }
+      button.onclick = null;
+      button.textContent = "正在生成中...";
+
+      let imgObjArr = [];
+      let i = 0;
+      let loadImgCB = (width, height) => {
+        imgObjArr.push({
+          imgName: files[i].name,
+          width: width,
+          height: height
+        });
+        i++;
+        if (i >= files.length) {
+          button.textContent = "已生成";
+          //将对象序列化并转为json文件链接供下载
+          const blob = new Blob([JSON.stringify(imgObjArr, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          console.log(url);
+          const a = document.createElement('a');
+          a.href = url;
+          //加上这个属性就可以下载
+          a.download = "图片数据";
+          a.textContent = "下载json文件"
+          document.body.appendChild(a);
+          return
+        }
+        loadImg(files[i], loadImgCB);
+      }
+      loadImg(files[i], loadImgCB);
+    }
+
+    //加载每一张图片
+    function loadImg(file, cb) {
+      let image = new Image();
+
+      // 路径问题可以试着修改下面这里
+      image.src = `../images/${file.name}`;
+
+      image.onload = function () {
+        cb(image.naturalWidth, image.naturalHeight);
+      };
+    }
+
+  </script>
+</body>
+
+</html>

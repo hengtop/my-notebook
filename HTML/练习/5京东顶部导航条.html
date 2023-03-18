@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--引入重置样式表-->
+    <link rel="stylesheet" href="/CSS/reset.css">
+    <!--引入图标字体-->
+    <link rel="stylesheet" href="/icon/css/all.css">
+    <style>
+         /*解决高度塌陷*/
+         .clearfix::before,
+            .clearfix::after{
+                content:'';
+                display:table;
+                clear:both;
+            }
+
+         /*设置字体样式*/
+         body{
+              
+            font: 11px/1.5 Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,"\5B8B\4F53",sans-serif;
+            
+         }
+         
+        /*设置外部容器样式，文字位置*/
+        .top-bar-wrapper{
+            /*设置宽度*/
+            width: 100%;
+            /*设置字体垂直居中，同时也可省去高度设置*/
+            line-height: 30px;
+            /*为了避免左侧菜单移入边框导致高度被撑开，所以还是把高度写死*/
+            height: 30px;
+            /*背景颜色*/
+            background-color: #e3e4e5;
+            /*设置下边框*/
+            border-bottom: 1px solid #dddddd;
+
+        }
+
+        /*设置内部容器*/
+        .top-par{
+            /*设置宽度*/
+            width:1190px;
+            /*水平居中*/
+            margin: 0 auto;
+            /*开启相对定位，为隐藏的菜单开启绝对定位服务*/
+        }
+        
+        /*设置局部字体样式*/
+        .top-par a,
+        .top-par span,
+        .top-par i{
+            color: #999999;
+            /*去除下划线*/
+            text-decoration: none;
+        }
+        
+        /*设置顶部导航栏超链接鼠标移入样式*/
+        .top-par a:hover,
+        .top-par .height-light{
+            color: #f10215 ;
+        }
+        
+        /*设置左侧菜单*/
+        .location{
+            /*左侧浮动*/
+            float: left;
+        }
+        
+        /*设置图标样式*/
+        .location .fa-map-marker-alt{
+            /*设置颜色*/
+            color: #f10215;
+        }
+        
+        /*设置隐藏的菜单*/
+        .location .location-invisible{
+            /*设置宽高背景颜色边框*/
+            width: 300px;
+            height: 416px;
+            background-color: white;
+            border: 1px solid rgb(204, 204, 204);
+            /*设置内边距*/
+            padding: 10px;
+            /*隐藏该菜单*/
+            display:none;
+            /*设置绝对定位，脱离文档流*/
+            position: absolute;
+            /*定位位置*/
+            top: 31px;
+            /*设置边框阴影*/
+            box-shadow: 1px 2px 1px rgba(0,0,0,.1);
+
+        }
+
+        /*设置隐藏菜单内容中的样式*/
+        .location-invisible .choose-location li{
+            float: left;
+            width: 44px;
+            height: 24px;
+            line-height: 24px;
+            padding: 2px 8px;
+        }        
+        
+        /*设置隐藏菜单开启效果*/
+        /*这里注意hover的持续问题，所以要把hover设置给父元素*/
+        .location:hover .location-invisible{
+                display: block;
+        }
+        
+        .current-city{
+            padding: 0 10px;
+            /*设置一个透明边框*/
+            /*这里的目的是解决hover给元素添加边框的时候，元素中的内容发生位移*/
+            border: 1px solid transparent;
+            border-bottom:none;
+             /*开启相对定位，提升层级*/
+             position: relative;
+             z-index: 1999;
+        }
+
+        /*设置左侧菜单移入效果*/
+        .location:hover .current-city{
+            background-color: #ffffff;
+             /*设置边框*/
+            border: 1px solid rgb(204, 204, 204);
+            border-bottom:none;
+            padding-bottom: 1px;
+        }
+
+        /*设置右侧菜单*/
+        .shortcut{
+            /*右侧浮动*/
+            float: right;
+        }
+
+        /*设置右侧菜单列表*/
+        .shortcut li{
+            float: left;
+        }
+
+        /*设置分隔线*/
+        .shortcut .line{
+            /*设置宽高颜色*/
+            width: 1px;
+            height: 10px;
+            background-color: #cccccc;
+            /*设置位置*/
+           margin: 10px 12px;
+        }
+
+    </style>
+</head>
+<body>
+    <!--创建外围的容器-->
+    <nav class="top-bar-wrapper">
+        <!--创建内部容器-->
+        <div class="top-par clearfix ">
+            <!--左侧的菜单-->
+            <div class="location">
+                <div class="current-city">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="javascript:;">北京</a>
+                </div>
+
+                 <!--鼠标移入显示的菜单-->
+                 <div class="location-invisible">
+                    <ul class="choose-location">
+                        <li>
+                            <a href="#">内江</a>
+                        </li>
+                        <li>
+                            <a href="#">北京</a>
+                        </li>
+                        <li>
+                            <a href="#">哈尔滨</a>
+                        </li>
+                        <li>
+                            <a href="#">上海</a>
+                        </li>
+                        <li>
+                            <a href="#">内江</a>
+                        </li>
+                        <li>
+                            <a href="#">北京</a>
+                        </li>
+                        <li>
+                            <a href="#">哈尔滨</a>
+                        </li>
+                        <li>
+                            <a href="#">上海</a>
+                        </li>
+                        <li>
+                            <a href="#">内江</a>
+                        </li>
+                        <li>
+                            <a href="#">北京</a>
+                        </li>
+                        <li>
+                            <a href="#">哈尔滨</a>
+                        </li>
+                        <li>
+                            <a href="#">上海</a>
+                        </li>
+                        <li>
+                            <a href="#">内江</a>
+                        </li>
+                        <li>
+                            <a href="#">北京</a>
+                        </li>
+                        <li>
+                            <a href="#">哈尔滨</a>
+                        </li>
+                        <li>
+                            <a href="#">上海</a>
+                        </li>
+                        <li>
+                            <a href="#">内江</a>
+                        </li>
+                        <li>
+                            <a href="#">北京</a>
+                        </li>
+                        <li>
+                            <a href="#">哈尔滨</a>
+                        </li>
+                        <li>
+                            <a href="#">上海</a>
+                        </li>
+                        <li>
+                            <a href="#">内江</a>
+                        </li>
+                        <li>
+                            <a href="#">北京</a>
+                        </li>
+                        <li>
+                            <a href="#">哈尔滨</a>
+                        </li>
+                        <li>
+                            <a href="#">上海</a>
+                        </li>
+                        <li>
+                            <a href="#">内江</a>
+                        </li>
+                        <li>
+                            <a href="#">北京</a>
+                        </li>
+                        <li>
+                            <a href="#">哈尔滨</a>
+                        </li>
+                        <li>
+                            <a href="#">上海</a>
+                        </li>
+                        <li>
+                            <a href="#">内江</a>
+                        </li>
+                        <li>
+                            <a href="#">北京</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div> 
+            </div>
+
+            <!--右侧的菜单列表-->
+            <ul class="shortcut">
+                <li>
+                    <a href="#">你好，请登录</a>
+                    <a class="height-light" href="#">免费注册</a>
+                </li>
+
+                 <!--分隔线-->
+                <li class="line"></li>
+                <li>
+                    <a href="#">我的订单</a>
+                </li>     
+                <li class="line"></li>
+                <li>
+                    <a href="#">我的京东</a>
+                    <!--下拉箭头-->
+                    <i class="fas fa-angle-down"></i>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <a href="#">京东会员</a>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <a class="height-light" href="#">企业采购</a>
+                    <i class="fas fa-angle-down"></i>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <span>客户服务</span>
+                    <i class="fas fa-angle-down"></i>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <span>网站导航</span>
+                    <i class="fas fa-angle-down"></i>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <span>手机京东</span>
+                    
+                </li>
+                   
+
+
+            </ul>
+             
+
+        </div> 
+    </nav>
+</body>
+</html>

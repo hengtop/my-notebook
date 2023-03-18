@@ -1,0 +1,17 @@
+{
+  "name": "meetwebpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "xxx.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies":{
+    "webpack":"^3.6.0"
+  }
+
+}
+/*script中加上了build后接添加了一个映射。我们可以用 npm run build 来代替 npx webpack  （这里注意：vscode要加npx）*/

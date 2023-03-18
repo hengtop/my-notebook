@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+  <script type="text/babel">//此处要写type="text/babel"，表明写的是jsx代码然后被babel转换为js
+    /*
+    * react的非受控组件
+    * */
+    class Login extends React.Component {
+      handleSubmit = () => {
+        event.preventDefault();//阻止默认事件
+        const {username,password} = this;
+        alert(`你输入的用户名是${username.value},你输入的密码是${password.value}`);
+        console.log(username.value,password.value);
+      }
+      render() {
+        return (
+                <form action='http://www.atguigu.com' onSubmit={this.handleSubmit}>
+                  用户名：<input ref={c => this.username = c}  type="用户名" name="username" />
+                  密码：<input ref={c => this.password = c} type="password" name="password" />
+                  <button>登录</button>
+                </form>
+        );
+      }
+    }
+    ReactDOM.render(<Login/>, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

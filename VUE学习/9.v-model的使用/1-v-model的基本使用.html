@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <!--
+      通过v-model实现双向绑定，此时我们修改input中的内容，data中的message也会改变了,
+      另外textarea这个标签也适用于这个方法
+    -->
+    <input type="text" v-model="message">
+    {{message}}
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#app',
+    data: { 
+      message: 'helloWorld！'
+    }
+  });
+  </script>
+</body>
+</html>

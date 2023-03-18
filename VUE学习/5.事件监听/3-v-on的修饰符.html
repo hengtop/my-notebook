@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  
+  <div id="app">
+    <!--这里点击btn会由于事件的冒泡造成div也会触发事件，所以可以在@click后面加个 .stop 来取消冒泡 -->
+    <div @click="div">
+      aaaaa
+      <button @click.stop="btn">点一下</button>
+    </div>
+    <form action="https://www.baidu.com">
+      <!-- .prevent 阻止默认提交行为-->
+      <input type="submit" value="提交" @click.prevent= "submitClick">
+        <br>
+        
+    </form>
+    <!--监听键盘事件 .enter就是监听回车键-->
+    <input type="text" @keyup.enter="keyupClick">
+    <!--  .once修饰符是只触发一次回调-->
+    <br>
+    <button @click.once="btn">点一下</button>
+  </div>
+  <script>
+  const app = new Vue({
+  el: '#app',
+  data: { 
+    message: 'helloWorld！'
+    },
+    methods: {
+       btn(){
+         console.log("btn");
+       },
+       div(){
+         console.log("div");
+       },
+       submitClick(){
+         console.log("submitClick");
+       },
+       keyupClick(){
+         console.log("heyUp");
+       }
+
+    },
+  });
+  </script>
+</body>
+</html>

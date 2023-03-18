@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+           /*
+              父元素
+                 --直接包含子元素的元素
+              子元素
+                 --直接被父元素包含的元素
+              祖先元素
+                 --直接或间接包含后代的元素
+              后代元素
+                 --直接或间接被祖先元素包含的元素
+              兄弟元素
+                 --拥有相同父元素的元素是兄弟元素
+           
+           */
+             /*
+                
+
+                1.子元素选择器
+                    选中指定父元素的指定子元素
+                    语法：父元素>子元素{}
+                    例如：.one > .span{}
+
+                2.后代选择器
+                    选择指定元素内中指定的后代元素
+                    语法：祖先 后代{}
+
+                3.兄弟选择器
+                   选择下一个兄弟元素
+                   语法：前一个 + 后一个{}
+                   选择下边所有的兄弟元素                 
+                   语法：前一个 ~ 后一个
+             */
+             
+
+    </style>
+</head>
+<body>
+    <div class="one">
+        我是div
+        <br>
+        <span class="box">我是div中的span</span>
+        <p>
+            我是div中的p
+            <br>
+            <span>我是p中的div</span>
+        </p>
+    </div>
+</body>
+</html>

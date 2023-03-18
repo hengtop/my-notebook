@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .line {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="../js/vue.js"></script>
+
+    <div id="app">
+        <h2 class="active">{{message}}</h2>
+        <!-- <h2 v-bind:class="{类名1:Boolean,类名2:Boolean}">{{message}}</h2> 
+    可以通过这样的方式来绑定class属性，若对应类名的布尔值为true，则就添加这个类名，反之则去除，同时你用了这种动态绑定的方式绑定的类名
+    你也可以用最原始的方式来再添加类名，然后这些类名会合并赋予给标签.
+-->
+        <h2 class="title" v-bind:class="{active: isActive,line: isLine}">{{message}}</h2>
+        <!--另外如果用动态绑定方式觉得类名太长的还可以定义一个方法来返回类名-->
+        <h2 class="title" v-bind:class="getClasses()">{{message}}</h2>
+        <button @click="btnClick">切换</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'helloWorld！',
+                isActive: true,
+                isLine: true
+            },
+            methods: {
+                btnClick: function () {
+                    this.isActive = !this.isActive;
+                    this.isLine = !this.isLine;
+                },
+                getClasses: function () {
+                    return {
+                        active: this.isActive,
+                        line: this.isLine
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./bower_components/mockjs/dist/mock.js"></script>
+    <!-- <script src="http://cdn.bootcss.com/Mock.js/1.0.0/mock-min.js"></script> -->
+</head>
+<body>
+  
+</body>
+<script>var MOCK='true';</script>
+<script type="text/javascript" src="./index.js"></script>
+<script>
+  $.ajax({
+    url:'/user/userinfo',
+    dataType:'json',
+    success:(res) => {
+      console.log(res);
+    }
+  })
+</script>
+</html>

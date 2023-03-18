@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <div id="test"></div>
+  <!-- crossorigin该属性可以获取到跨域脚本的错误信息 -->
+  <script src="../react//react.development.js" crossorigin></script>
+  <script src="../react//react-dom.development.js"></script>
+  <script src="../react//babel.min.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          message: 'hello world'
+        };
+        this.demo = this.btnClick.bind(this);
+      }
+      btnClick() {
+        //这里的this注意
+        //该函数在内部调用的时候默认是通过 fn.apply(undefined, [])(内部调用的时候是拿不到this的)
+        console.log(this);
+        //不要直接修改state中的属性，要通过setState方法
+        this.setState({
+          message: 'hello react'
+        })
+      }
+      /* render不要手动调用 */
+      render() {
+        const { message } = this.state;
+        return (
+          <div>
+            <h2>{message}</h2>
+            <button onClick={this.demo}>点击</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('test'));
+  </script>
+</body>
+
+</html>

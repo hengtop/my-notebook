@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="div1">点击</div>
+  <script>
+    const div = document.getElementById('div1');
+    
+    let addEvent = function(element, type, handle) {
+      if(window.addEventListener) {
+        addEvent = function(element, type, handle) {
+          element.addEventListener(type, handle, false)
+        }
+      } else if(window.attachEvent) {
+        addEvent = function(element, type, handle) {
+          element.attachEvent('on' + type, handle)
+        }
+      }
+      addEvent(element, type, handle);
+    }
+    
+    addEvent(div,'click', () => {
+      console.log("点击");
+    })
+
+  </script>
+</body>
+</html>
