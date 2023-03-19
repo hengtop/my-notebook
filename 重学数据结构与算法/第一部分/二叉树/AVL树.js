@@ -58,19 +58,9 @@ class AVLTree extends BinarySearchTree {
 
   add(element) {
     // 这里直接将新增的节点返回
-    const newNode = super.add(element, AVLNode);
-    if (newNode) {
-      this.afterAdd(newNode);
-    }
+    super.add(element, AVLNode);
   }
 
-  remove(element) {
-    // 这里能使用删除后的额节点是因为我们的删除操作只是处理的要删除节点的父节点对子节点的指向，并没有删除节点对父节点的指向
-    const targetNode = super.remove(element);
-    if (targetNode) {
-      this.afterRemove(targetNode);
-    }
-  }
   afterRemove(node) {
     // 往上找
     while (node !== null) {
@@ -301,7 +291,7 @@ const arr2 = [85, 19, 69, 3, 7, 99, 95];
 for (let i = 0; i < arr3.length; i++) {
   bst.add(arr3[i]);
 }
-// bst.remove(14);
+bst.remove(14);
 // bst.remove(58);
 // bst.remove(57);
 // bst.remove(19);

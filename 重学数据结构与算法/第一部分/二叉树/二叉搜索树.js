@@ -55,6 +55,7 @@ class BinarySearchTree {
     if (this.root === null) {
       this.root = new createNode(element, null);
       this._size++;
+      this.afterAdd(this.root);
       return this.root;
     }
     // 找到root节点
@@ -82,6 +83,7 @@ class BinarySearchTree {
       parent.left = newNode;
     }
     this._size++;
+    this.afterAdd(newNode);
     return newNode;
   }
 
@@ -110,9 +112,12 @@ class BinarySearchTree {
       } else if (targetNode === targetNode.parent.right) {
         targetNode.parent.right = replaceNode;
       }
+      // 这里传递被替代删除的节点并不会影响AVL树，主要是为了简化红黑树里的afterRemove的参数
+      this.afterRemove(replaceNode);
     } else if (targetNode.parent === null) {
       // node是叶子节点，并且是根节点
       this.root = null;
+      this.afterRemove(targetNode);
     } else {
       // node是叶子节点但不是根节点
       if (targetNode === targetNode.parent.right) {
@@ -120,11 +125,16 @@ class BinarySearchTree {
       } else {
         targetNode.parent.left = null;
       }
+      this.afterRemove(targetNode);
     }
     // 度0
     this.size--;
     return targetNode;
   }
+
+  afterRemove(node) {}
+
+  afterAdd(node) {}
 
   // 找到对应值的节点
   node(element) {
