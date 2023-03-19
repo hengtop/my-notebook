@@ -60,6 +60,7 @@ class RBTree extends BinarySearchTree {
   afterAdd(node) {
     const parent = node.parent;
 
+    // 添加根节点 或者上溢到根节点
     if (parent === null) {
       this.colorToBlack(node);
       return;
@@ -70,7 +71,7 @@ class RBTree extends BinarySearchTree {
 
     // 获取uncle节点
     const uncle = parent.sibling();
-    const grand = parent.parent;
+    const grand = this.colorToRed(parent.parent);
     // 染色
     if (this.isRed(uncle)) {
       this.colorToBlack(parent);
@@ -82,7 +83,6 @@ class RBTree extends BinarySearchTree {
 
     // 叔父节点不是红色
     if (parent.isLeftChild()) {
-      this.colorToRed(grand);
       if (node.isLeftChild()) {
         // LL
         this.colorToBlack(parent);
@@ -93,8 +93,6 @@ class RBTree extends BinarySearchTree {
       }
       this.rotateRight(grand);
     } else {
-      this.colorToRed(grand);
-
       if (node.isLeftChild()) {
         // RL
         this.colorToBlack(node);
