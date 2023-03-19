@@ -51,10 +51,7 @@ class RBTree extends BinarySearchTree {
 
   add(element) {
     // 这里直接将新增的节点返回
-    const newNode = super.add(element, RBNode);
-    if (newNode) {
-      this.afterAdd(newNode);
-    }
+    super.add(element, RBNode);
   }
 
   afterAdd(node) {
@@ -104,6 +101,93 @@ class RBTree extends BinarySearchTree {
         this.colorToBlack(parent);
       }
       this.rotateLeft(grand);
+    }
+  }
+  afterRemove(node) {
+    if (this.isRed(node)) {
+      this.colorToBlack(node);
+      return;
+    }
+    const parent = node.parent;
+    // 删除额是根节点
+    if (parent === null) return;
+
+    // 判断删除的node是左节点还是右节点,针对真正删除的节点处理需要根据哪个子节点为空来判断，
+    // 而只是对节点进行删除后的操作就需要调用isLeftChild方法判断了
+    const left = parent.left === null || node.isLeftChild();
+    // 获取被删除节点的兄弟节点
+    let sibling = left ? parent.right : parent.left;
+    if (left) {
+      // 兄弟节点在右边
+      // 兄弟节点在左边
+      // 如果兄弟节点是红色就需要转为兄弟节点为黑色的情况
+      if (this.isRed(sibling)) {
+        this.colorToBlack(sibling);
+        this.colorToRed(parent);
+        this.rotateLeft(parent);
+        // 更换兄弟
+        sibling = parent.right;
+      }
+
+      // 这样就可以统一处理兄弟节点为黑色的了
+      if (this.isBlack(sibling.left) && this.isBlack(sibling.right)) {
+        // 兄弟节点没有红色子节点，父节点下溢合并
+        const parentBlack = this.isBlack(parent);
+        this.colorToBlack(parent);
+        this.colorToRed(sibling);
+        if (parentBlack) {
+          // 需要递归，当作父节点也被删除来进行处理
+          this.afterRemove(parent, null);
+        }
+      } else {
+        // 兄弟节点至少有一个红色子节点
+
+        // 兄弟节点左边是黑色或者空节点
+        if (this.isBlack(sibling.right)) {
+          this.rotateRight(sibling);
+          sibling = parent.right;
+        }
+        // 继承父节点的颜色
+        this.color(sibling, this.colorOf(parent));
+        this.colorToBlack(sibling.right);
+        this.colorToBlack(parent);
+        this.rotateLeft(parent);
+      }
+    } else {
+      // 兄弟节点在左边
+      // 如果兄弟节点是红色就需要转为兄弟节点为黑色的情况
+      if (this.isRed(sibling)) {
+        this.colorToBlack(sibling);
+        this.colorToRed(parent);
+        this.rotateRight(parent);
+        // 更换兄弟
+        sibling = parent.left;
+      }
+
+      // 这样就可以统一处理兄弟节点为黑色的了
+      if (this.isBlack(sibling.left) && this.isBlack(sibling.right)) {
+        // 兄弟节点没有红色子节点，父节点下溢合并
+        const parentBlack = this.isBlack(parent);
+        this.colorToBlack(parent);
+        this.colorToRed(sibling);
+        if (parentBlack) {
+          // 需要递归，当作父节点也被删除来进行处理
+          this.afterRemove(parent, null);
+        }
+      } else {
+        // 兄弟节点至少有一个红色子节点
+
+        // 兄弟节点左边是黑色或者空节点
+        if (this.isBlack(sibling.left)) {
+          this.rotateLeft(sibling);
+          sibling = parent.left;
+        }
+        // 继承父节点的颜色
+        this.color(sibling, this.colorOf(parent));
+        this.colorToBlack(sibling.left);
+        this.colorToBlack(parent);
+        this.rotateRight(parent);
+      }
     }
   }
   /**
@@ -162,8 +246,18 @@ const arr3 = [
   155, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0,
 ];
 const arr2 = [85, 19, 69, 3, 7, 99, 95];
-arr3.forEach((item) => {
+arr.forEach((item) => {
   rbt.add(item);
 });
 
+// rbt.remove(9);
+// rbt.remove(1);
+// rbt.remove(5);
+// rbt.remove(10);
+// rbt.remove(7);
+// rbt.remove(4);
+// rbt.remove(8);
+// rbt.remove(2);
+// rbt.remove(3);
+// rbt.add(6);
 rbt.toString();
