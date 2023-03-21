@@ -1,6 +1,3 @@
-import printTree2 from "./printTree2.js";
-import printTree from "./printTree.js";
-
 class Node {
   constructor(element, parent, left = null, right = null) {
     this.left = left;
@@ -131,7 +128,7 @@ class BinarySearchTree {
       this.afterRemove(targetNode);
     }
     // 度0
-    this.size--;
+    this._size--;
     return targetNode;
   }
 
@@ -182,16 +179,15 @@ class BinarySearchTree {
    * 中序遍历右子树--> 根节点 --> 中序遍历左子树
    * 两个打印出来的结果就是升序或者降序
    */
-  inorderTraversal() {
-    let treeArray = [];
+  inorderTraversal(callback) {
     function NLR(biTree) {
       if (biTree == null) return;
       NLR(biTree.left);
-      treeArray.push(biTree.element);
+      const flag = callback(biTree);
+      if (!flag) return;
       NLR(biTree.right);
     }
     NLR(this.root);
-    return treeArray;
   }
 
   // 后序遍历
@@ -272,20 +268,20 @@ class BinarySearchTree {
     }
   }
   // console打印器 不支持多层级的
-  toStringOld() {
-    function NLR(biTree, index) {
-      if (biTree == null) return;
-      treeArray[index] = biTree.element;
-      NLR(biTree.left, 2 * index + 1);
-      NLR(biTree.right, 2 * index + 2);
-    }
-    let treeArray = [];
-    NLR(this.root, 0);
-    printTree2(treeArray);
-  }
-  toString() {
-    printTree(this.root);
-  }
+  // toStringOld() {
+  //   function NLR(biTree, index) {
+  //     if (biTree == null) return;
+  //     treeArray[index] = biTree.element;
+  //     NLR(biTree.left, 2 * index + 1);
+  //     NLR(biTree.right, 2 * index + 2);
+  //   }
+  //   let treeArray = [];
+  //   NLR(this.root, 0);
+  //   printTree2(treeArray);
+  // }
+  // toString() {
+  //   printTree(this.root);
+  // }
   //打印树的高度
   height() {
     return this.getHeight(this.root);
@@ -364,31 +360,4 @@ class BinarySearchTree {
   }
 }
 
-const bst = new BinarySearchTree();
-const arr = [7, 4, 2, 1, 3, 5, 9, 8, 11, 10];
-for (let i = 0; i < arr.length; i++) {
-  bst.add(arr[i]);
-}
-//bst.toString();
-
-// // 加入回调函数增强遍历方法
-let n = null;
-bst.preorderTraversal((item) => {
-  if (item.element === 7) {
-    n = item;
-    return item;
-  }
-});
-// console.log(bst.inorderTraversal());
-// console.log(bst.postorderTraversal());
-// console.log(bst.levelOrderTraversal());
-//console.log(bst.height());
-//console.log(bst.getHeight_no_recurse());
-//console.log(bst.isCheckComplete());
-//console.log(bst.inorderTraversal());
-//console.log(bst.succcessor(n)?.element);
-// bst.toString();
-// bst.remove(10);
-// bst.toString();
-
-export { BinarySearchTree, Node };
+module.exports = { BinarySearchTree, Node };
