@@ -338,7 +338,7 @@ class BinarySearchTree {
       return startNode.parent;
     }
   }
-  // 找到节点额后继节点
+  // 找到节点的后继节点
   succcessor(node) {
     if (node === null || (node.right === null && node.parent === null))
       return null;
