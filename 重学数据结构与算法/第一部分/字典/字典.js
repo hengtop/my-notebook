@@ -1,17 +1,39 @@
-const { BinarySearchTree, Node } = require("../集合/二叉搜索树");
-
 // 利用红黑树来实现字典
-class MapNode extends Node {
-  constructor(key, value, parent) {
-    super();
+class MapNode {
+  constructor(key, value, parent, left = null, right = null) {
     this.color = false;
+    this.left = left;
+    this.right = right;
     this.parent = parent;
     this.key = key;
     this.value = value;
   }
+  isLeftChild() {
+    return this.parent != null && this === this.parent.left;
+  }
+
+  isRightChild() {
+    return this.parent != null && this === this.parent.right;
+  }
+
+  hasTwoChildren() {
+    return this.left !== null && this.right !== null;
+  }
+
+  sibling() {
+    if (this.isLeftChild()) {
+      return this.parent.right;
+    }
+
+    if (this.isRightChild()) {
+      return this.parent.left;
+    }
+
+    return null;
+  }
 }
 
-class BinarySearchTreeIterator {
+class TreeMapIterator {
   constructor(root) {
     this.stack = [];
     this.current = root;
@@ -33,11 +55,24 @@ class BinarySearchTreeIterator {
   }
 }
 
-class Map extends BinarySearchTree {
+class TreeMap {
   #RED = false;
   #BLACK = true;
   constructor() {
-    super();
+    this._size = 0;
+    this.root = null;
+  }
+  size() {
+    return this._size;
+  }
+
+  clear() {
+    this.root = null;
+    this._size = 0;
+  }
+
+  isEmpty() {
+    return this.size() === 0;
   }
   put(key, value, createNode = MapNode) {
     // 不能传递一个空的key
@@ -168,7 +203,7 @@ class Map extends BinarySearchTree {
   }
 
   [Symbol.iterator]() {
-    const iterator = new BinarySearchTreeIterator(this.root);
+    const iterator = new TreeMapIterator(this.root);
     return {
       next() {
         if (iterator.hasNext()) {
@@ -420,24 +455,28 @@ class Map extends BinarySearchTree {
   }
 }
 
-const map = new Map();
+// const map = new TreeMap();
 
-map.put("zhangsan", 18);
-map.put("lisi", 20);
-map.put("wangpazi", 22);
+// map.put("zhangsan", 18);
+// map.put("lisi", 20);
+// map.put("wangpazi", 22);
 
-map.put("wangwu", 24);
-// console.log(map.remove("lisi"));
-// console.log(map.remove("zhangsan"));
-// console.log(map.remove("wangpazi"));
-console.log(map.remove("wangwu"));
+// map.put("wangwu", 24);
+// // console.log(map.remove("lisi"));
+// // console.log(map.remove("zhangsan"));
+// // console.log(map.remove("wangpazi"));
+// console.log(map.remove("wangwu"));
 
-console.log(map.containsKey("wangwu"));
+// console.log(map.containsKey("wangwu"));
 
-console.log(map.size());
+// console.log(map.size());
 
-for (const iterator of map) {
-  console.log(iterator);
-}
+// for (const iterator of map) {
+//   console.log(iterator);
+// }
 
 //console.log(map.get("zhangsan"));
+
+module.exports = {
+  TreeMap,
+};
