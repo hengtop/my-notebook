@@ -10,3 +10,4 @@ function stringHashCode(str) {
 }
 
 console.log(stringHashCode("jack"));
+console.log(stringHashCode("false"));
