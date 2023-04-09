@@ -28,5 +28,5 @@ function isObject(obj) {
   return Object.prototype.toString.call(obj) === "[object Object]";
 }
 
-console.log(objectHashCode(false));
-console.log(objectHashCode(1));
+console.log(objectHashCode({ name: 1, age: 1 }));
+console.log(objectHashCode([1, "2", 1]));

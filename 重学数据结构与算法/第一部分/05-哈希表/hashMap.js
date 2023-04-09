@@ -38,6 +38,7 @@ class HashMap {
   #BLACK = true;
   // 16
   #DEFAULT_CAPACITY = 1 << 4;
+  #DEFAULT_LOAD_FACTOR = 0.75;
   constructor() {
     this._size = 0;
     this.table = new Array(this.#DEFAULT_CAPACITY);
@@ -87,6 +88,8 @@ class HashMap {
   }
 
   put(key, value) {
+    // 是否需要扩容
+    this.resize();
     const newKeyHash = this.hashCode(key);
     const index = this.#index(key);
     // 取出红黑树根节点
@@ -141,6 +144,7 @@ class HashMap {
       // 覆盖
       targetNode.key = sNode.key;
       targetNode.value = sNode.value;
+      targetNode.hash = sNode.hash;
       // 删除后继结点（后继节点的度为0或者1，刚刚好可以复用删除度为1或者0的逻辑）
       targetNode = sNode;
     }
@@ -360,6 +364,79 @@ class HashMap {
     node.parent = parent;
   }
 
+  // 扩容
+  resize() {
+    if (this._size / this.table.length <= this.#DEFAULT_LOAD_FACTOR) return;
+    const oldTable = this.table;
+    // 扩容两倍
+    this.table = new Array(oldTable.length << 1);
+
+    const queue = [];
+    for (let i = 0; i < oldTable.length; i++) {
+      const bucket = oldTable[i];
+      if (!bucket) continue;
+      // 遍历红黑树
+      queue.push(bucket);
+      while (queue.length > 0) {
+        const node = queue.pop();
+        if (node.left) {
+          queue.push(node.left);
+        }
+        if (node.right) {
+          queue.push(node.right);
+        }
+        // 注意这里移动操作要放在左右子树入队后，不然内部的重置操作会影响左右子树入队
+        this.moveNode(node);
+      }
+    }
+  }
+
+  // 扩容时将oldTable中的node移动到新的table中去
+  moveNode(newNode) {
+    // 重置node
+    newNode.left = null;
+    newNode.right = null;
+    newNode.parent = null;
+    newNode.color = this.#RED;
+
+    const index = this.#index_node(newNode);
+    // 取出红黑树根节点
+    let root = this.table[index];
+    if (root == null) {
+      // 直接移动到新的table中去
+      root = newNode;
+      this.table[index] = root;
+      this.afterPut(root);
+      return null;
+    }
+
+    // 找到root节点
+    let node = root;
+    let parent = root;
+    let cmp = true;
+    const newNodeKeyHash = newNode.hash;
+    // 找到父节点
+    do {
+      cmp = this.compare(newNode.key, node.key, newNodeKeyHash, node.hash);
+      parent = node;
+      if (cmp > 0) {
+        node = node.right;
+      } else if (cmp < 0) {
+        node = node.left;
+      }
+    } while (node != null);
+
+    newNode.parent = parent;
+
+    // 确定节点该插到那个位置
+    if (cmp > 0) {
+      parent.right = newNode;
+    } else if (cmp < 0) {
+      parent.left = newNode;
+    }
+    this.afterPut(newNode);
+  }
+
   /**
    * @description 染色
    * @param {*} node
@@ -423,8 +500,10 @@ class HashMap {
    * @param {*} h1
    * @param {*} h2
    * @returns
-   * 首先比较哈希值，不相等说明不是同一个key，如果相等就比较equals，equals相等就是同一个key
-   * 如果equals不同就比较类名，类名不同就不是同一个key，如果类名也相同就判断key本身是否有实现compareable
+   * 首先比较哈希值，不相等说明不是同一个key，
+   * 如果相等就比较equals，equals相等就是同一个key
+   * 如果equals不同就比较类名，类名不同就不是同一个key，
+   * 如果类名也相同就判断key本身是否有实现compareable
    * 如果没有实现就比较两个key的内存地址
    */
   compare(k1, k2, h1, h2) {
@@ -433,19 +512,25 @@ class HashMap {
     if (result !== 0) return result;
     else {
       // 哈希值相同就比较equals
-      // 判断k1是否是对象
-      if (this.#isObject(k1) && this.#isObject(k2)) {
-        if (this.equals(k1, k2)) {
-          return 0;
-        } else {
-          // 转为字符串进行比较
-          return String(k1).length - String(k2).length;
-        }
+      if (this.equals(k1, k2)) {
+        return 0;
+      } else {
+        return String(k1).length - String(k2).length;
       }
     }
-    return h1 - h2;
   }
 
+  /**
+   *
+   * @param {*} key
+   * @returns
+   * 这里的实现并不是以下js的实现原理，如果使用java是实现的话就按照以下描述的方式实现
+   * 查找就是首先比较哈希值，
+   * 如果哈希值相等就比较equals，相等就表示是相同的key，返回对应的node
+   * 如果不相等就看key是否实现可比较方法，实现了就调用
+   * 如果没有实现可比较性就直接扫描左右子树（不要根据内存地址决定往左往右了，因为内存地址并不是恒定不变的）
+   *
+   */
   node(key) {
     let node = this.table[this.#index(key)];
     let h1 = this.hashCode(key);
@@ -467,7 +552,12 @@ class HashMap {
     let hash = this.hashCode(key);
     // 扰动计算，让计算更加充分
     hash = hash ^ (hash >>> 16);
+
     return hash & (this.table.length - 1);
+  }
+  // 已经有node了
+  #index_node(node) {
+    return node.hash & (this.table.length - 1);
   }
 
   hashCode(key) {
@@ -562,31 +652,4 @@ class HashMap {
   }
 }
 
-const hashMap = new HashMap();
-
-hashMap.put({ name: 1, age: 1 }, { name: 1, age: 1 });
-hashMap.put({ name: 1, age: 1 }, 3);
-hashMap.put("jack", 676);
-hashMap.put(1, 34);
-hashMap.put(true, 22);
-hashMap.put(Symbol("1"), 2);
-console.log("containsValue", hashMap.containsValue(22));
-console.log("---remove---");
-hashMap.remove(1, 34);
-hashMap.remove(true, 22);
-hashMap.remove(Symbol("1"), 2);
-hashMap.remove({ name: 1, age: 2 }, 3);
-hashMap.remove("jack", 676);
-
-console.log("---size---");
-console.log(hashMap.size());
-
-console.log("---get----");
-console.log("1", hashMap.get(1));
-console.log("{ name: 1, age: 1 }", hashMap.get({ name: 1, age: 1 }));
-console.log("{ name: 1, age: 2 }", hashMap.get({ name: 1, age: 2 }));
-console.log("Symbol('1')", hashMap.get(Symbol("1")));
-console.log("jack", hashMap.get("jack"));
-console.log("true", hashMap.get(true));
-
-console.log(hashMap.containsValue(2));
+module.exports = HashMap;
