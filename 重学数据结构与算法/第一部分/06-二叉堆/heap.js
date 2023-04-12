@@ -1,8 +1,18 @@
 class BinaryHeap {
   #DEFAULE_CAPACITY = 10;
-  constructor() {
-    this.elements = new Array(this.#DEFAULE_CAPACITY);
-    this._size = 0;
+  constructor(elements = []) {
+    this._size = elements ? elements.length : 0;
+    if (elements == null || elements.length === 0) {
+      this.elements = new Array(this.#DEFAULE_CAPACITY);
+    } else {
+      this.elements = new Array(
+        Math.max(this.#DEFAULE_CAPACITY, elements.length)
+      );
+      elements.forEach((item, index) => {
+        this.elements[index] = item;
+      });
+    }
+    this.heapify();
   }
 
   size() {
@@ -14,7 +24,10 @@ class BinaryHeap {
     }
     this._size = null;
   }
-  get(element) {}
+  get() {
+    this.emptyCheck();
+    return this.elements[0];
+  }
 
   add(element) {
     this.elementNotNull(element);
@@ -51,6 +64,14 @@ class BinaryHeap {
     return root;
   }
 
+  heapify() {
+    if (this._size === 0) return;
+    // 自下而上的下滤
+    for (let i = (this._size >> 1) - 1; i >= 0; i--) {
+      this.siftDown(i);
+    }
+  }
+
   siftUp(index) {
     // node 大于父节点，与父节点交换位置
     // node小于等于父节点，或者没有父节点就退出循环
@@ -69,7 +90,7 @@ class BinaryHeap {
     // }
     let element = this.elements[index];
     while (index > 0) {
-      let pIndex = Math.floor((index - 1) >> 1);
+      let pIndex = (index - 1) >> 1;
       let parent = this.elements[pIndex];
       const cmp = this.compare(element, parent);
       if (cmp <= 0) break;
@@ -83,7 +104,7 @@ class BinaryHeap {
   siftDown(index) {
     let element = this.elements[index];
     // 保证index必须是非叶子节点  必须要小于第一个叶子节点的索引---非叶子节点的数量
-    const half = Math.floor(this._size >> 2);
+    const half = this._size >> 1;
     while (index < half) {
       // 1.只有左子节点
       // 2.同时有左右子节点
@@ -93,7 +114,7 @@ class BinaryHeap {
       let rightChildIndex = childIndex + 1;
       if (
         rightChildIndex < this._size &&
-        this.compare(this.elements[rightChildIndex], child)
+        this.compare(this.elements[rightChildIndex], child) > 0
       ) {
         // 说明有右子节点,且大于左节点
         child = this.elements[(childIndex = rightChildIndex)];
@@ -125,7 +146,7 @@ class BinaryHeap {
     // 新容量为旧容量的1.5倍
     let newCapacity = oldCapacity + (oldCapacity >> 1);
     let newElement = new Array(newCapacity);
-    for (let i = 0; i < size; i++) {
+    for (let i = 0; i < this._size; i++) {
       newElement[i] = this.elements[i];
     }
     this.elements = newElement;
@@ -150,15 +171,19 @@ class BinaryHeap {
   }
 }
 
-const heap = new BinaryHeap();
+module.exports = BinaryHeap;
 
-heap.add(68);
-heap.add(72);
-heap.add(43);
-heap.add(50);
-heap.add(38);
-heap.add(10);
-heap.add(90);
-heap.add(65);
-heap.replace(70);
-heap.print();
+const heap = new BinaryHeap([]);
+
+// heap.add(68);
+// heap.add(43);
+// heap.add(50);
+// heap.add(38);
+// heap.add(10);
+// heap.add(90);
+
+// heap.add(65);
+
+// heap.add(65);
+//heap.replace(70);
+// heap.print();
