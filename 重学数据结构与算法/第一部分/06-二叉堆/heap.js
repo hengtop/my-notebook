@@ -28,6 +28,9 @@ class BinaryHeap {
     this.emptyCheck();
     return this.elements[0];
   }
+  isEmpty() {
+    return this._size === 0;
+  }
 
   add(element) {
     this.elementNotNull(element);

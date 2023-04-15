@@ -10,11 +10,6 @@ class Node {
     this.parent = parent;
     this.character = null;
   }
-  // getChildren() {
-  //   return this.children == null
-  //     ? (this.children = new HashMap())
-  //     : this.children;
-  // }
 }
 
 class Trie {
@@ -26,7 +21,9 @@ class Trie {
   size() {
     return this._size;
   }
-  isEmpty() {}
+  isEmpty() {
+    return this._size === 0;
+  }
   clear() {
     this._size = 0;
     this.root = null;
@@ -98,7 +95,7 @@ class Trie {
     return oldValue;
   }
   // 前缀搜索
-  starsWith(prefix) {
+  startsWith(prefix) {
     return this.node(prefix) !== null;
   }
 
@@ -129,14 +126,4 @@ class Trie {
   }
 }
 
-const trie = new Trie();
-
-trie.add("zhangsan", 6);
-trie.add("lisi", 7);
-trie.add("zhangsan666", 77);
-trie.add("zhangsan666777", 88);
-console.log(trie.size());
-console.log(trie.remove("zhangsan"));
-console.log(trie.remove("zhangsan666777"));
-console.log(trie.contains("zhangsan666777"));
-console.log(trie.size());
+module.exports = Trie;

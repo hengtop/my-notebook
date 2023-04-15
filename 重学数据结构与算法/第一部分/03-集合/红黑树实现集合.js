@@ -61,18 +61,17 @@ class Set {
 }
 
 const set = new Set();
-
+set.add(9);
 set.add(1);
 set.add(2);
 set.add(3);
 
-set.add(1);
+set.add(11);
 set.add(4);
-set.add(5);
 console.log(set.container(2));
-set.remove(4);
-set.remove(3);
-set.remove(5);
+// set.remove(4);
+// set.remove(3);
+// set.remove(5);
 console.log(set.isEmpty());
 console.log(set.size());
 
