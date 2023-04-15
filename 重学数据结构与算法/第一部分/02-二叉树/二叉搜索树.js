@@ -211,6 +211,84 @@ class BinarySearchTree {
     return treeArray;
   }
 
+  /**
+   * 前序遍历非递归
+   */
+  preorderTraversal_no_recurse(callback) {
+    if (this.root == null) return;
+    let node = this.root;
+    const stack = [];
+    while (true) {
+      if (node != null) {
+        if (callback(node)) return;
+
+        if (node.right) stack.push(node.right);
+        node = node.left;
+      } else if (stack.length === 0) {
+        return;
+      } else {
+        node = stack.pop();
+      }
+    }
+  }
+  // 前序遍历非递归思路2
+  preorderTraversal_no_recurse_2(callback) {
+    if (this.root == null) return;
+    let node = this.root;
+    const stack = [];
+    stack.push(node);
+    while (stack.length) {
+      const top = stack.pop();
+      if (callback(top)) return;
+      if (top.right) stack.push(top.right);
+      if (top.left) stack.push(top.left);
+    }
+  }
+  /**
+   * 中序遍历非递归
+   */
+  inorderTraversal_no_recurse(callback) {
+    if (this.root == null) return;
+    let node = this.root;
+    const stack = [];
+    while (true) {
+      if (node != null) {
+        stack.push(node);
+        node = node.left;
+      } else if (stack.length === 0) {
+        return;
+      } else {
+        node = stack.pop();
+        if (callback(node)) return;
+        node = node.right;
+      }
+    }
+  }
+
+  /**
+   * 后序遍历非递归
+   */
+  postorderTraversal_no_recurse(callback) {
+    if (this.root == null) return;
+    let node = this.root;
+    // 记录上一次pop访问的节点
+    let prev = null;
+    const stack = [];
+    stack.push(node);
+    while (stack.length) {
+      const top = stack[stack.length - 1];
+      // 如果是叶子节点，或者是上一个叶子叶子节点的父节点
+      if (this.isLeafNode(top) || (prev != null && prev.parent === top)) {
+        prev = stack.pop();
+        if (callback(prev)) return;
+      } else {
+        // 查看栈顶元素
+        if (top.right) stack.push(top.right);
+        if (top.left) stack.push(top.left);
+      }
+    }
+  }
+
   // 层序遍历
   /**
    *
@@ -342,7 +420,7 @@ class BinarySearchTree {
       return startNode.parent;
     }
   }
-  // 找到节点额后继节点
+  // 找到节点的后继节点
   succcessor(node) {
     if (node === null || (node.right === null && node.parent === null))
       return null;
@@ -369,16 +447,21 @@ const arr = [7, 4, 2, 1, 3, 5, 9, 8, 11, 10];
 for (let i = 0; i < arr.length; i++) {
   bst.add(arr[i]);
 }
+
 //bst.toString();
 
 // // 加入回调函数增强遍历方法
-let n = null;
+// let n = null;
+let str1 = "";
 bst.preorderTraversal((item) => {
-  if (item.element === 7) {
-    n = item;
-    return item;
-  }
+  str1 += item.element + " ";
 });
+console.log(str1);
+let str2 = "";
+bst.preorderTraversal_no_recurse_2((item) => {
+  str2 += item.element + " ";
+});
+console.log(str2);
 // console.log(bst.inorderTraversal());
 // console.log(bst.postorderTraversal());
 // console.log(bst.levelOrderTraversal());
@@ -389,6 +472,6 @@ bst.preorderTraversal((item) => {
 //console.log(bst.succcessor(n)?.element);
 // bst.toString();
 // bst.remove(10);
-// bst.toString();
+bst.toString();
 
 export { BinarySearchTree, Node };
