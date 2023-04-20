@@ -8,7 +8,11 @@ class ObjectHeap extends heap {
     this.customCompare = customCompare;
   }
   compare(a, b) {
-    return this.customCompare(a, b);
+    if (this.customCompare) {
+      return this.customCompare(a, b);
+    } else {
+      return super.compare(a, b);
+    }
   }
 }
 
