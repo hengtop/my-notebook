@@ -10,6 +10,7 @@ Array.prototype.bubbleSort = function () {
 
   for (let end = arr.length - 1; end >= 0; end--) {
     for (let begin = 0; begin < end; begin++) {
+      // 注意这里比较不能写相等，不然会导致算法不稳定
       if (this[begin] > this[begin + 1]) {
         this.swap(begin, begin + 1);
       }
