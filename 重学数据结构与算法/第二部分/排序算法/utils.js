@@ -12,6 +12,7 @@ Array.prototype.swap = function (x, y) {
  * @param {*} count 生成的个数
  * @param {*} min //范围最小值
  * @param {*} max // 范围最大值
+ * @param {*} flag // asc/desc  生成升序还是降序的数组（不传递就默认为生成的数据）
  */
 function randomGenArr(count = 10, min = 0, max = 100, flag) {
   const arr = [];
