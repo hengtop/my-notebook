@@ -78,10 +78,18 @@ function printTimeLog(fnName, thisArg, ...args) {
  *
  * @param {*} arr 数组
  * @param {*} fnName 排序函数
- * @param {*} flag 测试升序或者降序
+ * @param {
+ *   flag 升序还是降序 asc 升序 desc 降序
+ *   printSortedRes 是否打印排序结果
+ * } option
  * @param  {...any} arg 排序函数的参数
  */
-function sortTest(arr, fnName, flag = "asc", ...arg) {
+function sortTest(
+  arr,
+  fnName,
+  { flag = "asc", printSortedRes = true } = {},
+  ...arg
+) {
   // 保存原数组
   const testArr = [...arr];
   // 要测试排序的数组
@@ -100,11 +108,16 @@ function sortTest(arr, fnName, flag = "asc", ...arg) {
   const jsonArr = JSON.stringify(testArr);
   const jsonSortedArr = JSON.stringify(sorted);
   if (jsonArr === jsonSortedArr) {
-    console.log(fnName + ": 排序成功~~~", sorted);
+    printSortedRes
+      ? console.log(fnName + ": 排序成功~~~", sorted)
+      : console.log(fnName + ": 排序成功~~~");
   } else {
-    console.log(fnName + ": 排序失败", arr);
+    printSortedRes
+      ? console.log(fnName + ": 排序失败", arr)
+      : console.log(fnName + ": 排序失败");
   }
   console.log("---------------------");
+  return _sorted;
 }
 
 module.exports = {
