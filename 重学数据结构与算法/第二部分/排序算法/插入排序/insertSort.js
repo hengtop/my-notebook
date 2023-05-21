@@ -125,10 +125,10 @@ function binarySearch2(arr, item) {
   return left;
 }
 
-console.log(binarySearch([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 0));
+//console.log(binarySearch([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 0));
 
-4;
-3;
+//4;
+//3;
 
 module.exports = {
   Array,

@@ -6,4 +6,4 @@ const arr = randomGenArr(100, 0, 200);
 
 //sortTest(arr, "countSort1");
 
-sortTest(arr, "radixSort1");
+sortTest([126, 69, 593, 23, 6, 89, 54, 8], "radixSort");
