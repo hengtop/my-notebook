@@ -6,3 +6,4 @@ const arr = randomGenArr(10000, 0, 10000);
 
 sortTest(arr, "shellSort");
 sortTest(arr, "quickSort2");
+sortTest(arr, "shellSort1");
