@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-11-09 16:34:19
  * @LastEditors: zhangheng
- * @LastEditTime: 2023-02-05 20:22:30
+ * @LastEditTime: 2023-05-31 21:07:47
  */
 
 //引入cli颜色修改库
@@ -30,11 +30,15 @@ const createProjectAction = async (project) => {
     // 用户选择的模板类型
     const { type, template } = await checkProjectTemplate();
     console.log(type, template);
-    const branch = type !== "vue" ? template : "main";
+    const branch = "main";
     //执行终端命令,使用git clone来
-    await commandSpawn("git", ["clone", "-b", branch, [repo[type]], project], {
-      clone: true,
-    });
+    await commandSpawn(
+      "git",
+      ["clone", "-b", branch, [repo[template]], project],
+      {
+        clone: true,
+      }
+    );
     //下载完成后执行npm install命令
     //await commandSpawn(command, ["install"], { cwd: `./${project}` });
     //运行项目
