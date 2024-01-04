@@ -5,7 +5,11 @@ const { UnionFind_R } = require("./quickUnion_R");
 const { UnionFind_RC } = require("./quickUnion_RC");
 const { UnionFind_RPS } = require("./quickUnion_RPS");
 const { UnionFind_RPSH } = require("./quickUnion_RPSh");
+const { GenericQuickUnion } = require("./genericQuickUnion");
 
+/**
+ * 测试并查集的耗时
+ */
 function test() {
   const count = 1500000;
 
@@ -22,6 +26,11 @@ function test() {
   const uf6 = new UnionFind_RPS(count);
 
   const uf7 = new UnionFind_RPSH(count);
+
+  const uf8 = new GenericQuickUnion();
+  for (let i = 0; i < count; i++) {
+    uf8.makeSet(i);
+  }
 
   // console.time("UnionFind_QF");
   // for (let i = 0; i < count; i++) {
@@ -134,6 +143,22 @@ function test() {
     );
   }
   console.timeEnd("UnionFind_RPSH");
+
+  console.time("GenericQuickUnion");
+  for (let i = 0; i < count; i++) {
+    uf8.union(
+      Math.floor(Math.random() * count),
+      Math.floor(Math.random() * count)
+    );
+  }
+
+  for (let i = 0; i < count; i++) {
+    uf8.isSame(
+      Math.floor(Math.random() * count),
+      Math.floor(Math.random() * count)
+    );
+  }
+  console.timeEnd("GenericQuickUnion");
 }
 
 test();
