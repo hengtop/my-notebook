@@ -146,6 +146,74 @@ class Graph {
     dfs(v, handle);
     finishV.clear();
   }
+  nrc_depthFirstSearch(v, handle) {
+    // 存放已经访问过的节点
+    const vertex = this.vertexs.get(v);
+    if (vertex == null) return;
+    // 保存已访问的顶点集合
+    const finishV = new Set();
+    const stack = [];
+
+    // 开始先入栈
+    stack.push(vertex);
+    // 记录访问
+    finishV.add(v);
+    // 处理逻辑
+    handle(vertex);
+    // 循环
+    while (stack.length) {
+      // 弹出第一个
+      const topVertex = stack.pop();
+
+      // 访问该顶点的其他边
+      for (const [, value] of topVertex.toEdges) {
+        // 判断是否已经访问过
+        // 如果这条边的顶点你已经访问过就换
+        if (finishV.has(value.to)) continue;
+        // 将边的两边顶点加入栈中
+        // 这里为什么要将from再次加入 是因为之后回来后要访问该点的其他边
+        stack.push(this.vertexs.get(value.from));
+        stack.push(this.vertexs.get(value.to));
+        finishV.add(value.to);
+        handle(this.vertexs.get(value.to));
+        break;
+      }
+    }
+  }
+  /**
+   * 返回图的拓扑排序
+   * @returns list
+   */
+  topologicalSort() {
+    const list = [];
+    const queue = [];
+    const indegreeMap = new Map();
+    // 初始化，将度为0的节点放入队列中,其余的记录到map中
+    this.vertexs.forEach((v, k) => {
+      let indegree = v.fromEdges.size;
+      if (indegree === 0) {
+        queue.push(v);
+      } else {
+        // 记录入度
+        indegreeMap.set(k, indegree);
+      }
+    });
+    while (queue.length) {
+      const resV = queue.shift();
+      list.push(resV);
+      // 更新其他节点的度
+      for (let [, value] of resV.toEdges) {
+        let toIn = indegreeMap.get(value.to) - 1;
+        if (toIn === 0) {
+          queue.push(this.vertexs.get(value.to));
+        } else {
+          // 更新度
+          indegreeMap.set(value.to, toIn);
+        }
+      }
+    }
+    return list;
+  }
 }
 
 // const g = new Graph();

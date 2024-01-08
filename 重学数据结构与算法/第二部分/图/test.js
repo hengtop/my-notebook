@@ -55,6 +55,19 @@ const DFS_02 = [
   ["f", "c"],
 ];
 
+const TOPO = [
+  [0, 2],
+  [1, 0],
+  [2, 5],
+  [2, 6],
+  [3, 1],
+  [3, 5],
+  [3, 7],
+  [5, 7],
+  [6, 4],
+  [7, 6],
+];
+
 // 有向图初始化
 function d_initGraph(g, data) {
   data.forEach((item) => {
@@ -91,8 +104,22 @@ const g3 = ud_initGraph(new Graph(), DFS_01);
 //   console.log(v.value);
 // });
 
+// const g4 = d_initGraph(new Graph(), DFS_02);
+
+// g4.depthFirstSearch("a", (v) => {
+//   console.log(v.value);
+// });
+
 const g4 = d_initGraph(new Graph(), DFS_02);
 
-g4.depthFirstSearch("a", (v) => {
-  console.log(v.value);
-});
+// g4.nrc_depthFirstSearch("d", (v) => {
+//   console.log(v.value);
+// });
+// console.log("--------");
+// g4.depthFirstSearch("d", (v) => {
+//   console.log(v.value);
+// });
+
+// 注意初始化为有向无环图
+const g5 = d_initGraph(new Graph(), TOPO);
+console.log(g5.topologicalSort().map((item) => item.value));
