@@ -1,7 +1,8 @@
 class BinaryHeap {
   #DEFAULE_CAPACITY = 10;
-  constructor(elements = []) {
+  constructor(elements = [], customCompare) {
     this._size = elements ? elements.length : 0;
+    this.customCompare = customCompare;
     if (elements == null || elements.length === 0) {
       this.elements = new Array(this.#DEFAULE_CAPACITY);
     } else {

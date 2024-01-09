@@ -3,9 +3,8 @@
 const heap = require("./heap");
 
 class ObjectHeap extends heap {
-  constructor(element, customCompare) {
-    super(element);
-    this.customCompare = customCompare;
+  constructor(element = [], customCompare) {
+    super(element, customCompare);
   }
   compare(a, b) {
     if (this.customCompare) {
@@ -38,5 +37,6 @@ class Person {
 // objHeap.add(new Person(16, "nero"));
 
 // console.log(objHeap.print());
+// console.log(objHeap.get());
 
 module.exports = ObjectHeap;
