@@ -1,4 +1,4 @@
-const { Graph } = require("./graph");
+const { Graph, WeightManager } = require("./graph");
 
 const BFS_01 = [
   ["A", "B"],
@@ -68,6 +68,34 @@ const TOPO = [
   [7, 6],
 ];
 
+const MST_01 = [
+  [0, 2, 2],
+  [0, 4, 7],
+  [1, 2, 3],
+  [1, 5, 1],
+  [1, 6, 7],
+  [2, 4, 4],
+  [2, 5, 3],
+  [2, 6, 6],
+  [3, 7, 9],
+  [4, 6, 8],
+  [5, 6, 4],
+  [5, 7, 5],
+];
+
+const MST_02 = [
+  ["A", "B", 17],
+  ["A", "F", 1],
+  ["A", "E", 16],
+  ["B", "C", 6],
+  ["B", "D", 5],
+  ["B", "F", 11],
+  ["C", "D", 10],
+  ["D", "E", 4],
+  ["D", "F", 14],
+  ["E", "F", 33],
+];
+
 // 有向图初始化
 function d_initGraph(g, data) {
   data.forEach((item) => {
@@ -121,5 +149,16 @@ const g4 = d_initGraph(new Graph(), DFS_02);
 // });
 
 // 注意初始化为有向无环图
-const g5 = d_initGraph(new Graph(), TOPO);
-console.log(g5.topologicalSort().map((item) => item.value));
+// const g5 = d_initGraph(new Graph(), TOPO);
+// console.log(g5.topologicalSort().map((item) => item.value));
+
+const g6 = ud_initGraph(new Graph(new WeightManager()), MST_01);
+const g7 = ud_initGraph(new Graph(new WeightManager()), MST_02);
+
+// prim
+console.log(g6.prim());
+console.log(g7.prim());
+
+// kruskal
+console.log(g6.kruskal());
+console.log(g7.kruskal());

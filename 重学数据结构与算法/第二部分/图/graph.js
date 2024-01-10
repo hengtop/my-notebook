@@ -1,3 +1,7 @@
+const ObjectHeap = require("../../第一部分/06-二叉堆/objectHeap");
+
+const { GenericQuickUnion } = require("../并查集/genericQuickUnion");
+
 // 顶点
 class Vertex {
   constructor(v) {
@@ -18,10 +22,21 @@ class Edge {
   }
 }
 
+class WeightManager {
+  compare(w1, w2) {
+    return w1 - w2;
+  }
+
+  add(w1, w2) {
+    return w1 + w2;
+  }
+}
+
 class Graph {
-  constructor() {
+  constructor(weightManager) {
     this.vertexs = new Map();
     this.edges = new Map();
+    this.weightManager = weightManager;
   }
 
   addVertex(v) {
@@ -214,6 +229,73 @@ class Graph {
     }
     return list;
   }
+  // prim算法 根据堆的复杂度来看
+  prim() {
+    // 获取一个顶点
+    const { value: vertex, done } = this.vertexs.values().next();
+    if (done) return null;
+
+    const edgeInfos = new Set();
+    // 已经被切分过的边的起点
+    const splitVertex = new Set();
+    splitVertex.add(vertex.value);
+    // 获取这个顶点的边，并放入二叉堆中
+    const heapQueue = new ObjectHeap([...vertex.toEdges.values()], (a, b) => {
+      if (typeof a !== typeof b) {
+        throw Error("The type of a and b is different");
+      } else {
+        return this.weightManager.compare(b.weight, a.weight);
+      }
+    });
+
+    // 二叉堆为空，且边的数量小于顶点的数量-1
+    while (!heapQueue.isEmpty() && edgeInfos.size < this.vertexs.size - 1) {
+      // 拿到权值最小的边
+      const edge = heapQueue.remove();
+      if (splitVertex.has(edge.to)) continue;
+      // 保存 权最小的边
+      edgeInfos.add(edge);
+      // 保存 已经被切分过的边的起点
+      splitVertex.add(edge.to);
+      // 然后再把边指向的顶点的边全加入到最小堆里
+      this.vertexs.get(edge.to).toEdges.forEach((value) => {
+        heapQueue.add(value);
+      });
+    }
+    return edgeInfos;
+  }
+  // Kruskal 算法  O(ElogE)
+  kruskal() {
+    if (this.edges.size === 0) return null;
+    const edgeInfos = new Set();
+    const VertexUnion = new GenericQuickUnion();
+    // O(Edge)
+    const heapQueue = new ObjectHeap([...this.edges.values()], (a, b) => {
+      if (typeof a !== typeof b) {
+        throw Error("The type of a and b is different");
+      } else {
+        return this.weightManager.compare(b.weight, a.weight);
+      }
+    });
+
+    // 初始化集合
+    // O(V)
+    this.vertexs.forEach((value, key) => {
+      VertexUnion.makeSet(key);
+    });
+
+    // 最坏的情况时循环到堆空了 O(ElogE)
+    while (!heapQueue.isEmpty() && edgeInfos.size - 1 < this.vertexs.size - 1) {
+      const edge = heapQueue.remove();
+      // 如果构成环就跳过  并查集比较 O(a(n))  a(n) < 6
+      if (VertexUnion.isSame(edge.from, edge.to)) continue;
+      edgeInfos.add(edge);
+      // 组成一个集合
+      // O(logE)
+      VertexUnion.union(edge.from, edge.to);
+    }
+    return edgeInfos;
+  }
 }
 
 // const g = new Graph();
@@ -255,4 +337,5 @@ class Graph {
 
 module.exports = {
   Graph,
+  WeightManager,
 };
