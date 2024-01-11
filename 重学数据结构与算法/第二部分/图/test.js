@@ -96,6 +96,16 @@ const MST_02 = [
   ["E", "F", 33],
 ];
 
+const SP = [
+  ["A", "B", 10],
+  ["A", "D", 30],
+  ["A", "E", 100],
+  ["B", "C", 50],
+  ["C", "E", 10],
+  ["D", "C", 20],
+  ["D", "E", 60],
+];
+
 // 有向图初始化
 function d_initGraph(g, data) {
   data.forEach((item) => {
@@ -152,13 +162,19 @@ const g4 = d_initGraph(new Graph(), DFS_02);
 // const g5 = d_initGraph(new Graph(), TOPO);
 // console.log(g5.topologicalSort().map((item) => item.value));
 
-const g6 = ud_initGraph(new Graph(new WeightManager()), MST_01);
-const g7 = ud_initGraph(new Graph(new WeightManager()), MST_02);
+// const g6 = ud_initGraph(new Graph(new WeightManager()), MST_01);
+// const g7 = ud_initGraph(new Graph(new WeightManager()), MST_02);
 
-// prim
-console.log(g6.prim());
-console.log(g7.prim());
+// // prim
+// console.log(g6.prim());
+// console.log(g7.prim());
 
-// kruskal
-console.log(g6.kruskal());
-console.log(g7.kruskal());
+// // kruskal
+// console.log(g6.kruskal());
+// console.log(g7.kruskal());
+
+// 最短路径 有向图和无向图都可以用
+const g8 = d_initGraph(new Graph(new WeightManager()), SP);
+const g9 = ud_initGraph(new Graph(new WeightManager()), SP);
+console.log(g8.dijkstra("A"));
+console.log(g9.dijkstra("A"));

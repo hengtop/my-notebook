@@ -296,6 +296,68 @@ class Graph {
     }
     return edgeInfos;
   }
+  // Dijkstra 算法 单元最短路径
+  /**
+   *
+   * @param {*} begin 起点
+   * @returns {Map<end,weight>} 终点和最短的权值
+   */
+  // 优化？ 1. 封装 松弛操作 2，计算出最短的路径 3， getShortestPath利用堆实现获取最小值
+  dijkstra(begin) {
+    const beginV = this.vertexs.get(begin);
+    if (beginV == null) return null;
+
+    // 被拽起来的路径
+    const selectPaths = new Map();
+    const paths = new Map();
+
+    // 初始化
+    beginV.toEdges.forEach((edge) => {
+      paths.set(edge.to, edge.weight);
+    });
+
+    while (paths.size !== 0) {
+      // 拿到最短的key-value
+      const [minV, minW] = this.getShortestPath(paths);
+      selectPaths.set(minV, minW);
+      paths.delete(minV);
+      this.vertexs.get(minV).toEdges.forEach((edge) => {
+        // 松弛操作 更新这条边的终点和原点的距离
+        // 新的路径权值和旧的路径的权值进行比较
+        if (selectPaths.has(edge.to) || edge.to === begin) return;
+        const newWeight = this.weightManager.add(minW, edge.weight);
+        const oldWeight = paths.get(edge.to);
+        // 如果是空或者更小才会更新路径
+        if (
+          oldWeight == null ||
+          this.weightManager.compare(newWeight, oldWeight) < 0
+        ) {
+          paths.set(edge.to, newWeight);
+        }
+      });
+    }
+    return selectPaths;
+  }
+  /**
+   *
+   * @param {Map<any, any>} map key为顶点 value为权值
+   * @returns 返回最短的key-value
+   */
+  getShortestPath(map) {
+    let it = map.entries();
+    const { value, done } = it.next();
+    if (done) return null;
+    // 初始化
+    let [minV, minW] = value;
+    while (true) {
+      const { value, done } = it.next();
+      if (done) break;
+      if (this.weightManager.compare(value[1], minW) < 0) {
+        [minV, minW] = value;
+      }
+    }
+    return [minV, minW];
+  }
 }
 
 // const g = new Graph();
