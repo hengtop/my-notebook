@@ -1,4 +1,5 @@
-const ObjectHeap = require("../../第一部分/06-二叉堆/objectHeap");
+const ObjectHeap = require("../../第一部分/07-二叉堆/objectHeap");
+const LinkedList = require("../../第一部分/04-集合/linkList");
 
 const { GenericQuickUnion } = require("../并查集/genericQuickUnion");
 
@@ -302,7 +303,7 @@ class Graph {
    * @param {*} begin 起点
    * @returns {Map<end,weight>} 终点和最短的权值
    */
-  // 优化？ 1. 封装 松弛操作 2，计算出最短的路径 3， getShortestPath利用堆实现获取最小值
+  //todo 优化？ getShortestPath利用堆实现获取最小值
   dijkstra(begin) {
     const beginV = this.vertexs.get(begin);
     if (beginV == null) return null;
@@ -313,29 +314,27 @@ class Graph {
 
     // 初始化
     beginV.toEdges.forEach((edge) => {
-      paths.set(edge.to, edge.weight);
+      const path = {
+        weight: edge.weight,
+        pathInfos: new LinkedList(),
+      };
+      path.pathInfos.push(edge);
+      paths.set(edge.to, path);
     });
 
     while (paths.size !== 0) {
       // 拿到最短的key-value
-      const [minV, minW] = this.getShortestPath(paths);
-      selectPaths.set(minV, minW);
+      const [minV, minPath] = this.getShortestPath(paths);
+      selectPaths.set(minV, minPath);
       paths.delete(minV);
       this.vertexs.get(minV).toEdges.forEach((edge) => {
-        // 松弛操作 更新这条边的终点和原点的距离
+        // 松弛操作 更新这条边的终点和原点的距离 起点不需要松弛
         // 新的路径权值和旧的路径的权值进行比较
-        if (selectPaths.has(edge.to) || edge.to === begin) return;
-        const newWeight = this.weightManager.add(minW, edge.weight);
-        const oldWeight = paths.get(edge.to);
-        // 如果是空或者更小才会更新路径
-        if (
-          oldWeight == null ||
-          this.weightManager.compare(newWeight, oldWeight) < 0
-        ) {
-          paths.set(edge.to, newWeight);
-        }
+        if (selectPaths.has(edge.to)) return;
+        this.relax(edge, minPath, paths);
       });
     }
+    selectPaths.delete(begin);
     return selectPaths;
   }
   /**
@@ -348,15 +347,49 @@ class Graph {
     const { value, done } = it.next();
     if (done) return null;
     // 初始化
-    let [minV, minW] = value;
+    let [minV, path] = value;
     while (true) {
       const { value, done } = it.next();
       if (done) break;
-      if (this.weightManager.compare(value[1], minW) < 0) {
-        [minV, minW] = value;
+      if (this.weightManager.compare(value[1].weight, path.weight) < 0) {
+        [minV, path] = value;
       }
     }
-    return [minV, minW];
+    return [minV, path];
+  }
+  /**
+   * @description 松弛函数
+   * @param {*} edge 边
+   * @param {*} minPath 权值最小的路径信息
+   * @param {*} paths 保存已经松驰过的点信息
+   * @returns
+   */
+  relax(edge, minPath, paths) {
+    const newWeight = this.weightManager.add(minPath.weight, edge.weight);
+    let oldPath = paths.get(edge.to);
+
+    if (
+      oldPath != null &&
+      this.weightManager.compare(newWeight, oldPath.weight) >= 0
+    )
+      return;
+    // 如果是空或才会新建路径
+    if (oldPath == null) {
+      oldPath = {
+        weight: null,
+        pathInfos: new LinkedList(),
+      };
+      // 因为存在set操作，所以getShortestPath暂时用的基本方式获取最小值，如果要使用堆的话可以考虑索引堆
+      paths.set(edge.to, oldPath);
+    } else {
+      oldPath.pathInfos.clear();
+    }
+
+    oldPath.weight = newWeight;
+    for (let i = 0; i < minPath.pathInfos.size; i++) {
+      oldPath.pathInfos.push(minPath.pathInfos.get(i));
+    }
+    oldPath.pathInfos.push(edge);
   }
 }
 

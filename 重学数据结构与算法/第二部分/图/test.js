@@ -176,5 +176,25 @@ const g4 = d_initGraph(new Graph(), DFS_02);
 // 最短路径 有向图和无向图都可以用
 const g8 = d_initGraph(new Graph(new WeightManager()), SP);
 const g9 = ud_initGraph(new Graph(new WeightManager()), SP);
-console.log(g8.dijkstra("A"));
-console.log(g9.dijkstra("A"));
+
+for (const [k, v] of g9.dijkstra("A").entries()) {
+  console.log(
+    k,
+    v.weight,
+    v.pathInfos.toString((data) => {
+      return data.from + data.to;
+    })
+  );
+}
+
+console.log("--------");
+
+for (const [k, v] of g8.dijkstra("A").entries()) {
+  console.log(
+    k,
+    v.weight,
+    v.pathInfos.toString((data) => {
+      return data.from + data.to;
+    })
+  );
+}
