@@ -1,3 +1,4 @@
+// 和二叉树里的一样，只是为了方便引入重新cp了一份
 class Node {
   constructor(element, parent, left = null, right = null) {
     this.left = left;

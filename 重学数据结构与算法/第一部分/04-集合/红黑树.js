@@ -1,3 +1,4 @@
+// 和二叉树里的一样，只是为了方便引入重新cp了一份
 const { BinarySearchTree, Node } = require("./二叉搜索树");
 
 class RBNode extends Node {

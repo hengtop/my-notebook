@@ -1,4 +1,4 @@
-const LinkedList = require("./linkList");
+const LinkedList = require("../03-链表/双向链表的封装--优化");
 
 class Set {
   constructor() {

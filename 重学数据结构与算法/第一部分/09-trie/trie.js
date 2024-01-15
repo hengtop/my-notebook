@@ -1,4 +1,4 @@
-const HashMap = require("../05-哈希表/hashMap");
+const HashMap = require("../06-哈希表/hashMap");
 
 class Node {
   constructor(parent, value = null) {

@@ -1,4 +1,4 @@
-const Heap = require("../06-二叉堆/objectHeap");
+const Heap = require("../07-二叉堆/objectHeap");
 
 class PriorityQueue {
   constructor(element, customCompare) {
