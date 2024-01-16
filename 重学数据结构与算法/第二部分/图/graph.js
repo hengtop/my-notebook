@@ -15,9 +15,9 @@ class Vertex {
 }
 
 class Edge {
-  constructor(form, to, weight) {
+  constructor(from, to, weight) {
     // 有向的
-    this.from = form;
+    this.from = from;
     this.to = to;
     this.weight = weight;
   }
@@ -303,7 +303,7 @@ class Graph {
    * @param {*} begin 起点
    * @returns {Map<end,weight>} 终点和最短的权值
    */
-  //todo 优化？ getShortestPath利用堆实现获取最小值
+  //todo 优化？ getShortestPath利用索引堆实现获取最小值
   dijkstra(begin) {
     const beginV = this.vertexs.get(begin);
     if (beginV == null) return null;
@@ -332,6 +332,38 @@ class Graph {
         // 新的路径权值和旧的路径的权值进行比较
         if (selectPaths.has(edge.to)) return;
         this.relax(edge, minPath, paths);
+      });
+    }
+    selectPaths.delete(begin);
+    return selectPaths;
+  }
+  // bellmanFord 算法
+  bellmanFord(begin) {
+    const beginV = this.vertexs.get(begin);
+    if (beginV == null) return null;
+    const selectPaths = new Map();
+    const path = {
+      weight: 0, // 避免空指针yichang
+      pathInfos: new LinkedList(),
+    };
+    selectPaths.set(begin, path);
+
+    for (let i = 0; i < this.vertexs.size - 1; i++) {
+      this.edges.forEach((edge) => {
+        const fromPath = selectPaths.get(edge.from);
+        if (fromPath == null) return;
+        this.relax(edge, fromPath, selectPaths);
+      });
+    }
+
+    // 如果还能进行松弛操作则存在负权环
+    for (let i = 0; i < this.vertexs.size - 1; i++) {
+      this.edges.forEach((edge) => {
+        const fromPath = selectPaths.get(edge.from);
+        if (fromPath == null) return;
+        if (this.relax(edge, fromPath, selectPaths)) {
+          throw new Error("存在负权环");
+        }
       });
     }
     selectPaths.delete(begin);
@@ -372,7 +404,8 @@ class Graph {
       oldPath != null &&
       this.weightManager.compare(newWeight, oldPath.weight) >= 0
     )
-      return;
+      // 松弛失败
+      return false;
     // 如果是空或才会新建路径
     if (oldPath == null) {
       oldPath = {
@@ -386,10 +419,13 @@ class Graph {
     }
 
     oldPath.weight = newWeight;
+    // 更新最短路径
     for (let i = 0; i < minPath.pathInfos.size; i++) {
       oldPath.pathInfos.push(minPath.pathInfos.get(i));
     }
     oldPath.pathInfos.push(edge);
+    // 松弛成功
+    return true;
   }
 }
 

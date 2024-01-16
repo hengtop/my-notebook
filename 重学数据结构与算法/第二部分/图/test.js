@@ -106,6 +106,23 @@ const SP = [
   ["D", "E", 60],
 ];
 
+const NEGATIVE_WEIGHT1 = [
+  ["A", "B", -1],
+  ["A", "C", 4],
+  ["B", "C", 3],
+  ["B", "D", 2],
+  ["B", "E", 2],
+  ["D", "B", 1],
+  ["D", "C", 5],
+  ["E", "D", -3],
+];
+
+const NEGATIVE_WEIGHT2 = [
+  [0, 1, 1],
+  [1, 2, 7],
+  [1, 0, -2],
+];
+
 // 有向图初始化
 function d_initGraph(g, data) {
   data.forEach((item) => {
@@ -173,28 +190,79 @@ const g4 = d_initGraph(new Graph(), DFS_02);
 // console.log(g6.kruskal());
 // console.log(g7.kruskal());
 
-// 最短路径 有向图和无向图都可以用
-const g8 = d_initGraph(new Graph(new WeightManager()), SP);
-const g9 = ud_initGraph(new Graph(new WeightManager()), SP);
+//  最短路径 有向图和无向图都可以用
+// const g8 = d_initGraph(new Graph(new WeightManager()), SP);
+// const g9 = ud_initGraph(new Graph(new WeightManager()), SP);
 
-for (const [k, v] of g9.dijkstra("A").entries()) {
-  console.log(
-    k,
-    v.weight,
-    v.pathInfos.toString((data) => {
-      return data.from + data.to;
-    })
-  );
-}
+const g10 = d_initGraph(new Graph(new WeightManager()), NEGATIVE_WEIGHT1);
+const g11 = d_initGraph(new Graph(new WeightManager()), NEGATIVE_WEIGHT2);
 
-console.log("--------");
+// dijkstra
+// for (const [k, v] of g9.dijkstra("A").entries()) {
+//   console.log(
+//     k,
+//     v.weight,
+//     v.pathInfos.toString((data) => {
+//       return data.from + data.to;
+//     })
+//   );
+// }
 
-for (const [k, v] of g8.dijkstra("A").entries()) {
-  console.log(
-    k,
-    v.weight,
-    v.pathInfos.toString((data) => {
-      return data.from + data.to;
-    })
-  );
+// console.log("--------");
+
+// for (const [k, v] of g8.dijkstra("A").entries()) {
+//   console.log(
+//     k,
+//     v.weight,
+//     v.pathInfos.toString((data) => {
+//       return data.from + data.to;
+//     })
+//   );
+// }
+// console.log("--------");
+// // bellmanFord
+// for (const [k, v] of g9.bellmanFord("A").entries()) {
+//   console.log(
+//     k,
+//     v.weight,
+//     v.pathInfos.toString((data) => {
+//       return data.from + data.to;
+//     })
+//   );
+// }
+
+// console.log("--------");
+
+// for (const [k, v] of g8.bellmanFord("A").entries()) {
+//   console.log(
+//     k,
+//     v.weight,
+//     v.pathInfos.toString((data) => {
+//       return data.from + data.to;
+//     })
+//   );
+// }
+
+// for (const [k, v] of g10.bellmanFord("A").entries()) {
+//   console.log(
+//     k,
+//     v.weight,
+//     v.pathInfos.toString((data) => {
+//       return data.from + data.to;
+//     })
+//   );
+// }
+
+// 存在负权环
+const paths = g11.bellmanFord(0);
+if (paths) {
+  for (const [k, v] of paths.entries()) {
+    console.log(
+      k,
+      v.weight,
+      v.pathInfos.toString((data) => {
+        return data.from + data.to;
+      })
+    );
+  }
 }
