@@ -254,15 +254,32 @@ const g11 = d_initGraph(new Graph(new WeightManager()), NEGATIVE_WEIGHT2);
 // }
 
 // 存在负权环
-const paths = g11.bellmanFord(0);
-if (paths) {
-  for (const [k, v] of paths.entries()) {
+// const paths = g11.bellmanFord(0);
+// if (paths) {
+//   for (const [k, v] of paths.entries()) {
+//     console.log(
+//       k,
+//       v.weight,
+//       v.pathInfos.toString((data) => {
+//         return data.from + data.to;
+//       })
+//     );
+//   }
+// }
+
+// floyd 多元路径算法测试
+const g12 = d_initGraph(new Graph(new WeightManager()), SP);
+const g13 = d_initGraph(new Graph(new WeightManager()), NEGATIVE_WEIGHT1);
+
+g13.floyd().forEach((value, key1) => {
+  //console.log(key1);
+  value.forEach((value, key2) => {
     console.log(
-      k,
-      v.weight,
-      v.pathInfos.toString((data) => {
+      `${key1}到${key2} 权值为：${value.weight}, 路径为：`,
+      value.pathInfos.toString((data) => {
         return data.from + data.to;
       })
     );
-  }
-}
+  });
+  console.log("--------------------------");
+});

@@ -297,9 +297,8 @@ class Graph {
     }
     return edgeInfos;
   }
-  // Dijkstra 算法 单元最短路径
   /**
-   *
+   * @description  Dijkstra 算法 单元最短路径
    * @param {*} begin 起点
    * @returns {Map<end,weight>} 终点和最短的权值
    */
@@ -337,13 +336,19 @@ class Graph {
     selectPaths.delete(begin);
     return selectPaths;
   }
-  // bellmanFord 算法
+  /**
+   *
+   * @description bellmanFord 算法 单元最短路径
+   * @param {*} begin 起点
+   * @returns {Map<end,weight>} 终点和最短的权值
+   */
   bellmanFord(begin) {
     const beginV = this.vertexs.get(begin);
     if (beginV == null) return null;
     const selectPaths = new Map();
+    // 自己到自己可以设置权值为0
     const path = {
-      weight: 0, // 避免空指针yichang
+      weight: 0, // 避免空指针异常
       pathInfos: new LinkedList(),
     };
     selectPaths.set(begin, path);
@@ -370,8 +375,91 @@ class Graph {
     return selectPaths;
   }
   /**
+   * @description Floyd 算法  多元路径
+   * @returns {Map<from, Map<to, {weight, pathInfos}>>}
+   */
+  floyd() {
+    // key v value Map<v, path> 保存到每一个顶点的最短路径
+    const paths = new Map();
+
+    // 初始化 将所有的边先放到paths中
+    this.edges.forEach((edge) => {
+      // 得到一个点到其他所有点的map
+      let map = paths.get(edge.from);
+      // 没有就先初始化
+      if (map == null) {
+        map = new Map();
+        paths.set(edge.from, map);
+      }
+      // 设置到其他点的权值
+      const path = {
+        weight: edge.weight,
+        pathInfos: new LinkedList(),
+      };
+      // 更新路径
+      path.pathInfos.push(edge);
+      // 添加到map中
+      map.set(edge.to, path);
+    });
+
+    this.vertexs.forEach(({ value: v2 }) => {
+      this.vertexs.forEach(({ value: v1 }) => {
+        this.vertexs.forEach(({ value: v3 }) => {
+          // 如果遇到v1，v2和v3 其中两个都是同一个顶点就没必要继续
+          if (v1 === v2 || v1 === v3 || v2 === v3) return;
+          const path12 = getPathInfo(v1, v2, paths);
+          if (path12 == null) return;
+
+          const path23 = getPathInfo(v2, v3, paths);
+          if (path23 == null) return;
+
+          let path13 = getPathInfo(v1, v3, paths);
+
+          const newWeight = this.weightManager.add(
+            path12.weight,
+            path23.weight
+          );
+          if (
+            path13 != null &&
+            this.weightManager.compare(newWeight, path13.weight) >= 0
+          )
+            return;
+
+          if (path13 == null) {
+            path13 = {
+              weight: null, // 表示还没算出最短路径
+              pathInfos: new LinkedList(),
+            };
+            paths.get(v1).set(v3, path13);
+          } else {
+            path13.pathInfos.clear();
+          }
+
+          // 更新权值和路径
+          path13.weight = newWeight;
+          const pathInfos12 = path12.pathInfos;
+          const pathInfos23 = path23.pathInfos;
+          for (let i = 0; i < pathInfos12.size; i++) {
+            path13.pathInfos.push(pathInfos12.get(i));
+          }
+          for (let j = 0; j < pathInfos23.size; j++) {
+            path13.pathInfos.push(pathInfos23.get(j));
+          }
+        });
+      });
+    });
+
+    return paths;
+
+    // 获取路径对象的辅助函数
+    function getPathInfo(from, to, paths) {
+      const map = paths.get(from);
+      return map == null ? null : map.get(to);
+    }
+  }
+  /**
    *
-   * @param {Map<any, any>} map key为顶点 value为权值
+   * @param {Map<any, any>} map key为顶点 value为保存权值和路径的对象
    * @returns 返回最短的key-value
    */
   getShortestPath(map) {
