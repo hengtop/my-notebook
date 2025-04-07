@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-04-16 18:26:07
  * @LastEditors: zhangheng
- * @LastEditTime: 2022-04-16 18:26:07
+ * @LastEditTime: 2025-03-28 22:49:07
  */
 // 1.ES6可以给函数参数提供默认值
 function foo(m = "aaa", n = "bbb") {
@@ -39,3 +39,7 @@ function baz(x, y, z, m, n = 30) {
 }
 
 console.log(baz.length);
+
+function bar(a, b, c = 1, d) {}
+
+console.log(bar.length);

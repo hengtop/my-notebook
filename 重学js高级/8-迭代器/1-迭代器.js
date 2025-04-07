@@ -1,14 +1,42 @@
-/*
- * @Date: 2022-04-23 22:27:27
- * @LastEditors: zhangheng
- * @LastEditTime: 2022-04-23 22:53:47
- */
-const names = ["zhangsan", "lisi", "saber"];
+class Classroom {
+  constructor(address, name, students) {
+    this.address = address;
+    this.name = name;
+    this.students = students;
+  }
 
-const iterator = {
-  next() {
+  entry(newStudent) {
+    this.students.push(newStudent);
+  }
+
+  [Symbol.iterator]() {
+    let index = 0;
     return {
-      done,
+      next: () => {
+        if (index < this.students.length) {
+          return { done: false, value: this.students[index++] };
+        } else {
+          return { done: true, value: undefined };
+        }
+      },
+      //自定义迭代结束调用的方法
+      return: () => {
+        console.log("迭代器提前终止了~");
+        return { done: true, value: undefined };
+      },
     };
-  },
-};
+  }
+}
+
+const classroom = new Classroom("3幢5楼205", "计算机教室", [
+  "james",
+  "kobe",
+  "curry",
+  "why",
+]);
+classroom.entry("lilei");
+
+for (const stu of classroom) {
+  console.log(stu);
+  if (stu === "why") break;
+}

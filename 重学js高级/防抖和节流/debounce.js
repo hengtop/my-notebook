@@ -25,11 +25,13 @@ class Debounce {
         fn.apply(this, args);
         isInvoke = true;
       } else {
+        // 非立即触发后恢复状态
         time = setTimeout(() => {
           fn.apply(this, args);
           isInvoke = false;
         }, delay);
       }
+      // 立即触发后恢复状态
       if (immediate) {
         invokeTime = setTimeout(() => {
           isInvoke = false;

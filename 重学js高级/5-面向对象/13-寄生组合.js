@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-04-03 14:47:53
  * @LastEditors: zhangheng
- * @LastEditTime: 2022-04-03 15:00:19
+ * @LastEditTime: 2025-03-27 21:36:55
  */
 
 function inheritPrototype(sub, sup) {
@@ -47,5 +47,6 @@ Student.prototype.studying = function () {
 
 const stu = new Student("saber", 18, [111, 222], 100, 200);
 console.log(stu);
+console.log(stu.__proto__.constructor === Student);
 stu.studying();
 stu.running();

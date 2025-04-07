@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-04-18 21:56:48
  * @LastEditors: zhangheng
- * @LastEditTime: 2022-04-23 16:06:01
+ * @LastEditTime: 2025-03-28 23:56:52
  */
 
 const obj = {
@@ -35,3 +35,5 @@ objProxy.age = 29;
 objProxy.newName = "xiaoxin";
 
 console.log("name" in objProxy);
+
+console.log(obj);

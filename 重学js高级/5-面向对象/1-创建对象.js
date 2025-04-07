@@ -2,7 +2,7 @@
 /*
  * @Date: 2022-03-28 22:16:52
  * @LastEditors: zhangheng
- * @LastEditTime: 2022-04-03 17:36:12
+ * @LastEditTime: 2025-03-26 23:27:22
  */
 
 // 1. 通过new Object()创建
@@ -40,6 +40,7 @@ const p2 = createPerson("lisi", 20);
 // 通过new操作符调用普通函数,注意如果一个函数要作为构造函数调用，那么首字母就可以以大写字母表示
 function Fish(name) {
   this.name = name;
+  return { age: 18 };
 }
 
 [1].forEach(function () {

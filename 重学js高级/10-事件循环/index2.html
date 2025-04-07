@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>队列优先级</title>
+</head>
+
+<body>
+  <button id="button">开始</button>
+  <button id="interaction">添加交互任务<sbutton>
+      <script>
+
+        const interaction = document.querySelector('#interaction')
+        const btn = document.querySelector('#button')
+        //死循环指定的时间
+        function delay(duration) {
+          var start = Date.now();
+          while (Date.now() - start < duration) { }
+        };
+
+        function addDelay() {
+          console.log('添加延时队列')
+          setTimeout(() => {
+            console.log('延时队列执行')
+          }, 100)
+          delay(2000)
+        }
+
+
+        function addInteraction() {
+          console.log('添加交互队列')
+          interaction.onclick = () => {
+            console.log('交互队列执行')
+          }
+          delay(2000)
+        }
+        btn.onclick = function () {
+          addDelay()
+          addInteraction()
+          console.log('==========')
+        };
+      </script>
+</body>
+
+</html>

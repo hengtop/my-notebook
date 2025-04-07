@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-05-21 17:12:09
  * @LastEditors: zhangheng
- * @LastEditTime: 2022-05-21 17:13:25
+ * @LastEditTime: 2025-03-29 15:32:39
  */
 /*
  * @Date: 2022-05-21 17:08:42
@@ -41,26 +41,28 @@ const promise = new Promise((resolve, reject) => {
 // })
 
 // 2> 如果我们返回的是一个Promise
-// promise.then(res => {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       resolve(111111)
-//     }, 3000)
-//   })
-// }).then(res => {
-//   console.log("res:", res)
-// })
-
-// 3> 如果返回的是一个对象, 并且该对象实现了thenable
 promise
   .then((res) => {
-    throw 1;
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(111111 + res);
+      }, 3000);
+    });
   })
-  .then(
-    (res) => {
-      console.log("succ", res);
-    },
-    (err) => {
-      console.log("err", err);
-    }
-  );
+  .then((res) => {
+    console.log("res:", res);
+  });
+
+// 3> 如果返回的是一个对象, 并且该对象实现了thenable
+// promise
+//   .then((res) => {
+//     throw 1;
+//   })
+//   .then(
+//     (res) => {
+//       console.log("succ", res);
+//     },
+//     (err) => {
+//       console.log("err", err);
+//     }
+//   );

@@ -35,6 +35,7 @@ class Throttle {
     function _throttle(...args) {
       const end = new Date().getTime();
       if (!leading && !start) start = new Date().getTime();
+      // remainTime --- 如果继续触发事件，还要多少时间会再次触发响应
       const remainTime = interval - (end - start);
       if (remainTime <= 0) {
         if (timer) {

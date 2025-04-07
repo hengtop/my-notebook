@@ -21,7 +21,7 @@ Object.defineProperty(obj, "address", {
   value: "成都市",
   configurable: false,
   enumerable: false,
-  writable: true,
+  writable: false,
 });
 
 console.log(obj);

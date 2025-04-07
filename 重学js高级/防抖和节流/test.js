@@ -13,12 +13,9 @@ function handleInput(e) {
   return "777";
 }
 
-const deInput = t.v5(handleInput, 1500, {
-  leading: false,
+const deInput = t.v3(handleInput, 1500, {
+  leading: true,
   trailing: true,
-  callback: (res) => {
-    console.log(res);
-  },
 });
 
 input.oninput = deInput;

@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-04-17 15:31:38
  * @LastEditors: zhangheng
- * @LastEditTime: 2022-04-19 23:50:24
+ * @LastEditTime: 2025-03-28 23:09:49
  */
 /* 
   强引用 strong reference
@@ -27,5 +27,6 @@ class Person {
 let p = new Person();
 
 p.running();
-p.running.call({ name: "why" });
 p = null;
+console.log(personSet); // 实际上这里应该为空对象了，至于能打印出来是因为 我们不知道什么时候执行垃圾回收机制
+// p.running.call({ name: "why" });

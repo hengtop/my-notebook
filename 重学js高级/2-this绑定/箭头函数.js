@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-03-20 20:41:45
  * @LastEditors: zhangheng
- * @LastEditTime: 2022-03-20 21:57:48
+ * @LastEditTime: 2025-03-26 21:47:21
  */
 /* 
  箭头函数不能绑定this和argument
@@ -25,26 +25,26 @@
 // foo();
 // bar()
 
-// class Test {
-//   constructor() {
-//   }
-//   fun = () => {
-//     console.log(this)
-//   };
-//   fun1(){
-//     console.log(this)
-//   }
-// }
-// let test = new Test()
-// test.fun()
-// test.fun.call(this)
-// test.fun1()
-// test.fun1.call(this)
-const obj = {
-  name:'zhangsan',
-  foo:() => {
-    console.log(this);
+class Test {
+  constructor() {
+  }
+  fun = () => {
+    console.log(this)
+  };
+  fun1(){
+    console.log(this)
   }
 }
+let test = new Test()
+test.fun() // Test
+test.fun.call(this) //Test
+test.fun1() // Test
+test.fun1.call(this) // {}
+// const obj = {
+//   name:'zhangsan',
+//   foo:() => {
+//     console.log(this);
+//   }
+// }
 
-obj.foo()
+// obj.foo()

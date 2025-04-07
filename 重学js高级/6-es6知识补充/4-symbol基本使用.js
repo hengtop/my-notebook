@@ -4,3 +4,7 @@ const name = {};
 name[s1] = "haha";
 
 console.log(name);
+
+Object.getOwnPropertySymbols(name).map((item) => {
+  console.log(item === s1);
+});
