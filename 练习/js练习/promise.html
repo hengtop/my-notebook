@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise的一些题目</title>
+</head>
+
+<body>
+
+  <script>
+    const p1 = new Promise((resolve, reject) => {
+      reject('p1 rejected');
+      resolve('p1 resolved');
+    })
+
+
+    // 状态吸收
+    p1.then((res) => {
+      console.log('res1');
+    }).catch((err) => {
+      console.log('err1');
+    }).then(() => {
+      console.log('res11');
+    });
+
+    const p2 = new Promise((resolve, reject) => {
+      reject(new Error('p2 rejected'));
+    })
+
+    p2.catch((err) => {
+      console.log('err2');
+    })
+
+    p2.catch((err) => {
+      console.log('err22');
+    })
+
+
+  </script>
+
+</body>
+
+</html>

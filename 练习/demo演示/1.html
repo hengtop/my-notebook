@@ -10,13 +10,218 @@
     * {
       background: #ccc;
     }
+
+    .box {
+      display: flex;
+      width: 1000px;
+      background-color: #ccc;
+    }
+
+    .box1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+
+
+    .box2 {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+    }
+
+    .box3 {
+      margin-left: auto;
+      width: 100px;
+      height: 100px;
+      background-color: #bfa;
+    }
   </style>
 </head>
 
 <body>
+  <div class="box">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+  </div>
   <script>
-    alert(a)
-    var a = 'namme'
+    // PV请求统计器
+    class PVRequestCounter {
+      constructor() {
+        this.requestCount = 0; // 总请求数
+        this.requestUrls = new Set(); // 用于去重的请求URL集合
+        this.pvId = this.generatePvId(); // 唯一标识当前PV
+        this.reportUrl = '/api/report/pv-requests'; // 上报接口（需替换为实际接口）
+
+        // 初始化监听
+        this.initListeners();
+      }
+
+      // 生成唯一PV ID
+      generatePvId() {
+        return Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+      }
+
+      // 初始化所有请求监听
+      initListeners() {
+        // 1. 监听资源请求（script/img/link等）
+        this.observeResourceRequests();
+
+        // 2. 拦截XMLHttpRequest请求
+        this.interceptXHR();
+
+        // 3. 拦截Fetch请求
+        this.interceptFetch();
+
+        // 4. 页面卸载时上报统计数据
+        window.addEventListener('beforeunload', () => {
+          this.reportData();
+        }, { passive: true });
+      }
+
+      // 监听资源请求（通过Performance API）
+      observeResourceRequests() {
+        if (!('PerformanceObserver' in window)) return;
+
+        const observer = new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            // 过滤非网络请求类型
+            if (entry.entryType !== 'resource') return;
+
+            // 排除上报自身的请求
+            if (entry.name.includes(this.reportUrl)) return;
+
+            // 去重计数（同一资源可能被缓存，但实际发起的请求需计数）
+            if (!this.requestUrls.has(entry.name)) {
+              this.requestUrls.add(entry.name);
+              this.requestCount++;
+            }
+          });
+        });
+
+        // 监听所有资源类型
+        observer.observe({
+          entryTypes: ['resource'],
+          buffered: true // 包括页面加载早期的资源
+        });
+      }
+
+      // 拦截XMLHttpRequest
+      interceptXHR() {
+        const originalOpen = XMLHttpRequest.prototype.open;
+
+        XMLHttpRequest.prototype.open = function (method, url) {
+          // 排除上报自身的请求
+          if (url.includes(this.reportUrl)) {
+            return originalOpen.apply(this, arguments);
+          }
+
+          // 监听请求成功发送
+          this.addEventListener('loadstart', () => {
+            if (!this.requestUrls.has(url)) {
+              this.requestUrls.add(url);
+              this.requestCount++;
+            }
+          });
+
+          return originalOpen.apply(this, arguments);
+        }.bind(this);
+      }
+
+      // 拦截Fetch API
+      interceptFetch() {
+        const originalFetch = window.fetch;
+
+        window.fetch = function (url, options) {
+          // 排除上报自身的请求
+          if (typeof url === 'string' && url.includes(this.reportUrl)) {
+            return originalFetch.apply(this, arguments);
+          }
+
+          // 计数（注意：url可能是Request对象）
+          const requestUrl = typeof url === 'string' ? url : url.url;
+          if (!this.requestUrls.has(requestUrl)) {
+            this.requestUrls.add(requestUrl);
+            this.requestCount++;
+          }
+          console.log(this.requestUrls);
+          return originalFetch.apply(this, arguments);
+        }.bind(this);
+      }
+
+      // 上报统计数据
+      reportData() {
+        const data = {
+          pvId: this.pvId,
+          requestCount: this.requestCount,
+          url: window.location.href,
+          referrer: document.referrer,
+          timestamp: Date.now()
+        };
+
+        // 使用Beacon API确保页面卸载时能成功上报
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(
+            this.reportUrl,
+            JSON.stringify(data)
+          );
+        } else {
+          // 降级方案：同步XMLHttpRequest（不推荐，可能阻塞页面卸载）
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', this.reportUrl, false); // 同步请求
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(JSON.stringify(data));
+        }
+
+        console.log(`PV请求统计：共发起${this.requestCount}个请求`);
+      }
+    }
+
+    // 初始化统计器（页面加载时执行）
+    if (window.performance) {
+      const res = new PVRequestCounter();
+    }
+
+  </script>
+  <script>
+    try {
+      fetch("https://www.xxx.com", {})
+        .then((res) => {
+          console.log(reswe);
+        })
+        .catch((err) => {
+          console.log("xxxx");
+        });
+    } catch (error) {
+
+    }
+
+    class Foo {
+      constructor() {
+        this.name = "foo";
+      }
+
+      getName() {
+        return () => {
+          console.log(this);
+        };
+      }
+    }
+    const foo = new Foo();
+    console.log(foo.getName()()); // 输出 "foo"
+    const obj = {
+      a() {
+        const c = () => {
+          console.log("hello", this);
+        }
+
+        c()
+      }
+    }
+    obj.a();
+    // alert(a)
+    // var a = 'namme'
   </script>
 </body>
 

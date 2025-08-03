@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function deepClone(target) {
+      let result;
+
+      if (typeof target === 'object') {
+        if (Array.isArray(target)) {
+          result = [];
+          for (const element of target) {
+            result.push(deepClone(element))
+          }
+
+        } else if (target == null) {
+          result = target;
+        } else if (target.constructor === 'Regex' || target.constructor === 'Date' || target == null) {
+          result = target;
+        } else {
+          result = {}
+          for (const element of Object.keys(target)) {
+            result[element] = deepClone(target[element])
+          }
+        }
+
+      } else {
+        result = target;
+      }
+
+      return result;
+    }
+
+    const a = { name: "zhangsan", age: 218 }
+    b = deepClone(a)
+
+    b.name = "lisi"
+
+    console.log(a, b)
+  </script>
+</body>
+
+</html>

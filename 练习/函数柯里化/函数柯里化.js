@@ -26,6 +26,23 @@ const currying = function (fn, ...args) {
   };
 };
 
+function add(...args) {
+  const params = args;
+
+  function _add(...arg2) {
+    params.push(...arg2);
+    return _add;
+  }
+
+  _add.toString = () => {
+    return params.reduce((prev, cur) => {
+      return prev + cur;
+    }, 0);
+  };
+
+  return _add;
+}
+
 function multiFn(a, b, c) {
   console.log(a * b * c);
 }
@@ -39,12 +56,16 @@ const multi12_ = currying(multi4(3));
 // const multi12 = curry(multi(3, 4));
 // const multi12_ = curry(multi4(3));
 
-multi12(1);
-multi12(2);
-multi12(3);
-multi12_(5);
-multi4(3, 4);
-multi(2)(3)(4);
-multi(2, 3, 4);
-multi(2)(3, 4);
-multi(2)(3, 4);
+// multi12(1);
+// multi12(2);
+// multi12(3);
+// multi12_(5);
+// multi4(3, 4);
+// multi(2)(3)(4);
+// multi(2, 3, 4);
+// multi(2)(3, 4);
+// multi(2)(3, 4);
+
+console.log(add(1, 2)(3, 5).toString());
+console.log(add(1, 2)(3, 5).toString());
+console.log(add(1)(2)(3)(4).toString());

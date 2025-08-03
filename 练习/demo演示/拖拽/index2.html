@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .drop-zone {
+      width: 300px;
+      height: 200px;
+      border: 2px dashed #ccc;
+      border-radius: 5px;
+      text-align: center;
+      padding: 20px;
+      margin: 20px;
+    }
+
+    .drop-zone.drag-over {
+      border-color: #000;
+      background-color: #f0f0f0;
+    }
+
+    [draggable="true"] {
+      cursor: move;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="dragItem" draggable="true">拖拽项</div>
+  <div id="dropZone" class="drop-zone">放置区域</div>
+  <script>
+    const dragItem = document.getElementById('dragItem');
+    const dropZone = document.getElementById('dropZone');
+
+    // 拖拽开始
+    dragItem.addEventListener('dragstart', (e) => {
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/html', e.target.innerHTML);
+      e.target.style.opacity = '0.5';
+    });
+
+    // 拖拽结束
+    dragItem.addEventListener('dragend', (e) => {
+      e.target.style.opacity = '';
+    });
+
+    // 拖拽进入放置区域
+    dropZone.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      e.target.classList.add('drag-over');
+    });
+
+    // 在放置区域上方
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+    });
+
+    // 离开放置区域
+    dropZone.addEventListener('dragleave', (e) => {
+      e.target.classList.remove('drag-over');
+    });
+
+    // 放置
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      e.target.classList.remove('drag-over');
+
+      const data = e.dataTransfer.getData('text/html');
+      e.target.innerHTML = data;
+    });
+
+  </script>
+</body>
+
+</html>

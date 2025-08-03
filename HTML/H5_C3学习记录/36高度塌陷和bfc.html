@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .outer{
+        .outer {
             border: 10px red solid;
         }
-        .inner{
+
+        .inner {
             width: 100px;
             height: 100px;
             background-color: #bfa;
             float: left;
         }
-        
+
 
         /*完美解决高度塌陷*/
-        .outer::after{
+        .outer::after {
             content: '';
             display: block;
             clear: both;
         }
-         /*
+
+        /*
              
              BFC 块级格式化环境
                    ——bfc是一个css中隐含的属性，可为一个元素开启bfc
@@ -72,12 +75,14 @@
         */
     </style>
 </head>
+
 <body>
     <div class="outer">
         <div class="inner"></div>
         <!--<div class="inner1">224</div>-->
-        
+
     </div>
-    
+
 </body>
+
 </html>

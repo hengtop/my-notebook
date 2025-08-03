@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class ResponsiveHelper {
+      constructor() {
+        this.callbacks = new Map();
+        this.breakpoints = {
+          xs: 0,
+          sm: 576,
+          md: 768,
+          lg: 992,
+          xl: 1200,
+          xxl: 1400
+        };
+        this.currentBreakpoint = null;
+        this.size = { width: 0, height: 0 };
+
+        this.init();
+      }
+
+      init() {
+        this.updateSize();
+
+        // 使用 RAF 优化的 resize 处理
+        let rafId = null;
+        const handleResize = () => {
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(() => {
+            this.updateSize();
+          });
+        };
+
+        window.addEventListener('resize', handleResize);
+      }
+
+      updateSize() {
+        const newSize = {
+          width: window.innerWidth,
+          height: window.innerHeight
+        };
+
+        const newBreakpoint = this.getCurrentBreakpoint();
+        const sizeChanged = newSize.width !== this.size.width ||
+          newSize.height !== this.size.height;
+        const breakpointChanged = newBreakpoint !== this.currentBreakpoint;
+
+        // 保存旧的断点值
+        const previousBreakpoint = this.currentBreakpoint;
+
+        // 更新状态
+        this.size = newSize;
+        this.currentBreakpoint = newBreakpoint;
+
+        // 触发相应的回调
+        if (sizeChanged) {
+          this.trigger('resize', this.size);
+        }
+
+        if (breakpointChanged && previousBreakpoint !== null) {
+          this.trigger('breakpoint', {
+            current: newBreakpoint,
+            previous: previousBreakpoint
+          });
+        }
+      }
+
+      getCurrentBreakpoint() {
+        const width = window.innerWidth;
+        let current = 'xs';
+
+        for (const [breakpoint, minWidth] of Object.entries(this.breakpoints)) {
+          if (width >= minWidth) {
+            current = breakpoint;
+          }
+        }
+
+        return current;
+      }
+
+      on(event, callback) {
+        if (!this.callbacks.has(event)) {
+          this.callbacks.set(event, new Set());
+        }
+        this.callbacks.get(event).add(callback);
+
+        return () => this.off(event, callback);
+      }
+
+      off(event, callback) {
+        if (this.callbacks.has(event)) {
+          this.callbacks.get(event).delete(callback);
+        }
+      }
+
+      trigger(event, data) {
+        if (this.callbacks.has(event)) {
+          this.callbacks.get(event).forEach(callback => {
+            callback(data);
+          });
+        }
+      }
+
+      // 便捷方法
+      isBreakpoint(breakpoint) {
+        return this.currentBreakpoint === breakpoint;
+      }
+
+      isAbove(breakpoint) {
+        const breakpoints = Object.keys(this.breakpoints);
+        const currentIndex = breakpoints.indexOf(this.currentBreakpoint);
+        const targetIndex = breakpoints.indexOf(breakpoint);
+        return currentIndex > targetIndex;
+      }
+
+      isBelow(breakpoint) {
+        const breakpoints = Object.keys(this.breakpoints);
+        const currentIndex = breakpoints.indexOf(this.currentBreakpoint);
+        const targetIndex = breakpoints.indexOf(breakpoint);
+        return currentIndex < targetIndex;
+      }
+
+      // 获取当前状态
+      getState() {
+        return {
+          size: { ...this.size },
+          breakpoint: this.currentBreakpoint,
+          breakpoints: { ...this.breakpoints }
+        };
+      }
+
+      // 销毁方法
+      destroy() {
+        window.removeEventListener('resize', this.handleResize);
+        this.callbacks.clear();
+      }
+    }
+
+    // 使用示例
+    const responsive = new ResponsiveHelper();
+
+    // 监听尺寸变化
+    responsive.on('resize', (size) => {
+      console.log(`窗口尺寸: ${size.width}x${size.height}`);
+    });
+
+    // 监听断点变化
+    responsive.on('breakpoint', ({ current, previous }) => {
+      console.log(`断点从 ${previous} 变为 ${current}`);
+
+      // 根据断点调整布局
+      if (responsive.isBelow('md')) {
+        document.body.classList.add('mobile-layout');
+      } else {
+        document.body.classList.remove('mobile-layout');
+      }
+    });
+
+    // 测试当前状态
+    console.log('当前状态:', responsive.getState());
+
+
+  </script>
+</body>
+
+</html>

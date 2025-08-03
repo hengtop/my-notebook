@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
+        html {}
+
+        body {
             font-size: 60px;
         }
-        .box1{
-            width: 200px;
-            height: 200px;
-            background-color: aqua;
+
+        .box1 {
+            overflow: hidden;
+
         }
-        .box2{
+
+        .box11 {
+            width: 100px;
+            height: 200px;
+            background-color: #bfa;
+            left: 200px;
+            bottom: 0px;
+            margin-bottom: 100px;
+        }
+
+        .box2 {
+            overflow: hidden;
+            margin-top: 100px;
             width: 200px;
             height: 200px;
             background-color: blue;
         }
-        .box3{
+
+        .box3 {
             width: 200px;
             height: 200px;
             background-color: red;
         }
 
 
-          /*
+        /*
               定位（position）
                   使用position属性来设置定位
                      可选值：
@@ -75,9 +91,13 @@
           */
     </style>
 </head>
+
 <body>
-    <div class="box1">1</div>
+    <div class="box1">
+        <div class="box11">2121</div>
+    </div>
     <div class="box2">2</div>
     <div class="box3">3</div>
 </body>
+
 </html>
