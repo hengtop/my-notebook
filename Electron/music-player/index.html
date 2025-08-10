@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音乐播放器</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div id="currentPlaying">
+    <p>当前播放：<span class="currentPlayingTrackName">无音源播放</span></p>
+  </div>
+  <audio src="" id="audioPlayer" controls>
+    <source id="audioSource" type="audio/mpeg" />
+    你的浏览器不支持音频播放器元素
+  </audio>
+
+  <ul id="playList">
+    <li data-song="./assets/music/Aimer - 凍えそうな季節から.m4a">Aimer - 凍えそうな季節から.m4a</li>
+    <li data-song="./assets/music/アトラスサウンドチーム - やすらぎ -Reload-.flac">アトラスサウンドチーム - やすらぎ -Reload-.flac</li>
+    <li data-song="./assets/music/周杰伦 - 七里 香.flac">周杰伦 - 七里 香.flac</li>
+    <li data-song="./assets/music/周杰伦 - 反 方向 的钟.flac">周杰伦 - 反 方向 的钟.flac</li>
+    <li data-song="./assets/music/周杰伦 - 搁 浅.flac">周杰伦 - 搁 浅.flac</li>
+    <li data-song="./assets/music/周杰伦 - 龙卷 风.flac">周杰伦 - 龙卷 风.flac</li>
+    <li data-song="./assets/music/川村ゆみ - キミの記憶.flac">川村ゆみ - キミの記憶.flac</li>
+  </ul>
+  <script src="./index.js"></script>
+</body>
+
+</html>
