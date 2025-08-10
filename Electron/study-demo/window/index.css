@@ -1,0 +1,8 @@
+#cpu,
+#cpu-arch,
+#platform,
+#freemem,
+#totalmem span {
+  color: blue;
+  font-weight: bold;
+}
