@@ -1,121 +1,170 @@
 /* 基础样式 */
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f5f5f5;
-  color: #333;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  color: #212529;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+/* 播放器容器 */
+#amplitude-player {
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
 }
 
 /* 当前播放信息 */
-#currentPlaying {
-  background-color: #fff;
-  padding: 15px;
+#currentPlay {
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background-color: #f8f9fa;
   border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#currentPlaying p {
+#currentPlay p {
   margin: 0;
-  font-size: 18px;
+  font-size: 1.1rem;
   font-weight: 500;
+  color: #495057;
 }
 
-.currentPlayingTrackName {
+#currentPlay span {
   color: #1db954;
-  font-weight: bold;
+  font-weight: 600;
 }
 
-/* 音频播放器 */
-#audioPlayer {
-  width: 100%;
+/* 播放控制面板 */
+.play-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
   margin-bottom: 20px;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border: 1px solid #e0e0e0;
 }
 
-#audioPlayer:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+.play-container > div {
+  padding: 8px 16px;
+  background-color: #f1f3f5;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* 自定义音频控件样式 */
-#audioPlayer::-webkit-media-controls-panel {
-  background-color: #fff;
-  border-radius: 12px;
+.play-container > div:hover {
+  background-color: #e9ecef;
 }
 
-#audioPlayer::-webkit-media-controls-play-button,
-#audioPlayer::-webkit-media-controls-mute-button {
-  background-color: #1db954;
+/* 时间显示 */
+.time-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* 进度条 */
+.progress-container {
+  flex: 1;
+}
+
+.progress-container input[type="range"] {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e9ecef;
+  outline: none;
+}
+
+.progress-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
+  background: #1db954;
+  cursor: pointer;
 }
 
-#audioPlayer::-webkit-media-controls-current-time-display,
-#audioPlayer::-webkit-media-controls-time-remaining-display {
-  font-family: "Segoe UI", sans-serif;
-  color: #333;
+/* 音量控制 */
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-#audioPlayer::-webkit-media-controls-timeline {
-  background-color: #e0e0e0;
+.volume-button {
+  width: 24px;
+  height: 24px;
+  background-color: #6c757d;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3C/svg%3E");
+  cursor: pointer;
+}
+
+.volume-range {
+  width: 80px;
+  height: 4px;
   border-radius: 2px;
-  margin: 0 10px;
+  background: #e9ecef;
 }
 
-#audioPlayer::-webkit-media-controls-volume-slider {
-  background-color: #e0e0e0;
-  border-radius: 2px;
+.volume-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1db954;
+  cursor: pointer;
 }
 
 /* 播放列表 */
-#playList {
+.amplitude-playlist {
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#playList li {
-  padding: 12px 15px;
-  border-bottom: 1px solid #eee;
+.amplitude-playlist li {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f3f5;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
 }
 
-#playList li:hover {
-  background-color: #f8f8f8;
+.amplitude-playlist li:hover {
+  background-color: #f8f9fa;
 }
 
-#playList li:last-child {
+.amplitude-playlist li:last-child {
   border-bottom: none;
 }
 
-/* 当前播放歌曲高亮 */
-#playList li.playing {
-  background-color: #1db95420;
+.amplitude-playlist li.playing {
+  background-color: rgba(29, 185, 84, 0.1);
   color: #1db954;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 /* 响应式设计 */
 @media (max-width: 600px) {
   body {
-    padding: 10px;
+    padding: 15px;
   }
 
-  #currentPlaying p {
-    font-size: 16px;
+  .play-container > div {
+    padding: 6px 12px;
   }
+}
 
-  #playList li {
-    padding: 10px 12px;
-  }
+.amplitude-active-song-container {
+  color: #1db954;
 }

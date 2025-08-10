@@ -7,26 +7,69 @@
   <title>音乐播放器</title>
   <link rel="stylesheet" href="./index.css">
 </head>
-
-<body>
-  <div id="currentPlaying">
-    <p>当前播放：<span class="currentPlayingTrackName">无音源播放</span></p>
+<div id="amplitude-player">
+  <!-- 当前播放播放的歌曲 -->
+  <div id="currentPlay">
+    <p>当前播放：<span data-amplitude-song-info="name "></span></p>
   </div>
-  <audio src="" id="audioPlayer" controls>
-    <source id="audioSource" type="audio/mpeg" />
-    你的浏览器不支持音频播放器元素
-  </audio>
 
-  <ul id="playList">
-    <li data-song="./assets/music/Aimer - 凍えそうな季節から.m4a">Aimer - 凍えそうな季節から.m4a</li>
-    <li data-song="./assets/music/アトラスサウンドチーム - やすらぎ -Reload-.flac">アトラスサウンドチーム - やすらぎ -Reload-.flac</li>
-    <li data-song="./assets/music/周杰伦 - 七里 香.flac">周杰伦 - 七里 香.flac</li>
-    <li data-song="./assets/music/周杰伦 - 反 方向 的钟.flac">周杰伦 - 反 方向 的钟.flac</li>
-    <li data-song="./assets/music/周杰伦 - 搁 浅.flac">周杰伦 - 搁 浅.flac</li>
-    <li data-song="./assets/music/周杰伦 - 龙卷 风.flac">周杰伦 - 龙卷 风.flac</li>
-    <li data-song="./assets/music/川村ゆみ - キミの記憶.flac">川村ゆみ - キミの記憶.flac</li>
+  <!-- 播放歌曲的控制面板 -->
+  <div class="play-container">
+    <div class="amplitude-prev">上一曲</div>
+    <div class="amplitude-play-pause">播放/暂停</div>
+    <div class="amplitude-next">下一曲</div>
+
+    <div class="time-container">
+      <span class="current-time amplitude-current-minutes"></span>:
+      <span class="total-time amplitude-current-seconds"></span>
+      <span>/</span>
+      <span class="current-time amplitude-duration-minutes"></span>:
+      <span class="total-time amplitude-duration-seconds"></span>
+
+
+    </div>
+
+    <!-- 播放进度 -->
+    <div class="progress-container">
+      <input type="range" class="amplitude-song-slider">
+    </div>
+
+    <!-- 音量 -->
+    <div class="volume-container">
+      <!-- 静音按钮 -->
+      <div class="volume-button amplitude-mute"></div>
+      <!-- 音量调节 -->
+      <input type="range" class="volume-range amplitude-volume-slider">
+    </div>
+  </div>
+
+  <!-- 播放列表 -->
+  <ul class="amplitude-playlist">
+    <li class="amplitude-song-container  amplitude-play-pause" data-amplitude-song-index="0"
+      data-song="./assets/music/Aimer - 凍えそうな季節から.m4a">Aimer -
+      凍えそうな季節から.m4a</li>
+    <li class="amplitude-song-container amplitude-play-pause" data-amplitude-song-index="1"
+      data-song="./assets/music/アトラスサウンドチーム - やすらぎ -Reload-.flac">アトラスサウンドチーム - やすらぎ
+      -Reload-.flac</li>
+    <li data-amplitude-song-index="2" class="amplitude-song-container amplitude-play-pause"
+      data-song="./assets/music/周杰伦 - 七里 香.flac">周杰伦 - 七里 香.flac
+    </li>
+    <li data-amplitude-song-index="3" class="amplitude-song-container amplitude-play-pause"
+      data-song="./assets/music/周杰伦 - 反 方向 的钟.flac">周杰伦 - 反 方向
+      的钟.flac</li>
+    <li data-amplitude-song-index="4" class="amplitude-song-container amplitude-play-pause"
+      data-song="./assets/music/周杰伦 - 搁 浅.flac">周杰伦 - 搁 浅.flac
+    </li>
+    <li data-amplitude-song-index="5" class="amplitude-song-container amplitude-play-pause"
+      data-song="./assets/music/周杰伦 - 龙卷 风.flac">周杰伦 - 龙卷 风.flac
+    </li>
+    <li data-amplitude-song-index="6" class="amplitude-song-container amplitude-play-pause"
+      data-song="./assets/music/川村ゆみ - キミの記憶.flac">川村ゆみ -
+      キミの記憶.flac</li>
   </ul>
-  <script src="./index.js"></script>
+</div>
+<script src="./amplitude.js"></script>
+<script src="./index.js"></script>
 </body>
 
 </html>
